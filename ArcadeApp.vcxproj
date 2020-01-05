@@ -70,22 +70,22 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <IncludePath>$(SolutionDir)..\vs_dev_lib\SDL2\include;$(SolutionDir)inc;$(SolutionDir)inc\Graphics;$(IncludePath)</IncludePath>
+    <IncludePath>$(SolutionDir)..\vs_dev_lib\SDL2\include;$(SolutionDir)inc;$(IncludePath)</IncludePath>
     <LibraryPath>$(SolutionDir)..\vs_dev_lib\SDL2\lib\$(PlatformTarget);$(VC_LibraryPath_x86);$(WindowsSDK_LibraryPath_x86);$(NETFXKitsDir)Lib\um\x86</LibraryPath>
     <ExtensionsToDeleteOnClean>*.dll;$(ExtensionsToDeleteOnClean)</ExtensionsToDeleteOnClean>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
-    <IncludePath>$(SolutionDir)..\vs_dev_lib\SDL2\include;$(SolutionDir)inc;$(SolutionDir)inc\Graphics;$(IncludePath)</IncludePath>
+    <IncludePath>$(SolutionDir)..\vs_dev_lib\SDL2\include;$(SolutionDir)inc;$(IncludePath)</IncludePath>
     <LibraryPath>$(SolutionDir)..\vs_dev_lib\SDL2\lib\$(PlatformTarget);$(VC_LibraryPath_x86);$(WindowsSDK_LibraryPath_x86);$(NETFXKitsDir)Lib\um\x86</LibraryPath>
     <ExtensionsToDeleteOnClean>*.dll;$(ExtensionsToDeleteOnClean)</ExtensionsToDeleteOnClean>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-    <IncludePath>$(SolutionDir)..\vs_dev_lib\SDL2\include;$(SolutionDir)inc;$(SolutionDir)inc\Graphics;$(IncludePath)</IncludePath>
+    <IncludePath>$(SolutionDir)..\vs_dev_lib\SDL2\include;$(SolutionDir)inc;$(IncludePath)</IncludePath>
     <LibraryPath>$(SolutionDir)..\vs_dev_lib\SDL2\lib\$(PlatformTarget);$(VC_LibraryPath_x64);$(WindowsSDK_LibraryPath_x64);$(NETFXKitsDir)Lib\um\x64</LibraryPath>
     <ExtensionsToDeleteOnClean>*.dll;$(ExtensionsToDeleteOnClean)</ExtensionsToDeleteOnClean>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
-    <IncludePath>$(SolutionDir)..\vs_dev_lib\SDL2\include;$(SolutionDir)inc;$(SolutionDir)inc\Graphics;$(IncludePath)</IncludePath>
+    <IncludePath>$(SolutionDir)..\vs_dev_lib\SDL2\include;$(SolutionDir)inc;$(IncludePath)</IncludePath>
     <LibraryPath>$(SolutionDir)..\vs_dev_lib\SDL2\lib\$(PlatformTarget);$(VC_LibraryPath_x64);$(WindowsSDK_LibraryPath_x64);$(NETFXKitsDir)Lib\um\x64</LibraryPath>
     <ExtensionsToDeleteOnClean>*.dll;$(ExtensionsToDeleteOnClean)</ExtensionsToDeleteOnClean>
   </PropertyGroup>
@@ -163,9 +163,18 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="src\ArcadeApp.cpp" />
+    <ClCompile Include="src\Graphics\Color.cpp" />
+    <ClCompile Include="src\Graphics\Screen.cpp" />
+    <ClCompile Include="src\Graphics\ScreenBuffer.cpp" />
+    <ClCompile Include="src\Utils\Utils.cpp" />
+    <ClCompile Include="src\Utils\Vec2D.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="inc\Graphics\Color.h" />
+    <ClInclude Include="inc\Graphics\Screen.h" />
+    <ClInclude Include="inc\Graphics\ScreenBuffer.h" />
+    <ClInclude Include="inc\Utils\Utils.h" />
+    <ClInclude Include="inc\Utils\Vec2D.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
