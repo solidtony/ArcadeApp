@@ -83,7 +83,7 @@ Vec2D operator*(float scalar, const Vec2D& vec)
 
 float Vec2D::Mag2() const
 {
-	return mX * mX + mY * mY;
+	return Dot(*this);
 }
 
 float Vec2D::Mag() const
@@ -105,4 +105,53 @@ Vec2D& Vec2D::Normalize()
 	if (IsEqual(mag, 0.f)) { return *this; }
 
 	return *this /= mag;
+}
+
+float Vec2D::Distance(const Vec2D& vec) const
+{
+	return (vec - *this).Mag();
+}
+
+float Vec2D::Dot(const Vec2D& vec) const
+{
+	return (mX * vec.mX + mY * vec.mY);
+}
+
+Vec2D Vec2D::ProjectOnto(const Vec2D& vec) const
+{
+	Vec2D unitVec = vec.GetUnitVector();
+	float dot = Dot(unitVec);
+	
+	return dot * unitVec;
+}
+
+float Vec2D::AngleBetween(const Vec2D& vec) const
+{
+	return acosf( GetUnitVector().Dot(vec.GetUnitVector()) );
+}
+
+Vec2D Vec2D::Reflect(const Vec2D& normal) const
+{
+	return *this - 2 * ProjectOnto(normal);
+}
+
+void Vec2D::Rotate(const Vec2D& aroundPoint, float angle)
+{
+	*this = RotationResult(aroundPoint, angle);
+}
+
+Vec2D Vec2D::RotationResult(const Vec2D& aroundPoint, float angle) const
+{
+	float cosine = cosf(angle);
+	float sine = sinf(angle);
+
+	Vec2D thisVec(mX, mY);
+
+	thisVec -= aroundPoint;
+	float xRot = thisVec.mX * cosine - thisVec.mY * sine;
+	float yRot = thisVec.mX * sine + thisVec.mY * cosine;
+
+	Vec2D rot = Vec2D(xRot, yRot);
+
+	return rot + aroundPoint;
 }

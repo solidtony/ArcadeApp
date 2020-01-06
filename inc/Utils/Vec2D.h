@@ -35,6 +35,14 @@ public:
 	Vec2D GetUnitVector() const;
 	Vec2D& Normalize();
 
+	float Distance(const Vec2D& vec) const;
+	float Dot(const Vec2D& vec) const;
+
+	Vec2D ProjectOnto(const Vec2D& vec) const;
+	float AngleBetween(const Vec2D& vec) const;
+	Vec2D Reflect(const Vec2D& normal) const;
+	void Rotate(const Vec2D& aroundPoint, float angle);
+	Vec2D RotationResult(const Vec2D& aroundPoint, float angle) const;
 private:
 	float mX, mY;
 };

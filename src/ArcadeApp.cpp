@@ -29,6 +29,15 @@ int main(int argc, char *argv[])
 	zeroVec.Normalize();
 	std::cout << "zeroVec: " << zeroVec << std::endl;
 	std::cout << "Zero magnitude: " << zeroVec.Mag() << std::endl;
+	Vec2D vec1(3, 4);
+	Vec2D vec2(1, 0);
+	std::cout << "vec1: " << vec1 << "; vec2: " << vec2 << std::endl;
+	std::cout << "vec1 projected onto vec2: " << vec1.ProjectOnto(vec2) << std::endl;
+	vec2.SetX(0.f);
+	vec2.SetY(1.f);
+	std::cout << "vec1: " << vec1 << "; vec2: " << vec2 << std::endl;
+	std::cout << "vec1 projected onto vec2: " << vec1.ProjectOnto(vec2) << std::endl;
+
 
 	//if (SDL_Init(SDL_INIT_VIDEO))
 	//{
