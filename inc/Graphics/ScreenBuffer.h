@@ -14,7 +14,7 @@ public:
 
 	void Init(uint32_t format, uint32_t width, uint32_t height);
 
-	inline SDL_Surface* GetSurfacer() { return mSurface; }
+	inline SDL_Surface* GetSurface() const { return mSurface; }
 	void Clear(const Color& color = Color::Black());
 	void SetPixel(const Color& color, int x, int y);
 

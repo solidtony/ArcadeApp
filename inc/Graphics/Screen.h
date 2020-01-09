@@ -15,7 +15,7 @@ public:
 	~Screen();
 
 	SDL_Window* Init(uint32_t width, uint32_t height, uint32_t mag);
-	void SwapScreen();
+	void SwapScreens();
 
 	inline void SetClearColor(const Color& clearColor) { mClearColor = clearColor; }
 	inline uint32_t Width() const { return mWidth; }
@@ -26,6 +26,10 @@ public:
 	void Draw(const Vec2D&point, const Color& color);
 
 private:
+	// Declared in private to prevent copying
+	Screen(const Screen& screen);
+	Screen& operator=(const Screen& screen);
+
 	void ClearScreen();
 
 	uint32_t mWidth;
