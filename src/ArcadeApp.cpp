@@ -3,6 +3,7 @@
 
 #include "Graphics/Color.h"
 #include "Graphics/Screen.h"
+#include "Shapes/Lines2D.h"
 #include "Utils/Vec2D.h"
 
 const int SCREEN_WIDTH = 224;
@@ -14,7 +15,9 @@ int main(int argc, char *argv[])
 	Screen theScreen;
 
 	theScreen.Init(SCREEN_WIDTH, SCREEN_HEIGHT, MAGNIFICATION);
-	theScreen.Draw(SCREEN_WIDTH/2, SCREEN_HEIGHT/2, Color::Yellow());
+	Line2D line = { Vec2D(SCREEN_WIDTH,0), Vec2D(0, SCREEN_HEIGHT) };
+	theScreen.Draw(line, Color::Yellow());
+	//theScreen.Draw(SCREEN_WIDTH/2, SCREEN_HEIGHT/2, Color::Yellow());
 	theScreen.SwapScreens();
 
 	//Vec2D vecA(2.0, 4.0);

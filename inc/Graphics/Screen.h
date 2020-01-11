@@ -1,12 +1,14 @@
 #pragma once
 
 #include <stdint.h>
-#include "Graphics/ScreenBuffer.h"
+
 #include "Graphics/Color.h"
+#include "Graphics/ScreenBuffer.h"
 
 struct SDL_Window;
 struct SDL_Surface;
 class Vec2D;
+class Line2D;
 
 class Screen
 {
@@ -23,7 +25,8 @@ public:
 
 	// Draw methods
 	void Draw(int x, int y, const Color& color);
-	void Draw(const Vec2D&point, const Color& color);
+	void Draw(const Vec2D& point, const Color& color);
+	void Draw(const Line2D& line, const Color& color);
 
 private:
 	// Declared in private to prevent copying
@@ -31,6 +34,7 @@ private:
 	Screen& operator=(const Screen& screen);
 
 	void ClearScreen();
+	void DrawBLAalongYAxis(int x0, int x1, int y0, int y1, Color color);
 
 	uint32_t mWidth;
 	uint32_t mHeight;
