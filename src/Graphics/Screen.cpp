@@ -96,15 +96,52 @@ void Screen::Draw(const Line2D & line, const Color & color)
 	dx = x1 - x0;
 	dy = y1 - y0;
 
+	signed const char ix((dx > 0) - (dx < 0)); // evaluate to 1 or -1
+	signed const char iy((dy > 0) - (dy < 0));
+
+	dx = abs(dx) * 2;
+	dy = abs(dy) * 2;
+
 	if (dx*dx >= dy*dy)
 	{
 		// Run Bresenham's line alg along x
-		DrawBLAalongYAxis(y0, y1, x0, x1, color);
+		dx = abs(dx) * 2;
+		dy = abs(dy) * 2;
+
+		Draw(x0, y0, color);
+
+		int d = dx - dy / 2;
+		while (x0 != x1)
+		{
+			if (d >= 0)
+			{
+				d -= dx;
+				y0 += iy;
+			}
+
+			d += dy;
+			x0 += ix;
+
+			Draw(x0, y0, color);
+		}
 	}
 	else
 	{
 		// Run Bresenham's line alg along y
-		DrawBLAalongYAxis(x0, x1, y0, y1, color);
+		int d = dx - dy / 2;
+		while (y0 != y1)
+		{
+			if (d >= 0)
+			{
+				d -= dy;
+				x0 += ix;
+			}
+
+			d += dx;
+			y0 += iy;
+
+			Draw(x0, y0, color);
+		}
 	}
 }
 
@@ -114,39 +151,4 @@ void Screen::ClearScreen()
 	if (moptrWindow == nullptr) { return; }
 
 	SDL_FillRect(mnoptrWindowSurface, nullptr, mClearColor.GetPixelColor());
-}
-
-/*
-Runs Bresenham's line alg along y
-To run alg along x reverse x and y in function call
-*/
-void Screen::DrawBLAalongYAxis(int x0, int x1, int y0, int y1, Color color)
-{
-	// Run Bresenham's line alg along y
-
-	int dx = x1 - x0;
-	int dy = y1 - y0;
-
-	signed const char ix((dx > 0) - (dx < 0)); // evaluate to 1 or -1
-	signed const char iy((dy > 0) - (dy < 0));
-
-	dx = abs(dx) * 2;
-	dy = abs(dy) * 2;
-
-	Draw(x0, y0, color);
-
-	int d = dx - dy / 2;
-	while (y0 != y1)
-	{
-		if (d >= 0)
-		{
-			d -= dy;
-			x0 += ix;
-		}
-
-		d += dx;
-		y0 += iy;
-
-		Draw(x0, y0, color);
-	}
 }

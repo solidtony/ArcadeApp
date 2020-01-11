@@ -8,17 +8,23 @@
 
 const int SCREEN_WIDTH = 224;
 const int SCREEN_HEIGHT = 288;
-const int MAGNIFICATION = 2;
+const int MAGNIFICATION = 3;
 
 int main(int argc, char *argv[])
 {
 	Screen theScreen;
 
 	theScreen.Init(SCREEN_WIDTH, SCREEN_HEIGHT, MAGNIFICATION);
-	Line2D line = { Vec2D(SCREEN_WIDTH,0), Vec2D(0, SCREEN_HEIGHT) };
-	theScreen.Draw(line, Color::Yellow());
-	//theScreen.Draw(SCREEN_WIDTH/2, SCREEN_HEIGHT/2, Color::Yellow());
-	theScreen.SwapScreens();
+	int x=0, y=0;
+	while (x < SCREEN_WIDTH)
+	{
+		Line2D line = { Vec2D(0,0), Vec2D(x, y) };
+		theScreen.Draw(line, Color::Yellow());
+		theScreen.SwapScreens();
+
+		y = SCREEN_HEIGHT * x / SCREEN_WIDTH;
+		x++;
+	}
 
 	//Vec2D vecA(2.0, 4.0);
 	//Vec2D vecB(1.0, 2.0);

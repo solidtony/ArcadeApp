@@ -34,7 +34,6 @@ private:
 	Screen& operator=(const Screen& screen);
 
 	void ClearScreen();
-	void DrawBLAalongYAxis(int x0, int x1, int y0, int y1, Color color);
 
 	uint32_t mWidth;
 	uint32_t mHeight;
