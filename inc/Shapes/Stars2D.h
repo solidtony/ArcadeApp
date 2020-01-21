@@ -13,11 +13,11 @@ public:
 	~Star2D();
 
 	// getters
-	inline Vec2D getCenter() { return mCenter; }
-	inline float getRadius() { return mRadius; }
-	inline float getThickness() { return mThickness; }
-	inline unsigned int getNumberOfArms() { return mNumberOfArms; }
-	inline unsigned int getNumberOfLines() { return mNumberOfSides; }
+	inline Vec2D getCenter() const { return mCenter; }
+	inline float getRadius() const { return mRadius; }
+	inline float getThickness() const { return mThickness; }
+	inline unsigned int getNumberOfArms() const { return mNumberOfArms; }
+	inline unsigned int getNumberOfLines() const { return mNumberOfSides; }
 	inline const Line2D* getSides() const { return mSides; }
 
 	void Rotate(Vec2D aroundPoint, float byAngle);
