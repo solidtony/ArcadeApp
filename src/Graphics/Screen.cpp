@@ -5,6 +5,7 @@
 #include "SDL.h"
 
 #include "Shapes/Lines2D.h"
+#include "Shapes/Stars2D.h"
 #include "Utils/Vec2D.h"
 
 Screen::Screen() : mWidth(0), mHeight(0), moptrWindow(nullptr), mnoptrWindowSurface(nullptr)
@@ -72,6 +73,16 @@ void Screen::Draw(int x, int y, const Color& color)
 	assert(moptrWindow);
 	if (moptrWindow == nullptr) { return; }
 	mBackBuffer.SetPixel(color, x, y);
+}
+
+void Screen::Draw(const Star2D& star, const Color& color)
+{
+	assert(moptrWindow);
+	if (moptrWindow == nullptr) { return; }
+	for (int i = 0; i < star.getNumberOfLines(); ++i)
+	{
+		Draw(star.getSides()[i], Color::Yellow());
+	}
 }
 
 void Screen::Draw(const Vec2D& point, const Color& color)

@@ -21,13 +21,10 @@ int main(int argc, char *argv[])
 	Vec2D rotationPoint = star.getCenter();
 	do
 	{
-		for (int i = 0; i < star.getNumberOfLines(); ++i)
-		{
-			theScreen.Draw(star.getSides()[i], Color::Yellow());
-		}
+		theScreen.Draw(star, Color::Yellow());
 		theScreen.SwapScreens();
 
-		float deltaAngle = 0.0025f;
+		float deltaAngle = 0.0005f;
 		star.Rotate(rotationPoint, deltaAngle);
 	} while (true);
 
