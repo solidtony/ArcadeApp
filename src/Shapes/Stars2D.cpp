@@ -20,6 +20,12 @@ Star2D::~Star2D()
 Star2D::Star2D(Vec2D center, float radius, float thickness, unsigned int numberOfArms)
 	: mCenter(center), mRadius(radius), mThickness(thickness), mNumberOfArms(numberOfArms), mNumberOfSides(2*numberOfArms)
 {
+	if (mNumberOfArms == 0)
+	{
+		mNumberOfArms = 1;
+		mNumberOfSides = 2 * mNumberOfArms;
+	}
+
 	mSides = new Line2D[mNumberOfSides];
 
 	CalculateStar();
