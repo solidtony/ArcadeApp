@@ -7,46 +7,45 @@ Star2D::Star2D() : Star2D(0.0f, 0.0f, 1.0f, 0.2f, 3)
 
 }
 
-Star2D::Star2D(float centerX, float centerY, float radius, float thickness, unsigned int numberOfPoints) : Star2D(Vec2D(centerX, centerY), radius, thickness, numberOfPoints)
+Star2D::Star2D(float centerX, float centerY, float radius, float thickness, unsigned int numberOfArms) : Star2D(Vec2D(centerX, centerY), radius, thickness, numberOfArms)
 {
 
 }
 
 Star2D::~Star2D()
 {
-
+	delete[] mSides;
 }
 
-Star2D::Star2D(Vec2D center, float radius, float thickness, unsigned int numberOfPoints) : mCenter(center), mRadius(radius), mThickness(thickness), mNumberOfPoints(numberOfPoints)
+Star2D::Star2D(Vec2D center, float radius, float thickness, unsigned int numberOfArms)
+	: mCenter(center), mRadius(radius), mThickness(thickness), mNumberOfArms(numberOfArms), mNumberOfSides(2*numberOfArms)
 {
-	mSides = {};
+	mSides = new Line2D[mNumberOfSides];
 
-	float angleBetweenPoints = 2*math::constants::PI_F / numberOfPoints;
+	float angleBetweenArms = 2*math::constants::PI_F / numberOfArms;
 
 	Vec2D uVec(0.0f, 1.0f);
 
-	Vec2D point = mRadius*uVec;
+	Vec2D firstArm = mRadius*uVec;
 
 	// Calculate left line
-	uVec.Rotate(Vec2D::Zero(), -0.5f * angleBetweenPoints);
-	mSides.push_back(Line2D(center + mThickness * uVec, center + point));
+	uVec.Rotate(Vec2D::Zero(), -0.5f * angleBetweenArms);
+	mSides[0] = Line2D(center + mThickness * uVec, center + firstArm);
 
-	// Calculate right point
-	uVec.Rotate(Vec2D::Zero(), angleBetweenPoints);
-	mSides.push_back(Line2D(center + mThickness * uVec, center + point));
+	// Calculate right line
+	uVec.Rotate(Vec2D::Zero(), angleBetweenArms);
+	mSides[1] = Line2D(center + mThickness * uVec, center + firstArm);
 
-	for (unsigned int side = 2; side < 2*numberOfPoints; side++)
+	for (unsigned int side = 2; side < mNumberOfSides; side++)
 	{
-		mSides.push_back(mSides[side - 2].RotationResult(center, angleBetweenPoints));
+		mSides[side] = mSides[side - 2].RotationResult(center, angleBetweenArms);
 	}
 }
 
-Star2D Star2D::Rotate(Vec2D aroundPoint, float byAngle)
+void Star2D::Rotate(Vec2D aroundPoint, float byAngle)
 {
-	for (auto& side : mSides)
+	for (unsigned int side = 0; side < mNumberOfSides; ++side)
 	{
-		side.Rotate(aroundPoint, byAngle);
+		mSides[side].Rotate(aroundPoint, byAngle);
 	}
-
-	return *this;
 }

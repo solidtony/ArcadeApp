@@ -17,18 +17,17 @@ int main(int argc, char *argv[])
 
 	theScreen.Init(SCREEN_WIDTH, SCREEN_HEIGHT, MAGNIFICATION);
 
-	// Test drawing star
-	Star2D star(Vec2D(SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2), 50.f, 15.f, 2);
-	Vec2D rotationPoint = star.getCenter() + Vec2D(0.0f, -50.f);
+	Star2D star(Vec2D(SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2), 50.f, 25.f, 5);
+	Vec2D rotationPoint = star.getCenter();
 	do
 	{
-		for (auto sLine : star.getSides())
+		for (int i = 0; i < star.getNumberOfLines(); ++i)
 		{
-			theScreen.Draw(sLine, Color::Yellow());
+			theScreen.Draw(star.getSides()[i], Color::Yellow());
 		}
 		theScreen.SwapScreens();
 
-		float deltaAngle = 0.004f;
+		float deltaAngle = 0.0025f;
 		star.Rotate(rotationPoint, deltaAngle);
 	} while (true);
 
