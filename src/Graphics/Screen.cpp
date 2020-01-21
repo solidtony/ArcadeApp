@@ -79,9 +79,9 @@ void Screen::Draw(const Star2D& star, const Color& color)
 {
 	assert(moptrWindow);
 	if (moptrWindow == nullptr) { return; }
-	for (int i = 0; i < star.getNumberOfLines(); ++i)
+	for (int i = 0; i < star.NumberOfLines(); ++i)
 	{
-		Draw(star.getSides()[i], Color::Yellow());
+		Draw(star.Sides()[i], Color::Yellow());
 	}
 }
 

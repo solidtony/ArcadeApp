@@ -22,23 +22,28 @@ Star2D::Star2D(Vec2D center, float radius, float thickness, unsigned int numberO
 {
 	mSides = new Line2D[mNumberOfSides];
 
-	float angleBetweenArms = 2*math::constants::PI_F / numberOfArms;
+	CalculateStar();
+}
+
+void Star2D::CalculateStar()
+{
+	float angleBetweenArms = 2 * math::constants::PI_F / mNumberOfArms;
 
 	Vec2D uVec(0.0f, 1.0f);
 
-	Vec2D firstArm = mRadius*uVec;
+	Vec2D firstArm = mRadius * uVec;
 
 	// Calculate left line
 	uVec.Rotate(Vec2D::Zero(), -0.5f * angleBetweenArms);
-	mSides[0] = Line2D(center + mThickness * uVec, center + firstArm);
+	mSides[0] = Line2D(mCenter + mThickness * uVec, mCenter + firstArm);
 
 	// Calculate right line
 	uVec.Rotate(Vec2D::Zero(), angleBetweenArms);
-	mSides[1] = Line2D(center + mThickness * uVec, center + firstArm);
+	mSides[1] = Line2D(mCenter + mThickness * uVec, mCenter + firstArm);
 
 	for (unsigned int side = 2; side < mNumberOfSides; side++)
 	{
-		mSides[side] = mSides[side - 2].RotationResult(center, angleBetweenArms);
+		mSides[side] = mSides[side - 2].RotationResult(mCenter, angleBetweenArms);
 	}
 }
 
