@@ -21,6 +21,9 @@ public:
 	float Slope() const;
 	float Length() const;
 
+	Line2D Rotate(Vec2D aroundPoint, float byAngle);
+	Line2D RotationResult(Vec2D aroundPoint, float byAngle);
+
 private:
 	Vec2D mPoint0;
 	Vec2D mPoint1;

@@ -1,5 +1,7 @@
 #include "Shapes/Lines2D.h"
 
+#include <math.h>
+
 #include "Utils/Utils.h"
 
 Line2D::Line2D() : Line2D(0.f,0.f,0.f,0.f)
@@ -62,4 +64,17 @@ float Line2D::Slope() const
 float Line2D::Length() const
 {
 	return mPoint1.Distance(mPoint0);
+}
+
+Line2D Line2D::Rotate(Vec2D aroundPoint, float byAngle)
+{
+	mPoint0.Rotate(aroundPoint, byAngle);
+	mPoint1.Rotate(aroundPoint, byAngle);
+
+	return *this;
+}
+
+Line2D Line2D::RotationResult(Vec2D aroundPoint, float byAngle)
+{
+	return Line2D(mPoint0.RotationResult(aroundPoint, byAngle), mPoint1.RotationResult(aroundPoint, byAngle));
 }

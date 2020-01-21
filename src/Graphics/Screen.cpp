@@ -78,7 +78,7 @@ void Screen::Draw(const Vec2D& point, const Color& color)
 {
 	assert(moptrWindow);
 	if (moptrWindow == nullptr) { return; }
-	mBackBuffer.SetPixel(color, point.GetX(), point.GetY());
+	mBackBuffer.SetPixel(color, (int)point.GetX(), (int)point.GetY());
 }
 
 void Screen::Draw(const Line2D & line, const Color & color)
@@ -88,10 +88,10 @@ void Screen::Draw(const Line2D & line, const Color & color)
 	
 	int dx, dy;
 
-	int x0 = roundf(line.GetPoint0().GetX());
-	int y0 = roundf(line.GetPoint0().GetY());
-	int x1 = roundf(line.GetPoint1().GetX());
-	int y1 = roundf(line.GetPoint1().GetY());
+	int x0 = (int)roundf(line.GetPoint0().GetX());
+	int y0 = (int)roundf(line.GetPoint0().GetY());
+	int x1 = (int)roundf(line.GetPoint1().GetX());
+	int y1 = (int)roundf(line.GetPoint1().GetY());
 
 	dx = x1 - x0;
 	dy = y1 - y0;

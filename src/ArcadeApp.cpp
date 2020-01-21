@@ -5,6 +5,7 @@
 #include "Graphics/Screen.h"
 #include "Shapes/Lines2D.h"
 #include "Utils/Vec2D.h"
+#include "Shapes/Stars2D.h"
 
 const int SCREEN_WIDTH = 224;
 const int SCREEN_HEIGHT = 288;
@@ -15,16 +16,32 @@ int main(int argc, char *argv[])
 	Screen theScreen;
 
 	theScreen.Init(SCREEN_WIDTH, SCREEN_HEIGHT, MAGNIFICATION);
-	int x=0, y=0;
-	while (x < SCREEN_WIDTH)
+
+	// Test drawing star
+	Star2D star(Vec2D(SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2), 50.f, 15.f, 2);
+	Vec2D rotationPoint = star.getCenter() + Vec2D(0.0f, -50.f);
+	do
 	{
-		Line2D line = { Vec2D(0,0), Vec2D(x, y) };
-		theScreen.Draw(line, Color::Yellow());
+		for (auto sLine : star.getSides())
+		{
+			theScreen.Draw(sLine, Color::Yellow());
+		}
 		theScreen.SwapScreens();
 
-		y = SCREEN_HEIGHT * x / SCREEN_WIDTH;
-		x++;
-	}
+		float deltaAngle = 0.004f;
+		star.Rotate(rotationPoint, deltaAngle);
+	} while (true);
+
+	//Line2D line = { Vec2D(SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2), Vec2D(SCREEN_WIDTH * 3 / 4, SCREEN_HEIGHT * 1 / 2) };
+	//Vec2D rotationPoint = line.MidPoint() + Vec2D(0.0, 50.0);
+	//do
+	//{
+	//	theScreen.Draw(line, Color::Yellow());
+	//	theScreen.SwapScreens();
+
+	//	float deltaAngle = 0.0025;
+	//	line.Rotate(rotationPoint, deltaAngle);
+	//} while (true);
 
 	//Vec2D vecA(2.0, 4.0);
 	//Vec2D vecB(1.0, 2.0);

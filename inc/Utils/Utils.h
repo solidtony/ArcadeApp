@@ -1,5 +1,13 @@
 #pragma once
 
+namespace math
+{
+	namespace constants
+	{
+		constexpr float PI_F = 3.14159265358979323846f;
+	}
+}
+
 bool IsEqual(float x, float y);
 bool IsEqual(float x, float y, float epsilon);
 
