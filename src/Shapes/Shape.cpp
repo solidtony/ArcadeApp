@@ -20,3 +20,11 @@ Vec2D Shape::GetCentroid() const
 
 	return sum / (float)mPoints.size();
 }
+
+void Shape::Rotate(Vec2D aroundPoint, float byAngle)
+{
+	for (auto &point : mPoints)
+	{
+		point.Rotate(aroundPoint, byAngle);
+	}
+}
