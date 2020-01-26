@@ -14,49 +14,43 @@ Star::Star(float centerX, float centerY, float radius, float thickness, unsigned
 
 Star::~Star()
 {
-	delete[] mSides;
+
 }
 
 Star::Star(Vec2D center, float radius, float thickness, unsigned int numberOfArms)
-	: mCenter(center), mRadius(radius), mThickness(thickness), mNumberOfArms(numberOfArms), mNumberOfSides(2*numberOfArms)
+	: mCenter(center)
 {
-	if (mNumberOfArms == 0)
-	{
-		mNumberOfArms = 1;
-		mNumberOfSides = 2 * mNumberOfArms;
-	}
-
-	mSides = new Line2D[mNumberOfSides];
-
-	CalculateStar();
+	CalculateStar(center, radius, thickness, numberOfArms);
 }
 
-void Star::CalculateStar()
+float Star::Radius() const
 {
-	float angleBetweenArms = 2 * math::constants::PI_F / mNumberOfArms;
+	return (mCenter - mPoints[0]).Mag();
+}
+
+float Star::Thickness() const
+{
+	return (mCenter - mPoints[1]).Mag();
+}
+
+void Star::CalculateStar(Vec2D center, float radius, float thickness, unsigned int numberOfArms)
+{
+	if (numberOfArms < 2)
+	{
+		numberOfArms = 1;
+		mPoints.push_back(center);
+		return;
+	}
+
+	float angleBetweenPoints = math::constants::PI_F / numberOfArms;
 
 	Vec2D uVec(0.0f, 1.0f);
 
-	Vec2D firstArm = mRadius * uVec;
-
-	// Calculate left line
-	uVec.Rotate(Vec2D::Zero(), -0.5f * angleBetweenArms);
-	mSides[0] = Line2D(mCenter + mThickness * uVec, mCenter + firstArm);
-
-	// Calculate right line
-	uVec.Rotate(Vec2D::Zero(), angleBetweenArms);
-	mSides[1] = Line2D(mCenter + mThickness * uVec, mCenter + firstArm);
-
-	for (unsigned int side = 2; side < mNumberOfSides; side++)
+	for (unsigned int side = 0; side < numberOfArms; side++)
 	{
-		mSides[side] = mSides[side - 2].RotationResult(mCenter, angleBetweenArms);
-	}
-}
-
-void Star::Rotate(Vec2D aroundPoint, float byAngle)
-{
-	for (unsigned int side = 0; side < mNumberOfSides; ++side)
-	{
-		mSides[side].Rotate(aroundPoint, byAngle);
+		mPoints.push_back(center + radius * uVec);
+		uVec.Rotate(Vec2D::Zero(), angleBetweenPoints);
+		mPoints.push_back(center + thickness * uVec);
+		uVec.Rotate(Vec2D::Zero(), angleBetweenPoints);
 	}
 }

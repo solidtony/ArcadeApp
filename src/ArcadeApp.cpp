@@ -17,8 +17,8 @@ int main(int argc, char *argv[])
 
 	theScreen.Init(SCREEN_WIDTH, SCREEN_HEIGHT, MAGNIFICATION);
 
-	Star star(Vec2D(SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2), 50.f, 25.f, 5);
-	Vec2D rotationPoint = star.Center();
+	Star star(Vec2D(SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2), 50.f, 15.f, 2);
+	Vec2D rotationPoint = star.GetCenterPoint();
 	do
 	{
 		theScreen.Draw(star, Color::Yellow());

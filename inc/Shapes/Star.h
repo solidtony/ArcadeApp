@@ -1,9 +1,10 @@
 #pragma once
 
+#include "Shapes/Shape.h"
 #include "Shapes/Lines2D.h"
 #include "Utils/Vec2D.h"
 
-class Star
+class Star : public Shape
 {
 public:
 	Star();
@@ -13,22 +14,13 @@ public:
 	~Star();
 
 	// getters
-	inline Vec2D Center() const { return mCenter; }
-	inline float Radius() const { return mRadius; }
-	inline float Thickness() const { return mThickness; }
-	inline unsigned int NumberOfArms() const { return mNumberOfArms; }
-	inline unsigned int NumberOfLines() const { return mNumberOfSides; }
-	inline const Line2D* Sides() const { return mSides; }
-
-	void Rotate(Vec2D aroundPoint, float byAngle);
+	inline virtual Vec2D GetCenterPoint() const override { return mCenter; }
+	float Radius() const;
+	float Thickness() const;
+	inline unsigned int NumberOfArms() const { return (unsigned int)mPoints.size()/2; }
 
 private:
 	Vec2D mCenter;
-	float mRadius;
-	float mThickness;
-	unsigned int mNumberOfArms;
-	unsigned int mNumberOfSides;
-	Line2D* mSides = nullptr;
 
-	void CalculateStar();
+	void CalculateStar(Vec2D center, float radius, float thickness, unsigned int numberOfArms);
 };

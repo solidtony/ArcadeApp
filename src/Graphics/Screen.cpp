@@ -150,11 +150,15 @@ void Screen::Draw(const Line2D & line, const Color & color)
 void Screen::Draw(const Star& star, const Color& color)
 {
 	assert(moptrWindow);
+
 	if (moptrWindow == nullptr) { return; }
-	for (int i = 0; i < star.NumberOfLines(); ++i)
+	for (int i = 0; i < star.GetPoints().size() - 1; i++)
 	{
-		Draw(star.Sides()[i], Color::Yellow());
+		Draw(Line2D(star.GetPoints()[i], star.GetPoints()[i+1]), color);
 	}
+	// Draw the last side
+	Draw(Line2D(star.GetPoints().back(), star.GetPoints()[0]), color);
+
 }
 
 void Screen::Draw(const Triangle & triangle, const Color & color)
