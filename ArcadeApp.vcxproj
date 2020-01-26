@@ -167,7 +167,9 @@
     <ClCompile Include="src\Graphics\Screen.cpp" />
     <ClCompile Include="src\Graphics\ScreenBuffer.cpp" />
     <ClCompile Include="src\Shapes\Lines2D.cpp" />
+    <ClCompile Include="src\Shapes\Shape.cpp" />
     <ClCompile Include="src\Shapes\Stars2D.cpp" />
+    <ClCompile Include="src\Shapes\Triangle.cpp" />
     <ClCompile Include="src\Utils\Utils.cpp" />
     <ClCompile Include="src\Utils\Vec2D.cpp" />
   </ItemGroup>
@@ -176,7 +178,9 @@
     <ClInclude Include="inc\Graphics\Screen.h" />
     <ClInclude Include="inc\Graphics\ScreenBuffer.h" />
     <ClInclude Include="inc\Shapes\Lines2D.h" />
+    <ClInclude Include="inc\Shapes\Shape.h" />
     <ClInclude Include="inc\Shapes\Stars2D.h" />
+    <ClInclude Include="inc\Shapes\Triangle.h" />
     <ClInclude Include="inc\Utils\Utils.h" />
     <ClInclude Include="inc\Utils\Vec2D.h" />
   </ItemGroup>

@@ -6,6 +6,7 @@
 
 #include "Shapes/Lines2D.h"
 #include "Shapes/Stars2D.h"
+#include "Shapes/Triangle.h"
 #include "Utils/Vec2D.h"
 
 Screen::Screen() : mWidth(0), mHeight(0), moptrWindow(nullptr), mnoptrWindowSurface(nullptr)
@@ -73,16 +74,6 @@ void Screen::Draw(int x, int y, const Color& color)
 	assert(moptrWindow);
 	if (moptrWindow == nullptr) { return; }
 	mBackBuffer.SetPixel(color, x, y);
-}
-
-void Screen::Draw(const Star2D& star, const Color& color)
-{
-	assert(moptrWindow);
-	if (moptrWindow == nullptr) { return; }
-	for (int i = 0; i < star.NumberOfLines(); ++i)
-	{
-		Draw(star.Sides()[i], Color::Yellow());
-	}
 }
 
 void Screen::Draw(const Vec2D& point, const Color& color)
@@ -154,6 +145,27 @@ void Screen::Draw(const Line2D & line, const Color & color)
 			Draw(x0, y0, color);
 		}
 	}
+}
+
+void Screen::Draw(const Star2D& star, const Color& color)
+{
+	assert(moptrWindow);
+	if (moptrWindow == nullptr) { return; }
+	for (int i = 0; i < star.NumberOfLines(); ++i)
+	{
+		Draw(star.Sides()[i], Color::Yellow());
+	}
+}
+
+void Screen::Draw(const Triangle & triangle, const Color & color)
+{
+	Line2D p0p1 = Line2D(triangle.GetP0(), triangle.GetP1());
+	Line2D p1p2 = Line2D(triangle.GetP1(), triangle.GetP2());
+	Line2D p2p0 = Line2D(triangle.GetP2(), triangle.GetP0());
+
+	Draw(p0p1, color);
+	Draw(p1p2, color);
+	Draw(p2p0, color);
 }
 
 void Screen::ClearScreen()
