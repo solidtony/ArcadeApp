@@ -5,7 +5,7 @@
 #include "SDL.h"
 
 #include "Shapes/Lines2D.h"
-#include "Shapes/Stars2D.h"
+#include "Shapes/Star.h"
 #include "Shapes/Triangle.h"
 #include "Utils/Vec2D.h"
 
@@ -147,7 +147,7 @@ void Screen::Draw(const Line2D & line, const Color & color)
 	}
 }
 
-void Screen::Draw(const Star2D& star, const Color& color)
+void Screen::Draw(const Star& star, const Color& color)
 {
 	assert(moptrWindow);
 	if (moptrWindow == nullptr) { return; }

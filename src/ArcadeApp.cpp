@@ -5,7 +5,7 @@
 #include "Graphics/Screen.h"
 #include "Shapes/Lines2D.h"
 #include "Utils/Vec2D.h"
-#include "Shapes/Stars2D.h"
+#include "Shapes/Star.h"
 
 const int SCREEN_WIDTH = 224;
 const int SCREEN_HEIGHT = 288;
@@ -17,7 +17,7 @@ int main(int argc, char *argv[])
 
 	theScreen.Init(SCREEN_WIDTH, SCREEN_HEIGHT, MAGNIFICATION);
 
-	Star2D star(Vec2D(SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2), 50.f, 25.f, 5);
+	Star star(Vec2D(SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2), 50.f, 25.f, 5);
 	Vec2D rotationPoint = star.Center();
 	do
 	{

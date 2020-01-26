@@ -1,23 +1,23 @@
-#include "Shapes/Stars2D.h"
+#include "Shapes/Star.h"
 
 #include "Utils/Utils.h"
 
-Star2D::Star2D() : Star2D(0.0f, 0.0f, 1.0f, 0.2f, 3)
+Star::Star() : Star(0.0f, 0.0f, 1.0f, 0.2f, 3)
 {
 
 }
 
-Star2D::Star2D(float centerX, float centerY, float radius, float thickness, unsigned int numberOfArms) : Star2D(Vec2D(centerX, centerY), radius, thickness, numberOfArms)
+Star::Star(float centerX, float centerY, float radius, float thickness, unsigned int numberOfArms) : Star(Vec2D(centerX, centerY), radius, thickness, numberOfArms)
 {
 
 }
 
-Star2D::~Star2D()
+Star::~Star()
 {
 	delete[] mSides;
 }
 
-Star2D::Star2D(Vec2D center, float radius, float thickness, unsigned int numberOfArms)
+Star::Star(Vec2D center, float radius, float thickness, unsigned int numberOfArms)
 	: mCenter(center), mRadius(radius), mThickness(thickness), mNumberOfArms(numberOfArms), mNumberOfSides(2*numberOfArms)
 {
 	if (mNumberOfArms == 0)
@@ -31,7 +31,7 @@ Star2D::Star2D(Vec2D center, float radius, float thickness, unsigned int numberO
 	CalculateStar();
 }
 
-void Star2D::CalculateStar()
+void Star::CalculateStar()
 {
 	float angleBetweenArms = 2 * math::constants::PI_F / mNumberOfArms;
 
@@ -53,7 +53,7 @@ void Star2D::CalculateStar()
 	}
 }
 
-void Star2D::Rotate(Vec2D aroundPoint, float byAngle)
+void Star::Rotate(Vec2D aroundPoint, float byAngle)
 {
 	for (unsigned int side = 0; side < mNumberOfSides; ++side)
 	{

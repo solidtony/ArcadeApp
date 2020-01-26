@@ -54,13 +54,13 @@
     <ClCompile Include="src\Shapes\Lines2D.cpp">
       <Filter>Source Files\Shapes</Filter>
     </ClCompile>
-    <ClCompile Include="src\Shapes\Stars2D.cpp">
-      <Filter>Source Files\Shapes</Filter>
-    </ClCompile>
     <ClCompile Include="src\Shapes\Shape.cpp">
       <Filter>Source Files\Shapes</Filter>
     </ClCompile>
     <ClCompile Include="src\Shapes\Triangle.cpp">
+      <Filter>Source Files\Shapes</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Shapes\Star.cpp">
       <Filter>Source Files\Shapes</Filter>
     </ClCompile>
   </ItemGroup>
@@ -83,13 +83,13 @@
     <ClInclude Include="inc\Shapes\Lines2D.h">
       <Filter>Header Files\Shapes</Filter>
     </ClInclude>
-    <ClInclude Include="inc\Shapes\Stars2D.h">
-      <Filter>Header Files\Shapes</Filter>
-    </ClInclude>
     <ClInclude Include="inc\Shapes\Shape.h">
       <Filter>Header Files\Shapes</Filter>
     </ClInclude>
     <ClInclude Include="inc\Shapes\Triangle.h">
+      <Filter>Header Files\Shapes</Filter>
+    </ClInclude>
+    <ClInclude Include="inc\Shapes\Star.h">
       <Filter>Header Files\Shapes</Filter>
     </ClInclude>
   </ItemGroup>

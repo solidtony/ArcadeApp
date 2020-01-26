@@ -3,14 +3,14 @@
 #include "Shapes/Lines2D.h"
 #include "Utils/Vec2D.h"
 
-class Star2D
+class Star
 {
 public:
-	Star2D();
-	Star2D(float centerX, float centerY, float radius, float thickness, unsigned int numberOfArms);
-	Star2D(Vec2D center, float radius, float thickness, unsigned int numberOfArms);
+	Star();
+	Star(float centerX, float centerY, float radius, float thickness, unsigned int numberOfArms);
+	Star(Vec2D center, float radius, float thickness, unsigned int numberOfArms);
 
-	~Star2D();
+	~Star();
 
 	// getters
 	inline Vec2D Center() const { return mCenter; }
