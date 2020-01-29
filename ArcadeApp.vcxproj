@@ -166,6 +166,7 @@
     <ClCompile Include="src\Graphics\Color.cpp" />
     <ClCompile Include="src\Graphics\Screen.cpp" />
     <ClCompile Include="src\Graphics\ScreenBuffer.cpp" />
+    <ClCompile Include="src\Shapes\AARectangle.cpp" />
     <ClCompile Include="src\Shapes\Lines2D.cpp" />
     <ClCompile Include="src\Shapes\Shape.cpp" />
     <ClCompile Include="src\Shapes\Star.cpp" />
@@ -177,6 +178,7 @@
     <ClInclude Include="inc\Graphics\Color.h" />
     <ClInclude Include="inc\Graphics\Screen.h" />
     <ClInclude Include="inc\Graphics\ScreenBuffer.h" />
+    <ClInclude Include="inc\Shapes\AARectangle.h" />
     <ClInclude Include="inc\Shapes\Lines2D.h" />
     <ClInclude Include="inc\Shapes\Shape.h" />
     <ClInclude Include="inc\Shapes\Star.h" />

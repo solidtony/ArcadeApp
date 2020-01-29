@@ -63,6 +63,9 @@
     <ClCompile Include="src\Shapes\Star.cpp">
       <Filter>Source Files\Shapes</Filter>
     </ClCompile>
+    <ClCompile Include="src\Shapes\AARectangle.cpp">
+      <Filter>Source Files\Shapes</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="inc\Graphics\Color.h">
@@ -90,6 +93,9 @@
       <Filter>Header Files\Shapes</Filter>
     </ClInclude>
     <ClInclude Include="inc\Shapes\Star.h">
+      <Filter>Header Files\Shapes</Filter>
+    </ClInclude>
+    <ClInclude Include="inc\Shapes\AARectangle.h">
       <Filter>Header Files\Shapes</Filter>
     </ClInclude>
   </ItemGroup>

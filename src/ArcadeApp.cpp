@@ -17,14 +17,14 @@ int main(int argc, char *argv[])
 
 	theScreen.Init(SCREEN_WIDTH, SCREEN_HEIGHT, MAGNIFICATION);
 
-	Star star(Vec2D(SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2), 50.f, 15.f, 2);
-	Vec2D rotationPoint = star.GetCenterPoint();
+	Star star(Vec2D(SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2), 50.f, 25.f, 5);
+	Vec2D rotationPoint = star.GetCenterPoint()+Vec2D(0.0f, 0.0f);
+	float deltaAngle = 0.0015f;
 	do
 	{
 		theScreen.Draw(star, Color::Yellow());
 		theScreen.SwapScreens();
 
-		float deltaAngle = 0.0005f;
 		star.Rotate(rotationPoint, deltaAngle);
 	} while (true);
 
