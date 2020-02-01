@@ -38,7 +38,7 @@ void AARectangle::MoveTo(const Vec2D& position)
 
 Vec2D AARectangle::GetCenterPoint() const
 {
-	Vec2D(GetTopLeftPoint().GetX() + GetWidth() / 2.f, GetTopLeftPoint().GetY() + GetHeight() / 2.f);
+	return Vec2D(GetTopLeftPoint().GetX() + GetWidth() / 2.f, GetTopLeftPoint().GetY() + GetHeight() / 2.f);
 }
 
 bool AARectangle::Intersects(const AARectangle& otherRect) const
@@ -63,10 +63,10 @@ bool AARectangle::ContainsPoint(const Vec2D& point) const
 
 AARectangle AARectangle::Inset(const AARectangle& rect, Vec2D& insets)
 {
-	return AARectangle(rect.GetTopLeftPoint() + insets, rect.GetWidth() - 2 * insets.GetX(), rect.GetHeight() - 2 * insets.GetY());
+	return AARectangle(rect.GetTopLeftPoint() + insets, (unsigned int)(rect.GetWidth() - 2.0f * insets.GetX()), (unsigned int)(rect.GetHeight() - 2.0f * insets.GetY()));
 }
 
-std::vector<Vec2D>& AARectangle::GetPoints() const
+std::vector<Vec2D> AARectangle::GetPoints() const
 {
 	std::vector<Vec2D> points;
 

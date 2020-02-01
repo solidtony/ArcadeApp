@@ -5,9 +5,12 @@
 #include "SDL.h"
 
 #include "Shapes/Lines2D.h"
-#include "Shapes/Star.h"
 #include "Shapes/Triangle.h"
+#include "Shapes/AARectangle.h"
+#include "Shapes/Circle.h"
+#include "Shapes/Star.h"
 #include "Utils/Vec2D.h"
+#include "Utils/Utils.h"
 
 Screen::Screen() : mWidth(0), mHeight(0), moptrWindow(nullptr), mnoptrWindowSurface(nullptr)
 {
@@ -147,20 +150,6 @@ void Screen::Draw(const Line2D & line, const Color & color)
 	}
 }
 
-void Screen::Draw(const Star& star, const Color& color)
-{
-	assert(moptrWindow);
-
-	if (moptrWindow == nullptr) { return; }
-	for (int i = 0; i < star.GetPoints().size() - 1; i++)
-	{
-		Draw(Line2D(star.GetPoints()[i], star.GetPoints()[i+1]), color);
-	}
-	// Draw the last side
-	Draw(Line2D(star.GetPoints().back(), star.GetPoints()[0]), color);
-
-}
-
 void Screen::Draw(const Triangle & triangle, const Color & color)
 {
 	Line2D p0p1 = Line2D(triangle.GetP0(), triangle.GetP1());
@@ -170,6 +159,60 @@ void Screen::Draw(const Triangle & triangle, const Color & color)
 	Draw(p0p1, color);
 	Draw(p1p2, color);
 	Draw(p2p0, color);
+}
+
+void Screen::Draw(const AARectangle& rect, const Color& color)
+{
+	std::vector<Vec2D> points = rect.GetPoints();
+
+	const unsigned int NUMBER_OF_POINTS = 4;
+	Line2D rectPoints [NUMBER_OF_POINTS];
+
+	rectPoints[0] = Line2D(points[0], points[1]);
+	rectPoints[1] = Line2D(points[1], points[2]);
+	rectPoints[2] = Line2D(points[2], points[3]);
+	rectPoints[3] = Line2D(points[3], points[0]);
+
+	for (int point = 0; point < NUMBER_OF_POINTS; ++point)
+	{
+		Draw(rectPoints[point], color);
+	}
+}
+
+void Screen::Draw(const Circle& circle, const Color& color)
+{
+	static unsigned int NUM_CIRCLE_SECMENTS = 30;
+
+	float angle = math::constants::TWO_PI_F / float(NUM_CIRCLE_SECMENTS);
+
+	Vec2D p0 = Vec2D(circle.GetCenterPoint().GetX() + circle.GetRadius(), circle.GetCenterPoint().GetY());
+	Vec2D p1 = p0;
+	Line2D nextLineToDraw;
+
+	for (unsigned int i = 0; i < NUM_CIRCLE_SECMENTS; ++i)
+	{
+		p1.Rotate(circle.GetCenterPoint(), angle);
+		nextLineToDraw.SetPoint1(p1);
+		nextLineToDraw.SetPoint0(p0);
+
+		Draw(nextLineToDraw, color);
+
+		p0 = p1;
+	}
+}
+
+void Screen::Draw(const Star& star, const Color& color)
+{
+	assert(moptrWindow);
+
+	if (moptrWindow == nullptr) { return; }
+	for (size_t i = 0; i < star.GetPoints().size() - 1; i++)
+	{
+		Draw(Line2D(star.GetPoints()[i], star.GetPoints()[i + 1]), color);
+	}
+	// Draw the last side
+	Draw(Line2D(star.GetPoints().back(), star.GetPoints()[0]), color);
+
 }
 
 void Screen::ClearScreen()

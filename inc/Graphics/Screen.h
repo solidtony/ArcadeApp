@@ -10,6 +10,8 @@ struct SDL_Surface;
 class Vec2D;
 class Line2D;
 class Triangle;
+class AARectangle;
+class Circle;
 class Star;
 
 class Screen
@@ -31,6 +33,8 @@ public:
 	void Draw(const Line2D& line, const Color& color);
 	void Draw(const Star& star, const Color& color);
 	void Draw(const Triangle& triangle, const Color& color);
+	void Draw(const AARectangle& rect, const Color& color);
+	void Draw(const Circle& circle, const Color& color);
 
 private:
 	// Declared in private to prevent copying

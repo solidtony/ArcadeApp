@@ -5,6 +5,9 @@
 #include "Graphics/Screen.h"
 #include "Shapes/Lines2D.h"
 #include "Utils/Vec2D.h"
+#include "Shapes/Triangle.h"
+#include "Shapes/AARectangle.h"
+#include "Shapes/Circle.h"
 #include "Shapes/Star.h"
 
 const int SCREEN_WIDTH = 224;
@@ -17,16 +20,26 @@ int main(int argc, char *argv[])
 
 	theScreen.Init(SCREEN_WIDTH, SCREEN_HEIGHT, MAGNIFICATION);
 
-	Star star(Vec2D(SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2), 50.f, 25.f, 5);
-	Vec2D rotationPoint = star.GetCenterPoint()+Vec2D(0.0f, 0.0f);
-	float deltaAngle = 0.0015f;
-	do
-	{
-		theScreen.Draw(star, Color::Yellow());
-		theScreen.SwapScreens();
+	Triangle triangle = { Vec2D(60, 10), Vec2D(10, 110), Vec2D(110, 110) };
+	AARectangle rect = { Vec2D(SCREEN_WIDTH / 2 - 25, SCREEN_HEIGHT / 2 - 25), 50, 50 };
+	Circle circle = { Vec2D(SCREEN_WIDTH / 2 + 50, SCREEN_HEIGHT / 2 + 50), 50};
+	theScreen.Draw(triangle, Color::Red());
+	theScreen.Draw(rect, Color::Blue());
+	theScreen.Draw(circle, Color::Pink());
 
-		star.Rotate(rotationPoint, deltaAngle);
-	} while (true);
+	theScreen.SwapScreens();
+
+
+	//Star star(Vec2D(SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2), 50.f, 25.f, 5);
+	//Vec2D rotationPoint = star.GetCenterPoint()+Vec2D(0.0f, 0.0f);
+	//float deltaAngle = 0.0015f;
+	//do
+	//{
+	//	theScreen.Draw(star, Color::Yellow());
+	//	theScreen.SwapScreens();
+
+	//	star.Rotate(rotationPoint, deltaAngle);
+	//} while (true);
 
 	//Line2D line = { Vec2D(SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2), Vec2D(SCREEN_WIDTH * 3 / 4, SCREEN_HEIGHT * 1 / 2) };
 	//Vec2D rotationPoint = line.MidPoint() + Vec2D(0.0, 50.0);

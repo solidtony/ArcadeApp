@@ -26,5 +26,5 @@ public:
 
 	static AARectangle Inset(const AARectangle& rect, Vec2D& insets);
 
-	virtual std::vector<Vec2D>& GetPoints() const override;
+	virtual std::vector<Vec2D> GetPoints() const override;
 };
