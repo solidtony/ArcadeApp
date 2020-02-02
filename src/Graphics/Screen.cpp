@@ -107,15 +107,12 @@ void Screen::Draw(const Line2D & line, const Color & color)
 	dx = abs(dx) * 2;
 	dy = abs(dy) * 2;
 
-	if (dx*dx >= dy*dy)
+	Draw(x0, y0, color);
+
+	if (dx >= dy)
 	{
 		// Run Bresenham's line alg along x
-		dx = abs(dx) * 2;
-		dy = abs(dy) * 2;
-
-		Draw(x0, y0, color);
-
-		int d = dx - dy / 2;
+		int d = dy - dx / 2;
 		while (x0 != x1)
 		{
 			if (d >= 0)
