@@ -23,15 +23,15 @@ int main(int argc, char *argv[])
 	Triangle triangle = { Vec2D(60, 10), Vec2D(10, 110), Vec2D(110, 110) };
 	AARectangle rect = { Vec2D(SCREEN_WIDTH / 2 - 25, SCREEN_HEIGHT / 2 - 25), 50, 50 };
 	Circle circle = { Vec2D(SCREEN_WIDTH / 2 + 50, SCREEN_HEIGHT / 2 + 50), 50};
-	theScreen.Draw(triangle, Color::Red());
-	theScreen.Draw(rect, Color::Blue());
-	theScreen.Draw(circle, Color::Pink());
+	theScreen.Draw(triangle, Color::Red(), true);
+	theScreen.Draw(rect, Color::Blue(), true);
+	theScreen.Draw(circle, Color::Pink(), true);
 
 	theScreen.SwapScreens();
 
 
-	//Star star(Vec2D(SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2), 50.f, 25.f, 5);
-	//Vec2D rotationPoint = star.GetCenterPoint()+Vec2D(0.0f, 0.0f);
+	Star star(Vec2D(SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2), 50.f, 45.f, 20);
+	Vec2D rotationPoint = star.GetCenterPoint()+Vec2D(0.0f, 0.0f);
 	//float deltaAngle = 0.0015f;
 	//do
 	//{
@@ -39,7 +39,7 @@ int main(int argc, char *argv[])
 	//	theScreen.SwapScreens();
 
 	//	star.Rotate(rotationPoint, deltaAngle);
-	//} while (true);
+	//} while (false);
 
 	//Line2D line = { Vec2D(SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2), Vec2D(SCREEN_WIDTH * 3 / 4, SCREEN_HEIGHT * 1 / 2) };
 	//Vec2D rotationPoint = line.MidPoint() + Vec2D(0.0, 50.0);
