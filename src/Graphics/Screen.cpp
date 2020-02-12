@@ -50,11 +50,11 @@ SDL_Window* Screen::Init(uint32_t width, uint32_t height, uint32_t mag)
 	mnoptrWindowSurface = SDL_GetWindowSurface(moptrWindow); // 2D array of pixles
 
 	// Pixel format
-	SDL_PixelFormat* pixelFormat = mnoptrWindowSurface->format;
+	SDL_PixelFormat* pixelFormat = SDL_AllocFormat(SDL_PIXELFORMAT_RGBA8888);
 
 	Color::InitColorFormat(pixelFormat);
-	mBackBuffer.Init(pixelFormat->format, mWidth, mHeight);
 	mClearColor = Color::Black();
+	mBackBuffer.Init(pixelFormat->format, mWidth, mHeight);
 	mBackBuffer.Clear(mClearColor);
 
 	return moptrWindow;

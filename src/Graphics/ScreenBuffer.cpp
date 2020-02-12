@@ -6,6 +6,7 @@
 #include "Graphics/Color.h"
 
 ScreenBuffer::ScreenBuffer(): mSurface(nullptr) {}
+
 ScreenBuffer::ScreenBuffer(const ScreenBuffer& screenBuffer)
 {
 	mSurface = SDL_CreateRGBSurfaceWithFormat(0, screenBuffer.mSurface->w,
@@ -49,14 +50,18 @@ ScreenBuffer& ScreenBuffer::operator=(const ScreenBuffer& screenBuffer)
 void ScreenBuffer::SetPixel(const Color& color, int x, int y)
 {
 	assert((mSurface != nullptr));
+
 	bool bAreInputsValid = (mSurface && (y < mSurface->h) && (y >= 0) && (x >= 0) && (x < mSurface->w));
 	if (!bAreInputsValid) { return; }
+
 	// Exlusive access to surface
 	SDL_LockSurface(mSurface);
 
 	uint32_t* pixels = (uint32_t*)mSurface->pixels;
-	uint32_t index = GetIndex(y, x);
-	pixels[index] = color.GetPixelColor();
+
+	size_t index = GetIndex(y, x);
+	Color surfaceColor = Color(pixels[index]); // Destination Color
+	pixels[index] = Color::Evaluate1MinuesSourceAlpha(color, surfaceColor).GetPixelColor();
 
 	SDL_UnlockSurface(mSurface);
 }

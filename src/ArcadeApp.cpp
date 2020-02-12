@@ -21,11 +21,11 @@ int main(int argc, char *argv[])
 	theScreen.Init(SCREEN_WIDTH, SCREEN_HEIGHT, MAGNIFICATION);
 
 	Triangle triangle = { Vec2D(60, 10), Vec2D(10, 110), Vec2D(110, 110) };
-	AARectangle rect = { Vec2D(SCREEN_WIDTH / 2 - 25, SCREEN_HEIGHT / 2 - 25), 50, 50 };
+	AARectangle rect = { Vec2D(SCREEN_WIDTH / 2 - 50, SCREEN_HEIGHT / 2 - 50), 50, 50 };
 	Circle circle = { Vec2D(SCREEN_WIDTH / 2 + 50, SCREEN_HEIGHT / 2 + 50), 50};
-	theScreen.Draw(triangle, Color::Red(), true);
-	theScreen.Draw(rect, Color::Blue(), true);
-	theScreen.Draw(circle, Color::Pink(), true);
+	theScreen.Draw(triangle, Color::Red(), true, Color::Red());
+	theScreen.Draw(rect, Color(0, 255, 0, 150), true, Color(0, 255, 0, 150));
+	theScreen.Draw(circle, Color(0, 255, 0, 150), true, Color(0, 255, 0, 150));
 
 	theScreen.SwapScreens();
 
