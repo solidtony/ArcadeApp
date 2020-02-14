@@ -8,6 +8,13 @@ void Shape::MoveBy(const Vec2D& deltaOffset)
 	}
 }
 
+void Shape::MoveTo(Vec2D position)
+{
+	Vec2D center = GetCentroid();
+
+	MoveBy(position - center);
+}
+
 Vec2D Shape::GetCentroid() const
 {
 	if (mPoints.size() == 0) { return Vec2D::Zero(); }

@@ -17,6 +17,7 @@ const int MAGNIFICATION = 3;
 int main(int argc, char *argv[])
 {
 	Screen theScreen;
+	Vec2D centerOfScreen = {SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2};
 
 	theScreen.Init(SCREEN_WIDTH, SCREEN_HEIGHT, MAGNIFICATION);
 
@@ -29,6 +30,21 @@ int main(int argc, char *argv[])
 
 	theScreen.SwapScreens();
 
+	triangle.MoveTo(centerOfScreen);
+
+	theScreen.Draw(triangle, Color::Red(), true, Color::Red());
+	theScreen.Draw(rect, Color(0, 255, 0, 150), true, Color(0, 255, 0, 150));
+	theScreen.Draw(circle, Color(0, 255, 0, 150), true, Color(0, 255, 0, 150));
+
+	theScreen.SwapScreens();
+
+	rect.MoveTo(centerOfScreen);
+
+	theScreen.Draw(triangle, Color::Red(), true, Color::Red());
+	theScreen.Draw(rect, Color(0, 255, 0, 150), true, Color(0, 255, 0, 150));
+	theScreen.Draw(circle, Color(0, 255, 0, 150), true, Color(0, 255, 0, 150));
+
+	theScreen.SwapScreens();
 
 	Star star(Vec2D(SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2), 50.f, 45.f, 20);
 	Vec2D rotationPoint = star.GetCenterPoint()+Vec2D(0.0f, 0.0f);

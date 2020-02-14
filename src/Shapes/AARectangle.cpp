@@ -27,15 +27,6 @@ float AARectangle::GetHeight() const
 	return GetTopLeftPoint().GetY() - GetBottomRightPoint().GetY() + 1;
 }
 
-void AARectangle::MoveTo(const Vec2D& position)
-{
-	float width = GetWidth();
-	float height = GetHeight();
-
-	SetTopLeftPoint(position);
-	SetBottomRightPoint(Vec2D(position.GetX() + width - 1, position.GetY() + height - 1));
-}
-
 Vec2D AARectangle::GetCenterPoint() const
 {
 	return Vec2D(GetTopLeftPoint().GetX() + GetWidth() / 2.f, GetTopLeftPoint().GetY() + GetHeight() / 2.f);

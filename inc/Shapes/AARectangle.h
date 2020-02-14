@@ -17,8 +17,6 @@ public:
 	inline Vec2D GetTopLeftPoint() const { return mPoints[0]; }
 	inline Vec2D GetBottomRightPoint() const { return mPoints[1]; }
 
-	void MoveTo(const Vec2D& position);
-
 	virtual Vec2D GetCenterPoint() const override;
 
 	bool Intersects(const AARectangle& otherRect) const;

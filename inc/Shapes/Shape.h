@@ -10,6 +10,7 @@ public:
 	virtual Vec2D GetCenterPoint() const = 0;
 	inline virtual std::vector<Vec2D> GetPoints() const { return mPoints; }
 	void MoveBy(const Vec2D& deltaOffset);
+	virtual void MoveTo(Vec2D position);
 	void Rotate(Vec2D aroundPoint, float byAngle);
 
 protected:
