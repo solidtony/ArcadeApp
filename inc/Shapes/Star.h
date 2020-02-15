@@ -14,13 +14,11 @@ public:
 	~Star();
 
 	// getters
-	inline virtual Vec2D GetCenterPoint() const override { return mCenter; }
+	inline virtual Vec2D GetCenterPoint() const override { return GetCentroid(); }
 	float Radius() const;
 	float Thickness() const;
 	inline unsigned int NumberOfArms() const { return (unsigned int)mPoints.size()/2; }
 
 private:
-	Vec2D mCenter;
-
 	void CalculateStar(Vec2D center, float radius, float thickness, unsigned int numberOfArms);
 };

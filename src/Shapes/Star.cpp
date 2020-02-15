@@ -18,19 +18,18 @@ Star::~Star()
 }
 
 Star::Star(Vec2D center, float radius, float thickness, unsigned int numberOfArms)
-	: mCenter(center)
 {
 	CalculateStar(center, radius, thickness, numberOfArms);
 }
 
 float Star::Radius() const
 {
-	return (mCenter - mPoints[0]).Mag();
+	return (GetCenterPoint() - mPoints[0]).Mag();
 }
 
 float Star::Thickness() const
 {
-	return (mCenter - mPoints[1]).Mag();
+	return (GetCenterPoint() - mPoints[1]).Mag();
 }
 
 void Star::CalculateStar(Vec2D center, float radius, float thickness, unsigned int numberOfArms)

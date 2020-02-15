@@ -224,6 +224,11 @@ void Screen::Draw(const Circle& circle, const Color& color, bool fill, const Col
 
 void Screen::Draw(const Star& star, const Color& color, bool fill, const Color& fillColor)
 {
+	if (fill)
+	{
+		FillPoly(star.GetPoints(), fillColor);
+	}
+
 	assert(moptrWindow);
 
 	if (moptrWindow == nullptr) { return; }
