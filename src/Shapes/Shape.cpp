@@ -25,7 +25,7 @@ Vec2D Shape::GetCentroid() const
 		sum += point;
 	}
 
-	return sum / (float)mPoints.size();
+	return sum / static_cast<float>(mPoints.size());
 }
 
 void Shape::Rotate(Vec2D aroundPoint, float byAngle)

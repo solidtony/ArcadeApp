@@ -84,7 +84,7 @@ void Screen::Draw(const Vec2D& point, const Color& color)
 {
 	assert(moptrWindow);
 	if (moptrWindow == nullptr) { return; }
-	mBackBuffer.SetPixel(color, (int)point.GetX(), (int)point.GetY());
+	mBackBuffer.SetPixel(color, static_cast<int>(point.GetX()), static_cast<int>(point.GetY()));
 }
 
 void Screen::Draw(const Line2D & line, const Color & color)
@@ -94,10 +94,10 @@ void Screen::Draw(const Line2D & line, const Color & color)
 	
 	int dx, dy;
 
-	int x0 = (int)roundf(line.GetPoint0().GetX());
-	int y0 = (int)roundf(line.GetPoint0().GetY());
-	int x1 = (int)roundf(line.GetPoint1().GetX());
-	int y1 = (int)roundf(line.GetPoint1().GetY());
+	int x0 = static_cast<int>(roundf(line.GetPoint0().GetX()));
+	int y0 = static_cast<int>(roundf(line.GetPoint0().GetY()));
+	int x1 = static_cast<int>(roundf(line.GetPoint1().GetX()));
+	int y1 = static_cast<int>(roundf(line.GetPoint1().GetY()));
 
 	dx = x1 - x0;
 	dy = y1 - y0;
@@ -281,7 +281,7 @@ void Screen::FillPoly(const std::vector<Vec2D>& points, const Color& color)
 			}
 		}
 
-		for (int pixelY = (int)top+1; pixelY < (int)bottom+1; ++pixelY)
+		for (int pixelY = static_cast<int>(top)+1; pixelY < static_cast<int>(bottom)+1; ++pixelY)
 		{
 			std::vector<float> nodeXVec;
 
@@ -291,7 +291,7 @@ void Screen::FillPoly(const std::vector<Vec2D>& points, const Color& color)
 				float pointiY = points[i].GetY();
 				float pointjY = points[j].GetY();
 
-				if ( (pointiY <= (float)pixelY && pointjY > (float)pixelY) || (pointjY <= (float)pixelY && pointiY > (float)pixelY) )
+				if ( ( pointiY <= static_cast<float>(pixelY) && pointjY > static_cast<float>(pixelY) ) || ( pointjY <= static_cast<float>(pixelY) && pointiY > static_cast<float>(pixelY) ) )
 				{
 					float denom = pointjY - pointiY;
 					if (IsEqual(denom, 0.0f))
@@ -328,7 +328,7 @@ void Screen::FillPoly(const std::vector<Vec2D>& points, const Color& color)
 					// TODO will come back later to describe this
 					//Line2D line = { Vec2D(nodeXVec[k], pixelY), Vec2D(nodeXVec[k + 1], pixelY) };
 					//Draw(line, color);
-					for(int pixelX = (int)nodeXVec[k]+1; pixelX < (int)nodeXVec[k+1]+1; ++pixelX)
+					for(int pixelX = static_cast<int>(nodeXVec[k])+1; pixelX < static_cast<int>(nodeXVec[k+1])+1; ++pixelX)
 					{
 						Draw(pixelX, pixelY, color);
 					}
