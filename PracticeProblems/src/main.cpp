@@ -12,9 +12,9 @@ int main()
 	Screen theScreen;
 	Vec2D centerOfScreen = { SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2 };
 
-	//theScreen.Init(SCREEN_WIDTH, SCREEN_HEIGHT, MAGNIFICATION);
+	theScreen.Init(SCREEN_WIDTH, SCREEN_HEIGHT, MAGNIFICATION);
 
-	//PracticeProblems::Section12PracticePrblem1(&theScreen);
+	PracticeProblems::Section12PracticePrblem1(&theScreen);
 
 	return 0;
 }
