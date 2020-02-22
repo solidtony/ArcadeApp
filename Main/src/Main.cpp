@@ -17,45 +17,59 @@ const int MAGNIFICATION = 3;
 int main(int argc, char *argv[])
 {
 	Screen theScreen;
-	Vec2D centerOfScreen = {SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2};
+	Vec2D centerOfScreen = { SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2 };
 
 	theScreen.Init(SCREEN_WIDTH, SCREEN_HEIGHT, MAGNIFICATION);
 
-	Triangle triangle = { Vec2D(60, 10), Vec2D(10, 110), Vec2D(110, 110) };
+	//Triangle triangle = { Vec2D(60, 10), Vec2D(10, 110), Vec2D(110, 110) };
+	//AARectangle rect = { Vec2D(SCREEN_WIDTH / 2 - 50, SCREEN_HEIGHT / 2 - 50), 50, 50 };
+	//Circle circle = { Vec2D(SCREEN_WIDTH / 2 + 50, SCREEN_HEIGHT / 2 + 50), 50};
+	//theScreen.Draw(triangle, Color::Red(), true, Color::Red());
+	//theScreen.Draw(rect, Color(0, 255, 0, 150), true, Color(0, 255, 0, 150));
+	//theScreen.Draw(circle, Color(0, 255, 0, 150), true, Color(0, 255, 0, 150));
+
+	//theScreen.SwapScreens();
+
+	//triangle.MoveTo(centerOfScreen);
+
+	//theScreen.Draw(triangle, Color::Red(), true, Color::Red());
+	//theScreen.Draw(rect, Color(0, 255, 0, 150), true, Color(0, 255, 0, 150));
+	//theScreen.Draw(circle, Color(0, 255, 0, 150), true, Color(0, 255, 0, 150));
+
+	//theScreen.SwapScreens();
+
+	//rect.MoveTo(centerOfScreen);
+
+	//theScreen.Draw(triangle, Color::Red(), true, Color::Red());
+	//theScreen.Draw(rect, Color(0, 255, 0, 150), true, Color(0, 255, 0, 150));
+	//theScreen.Draw(circle, Color(0, 255, 0, 150), true, Color(0, 255, 0, 150));
+
+	//theScreen.SwapScreens();
+
+	//=============================================================================\\
+
+	Star star(Vec2D(SCREEN_WIDTH * 0.25, SCREEN_HEIGHT * 0.25), 50.f, 45.f, 20);
+
+	Color starColor = Color(255, 255, 0, 150);
 	AARectangle rect = { Vec2D(SCREEN_WIDTH / 2 - 50, SCREEN_HEIGHT / 2 - 50), 50, 50 };
-	Circle circle = { Vec2D(SCREEN_WIDTH / 2 + 50, SCREEN_HEIGHT / 2 + 50), 50};
-	theScreen.Draw(triangle, Color::Red(), true, Color::Red());
-	theScreen.Draw(rect, Color(0, 255, 0, 150), true, Color(0, 255, 0, 150));
-	theScreen.Draw(circle, Color(0, 255, 0, 150), true, Color(0, 255, 0, 150));
 
+	theScreen.Draw(star, starColor, true, starColor);
 	theScreen.SwapScreens();
 
-	triangle.MoveTo(centerOfScreen);
-
-	theScreen.Draw(triangle, Color::Red(), true, Color::Red());
-	theScreen.Draw(rect, Color(0, 255, 0, 150), true, Color(0, 255, 0, 150));
-	theScreen.Draw(circle, Color(0, 255, 0, 150), true, Color(0, 255, 0, 150));
-
+	star.MoveTo(centerOfScreen);
+	theScreen.Draw(star, starColor, true, starColor);
 	theScreen.SwapScreens();
 
-	rect.MoveTo(centerOfScreen);
+	Vec2D rotationPoint = star.GetCenterPoint() + Vec2D(0.0f, 0.0f);
+	float deltaAngle = 0.0055f;
+	do
+	{
+		theScreen.Draw(star, starColor, true, starColor);
+		theScreen.Draw(rect, Color(0, 255, 0, 150), true, Color(0, 255, 0, 150));
+		theScreen.SwapScreens();
 
-	theScreen.Draw(triangle, Color::Red(), true, Color::Red());
-	theScreen.Draw(rect, Color(0, 255, 0, 150), true, Color(0, 255, 0, 150));
-	theScreen.Draw(circle, Color(0, 255, 0, 150), true, Color(0, 255, 0, 150));
-
-	theScreen.SwapScreens();
-
-	Star star(Vec2D(SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2), 50.f, 45.f, 20);
-	Vec2D rotationPoint = star.GetCenterPoint()+Vec2D(0.0f, 0.0f);
-	//float deltaAngle = 0.0015f;
-	//do
-	//{
-	//	theScreen.Draw(star, Color::Yellow());
-	//	theScreen.SwapScreens();
-
-	//	star.Rotate(rotationPoint, deltaAngle);
-	//} while (false);
+		star.Rotate(rotationPoint, deltaAngle);
+	} while (true);
 
 	//Line2D line = { Vec2D(SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2), Vec2D(SCREEN_WIDTH * 3 / 4, SCREEN_HEIGHT * 1 / 2) };
 	//Vec2D rotationPoint = line.MidPoint() + Vec2D(0.0, 50.0);

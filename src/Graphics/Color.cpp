@@ -117,9 +117,9 @@ Color Color::Evaluate1MinuesSourceAlpha(const Color& source, const Color& destin
 	Color outColor;
 
 	outColor.SetAlpha(255);
-	outColor.SetRed(float(source.GetRed()) * sourceAlpha + destination.GetRed() * destAlpha);
-	outColor.SetGreen(float(source.GetGreen()) * sourceAlpha + destination.GetGreen() * destAlpha);
-	outColor.SetBlue(float(source.GetBlue()) * sourceAlpha + destination.GetBlue() * destAlpha);
+	outColor.SetRed( static_cast<uint8_t>(static_cast<float>(source.GetRed()) * sourceAlpha + destination.GetRed() * destAlpha) );
+	outColor.SetGreen( static_cast<uint8_t>(static_cast<float>(source.GetGreen()) * sourceAlpha + destination.GetGreen() * destAlpha) );
+	outColor.SetBlue( static_cast<uint8_t>(static_cast<float>(source.GetBlue()) * sourceAlpha + destination.GetBlue() * destAlpha) );
 
 	return outColor;
 }
