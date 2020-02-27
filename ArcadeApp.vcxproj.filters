@@ -31,6 +31,12 @@
     <Filter Include="Source Files\Shapes">
       <UniqueIdentifier>{40ca333f-394f-4412-9438-727f8964c882}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\App">
+      <UniqueIdentifier>{6f40bbf5-122f-4747-8445-cf16c0c75e7a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\App">
+      <UniqueIdentifier>{dc1f28b2-567a-4981-89fe-c0de91384f86}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Graphics\Color.cpp">
@@ -66,6 +72,9 @@
     <ClCompile Include="src\Shapes\Circle.cpp">
       <Filter>Source Files\Shapes</Filter>
     </ClCompile>
+    <ClCompile Include="src\App\App.cpp">
+      <Filter>Source Files\App</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="inc\Graphics\Color.h">
@@ -100,6 +109,9 @@
     </ClInclude>
     <ClInclude Include="inc\Shapes\Circle.h">
       <Filter>Header Files\Shapes</Filter>
+    </ClInclude>
+    <ClInclude Include="inc\App\App.h">
+      <Filter>Header Files\App</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

@@ -173,6 +173,7 @@
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="src\App\App.cpp" />
     <ClCompile Include="src\Graphics\Color.cpp" />
     <ClCompile Include="src\Graphics\Screen.cpp" />
     <ClCompile Include="src\Graphics\ScreenBuffer.cpp" />
@@ -186,6 +187,7 @@
     <ClCompile Include="src\Utils\Vec2D.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="inc\App\App.h" />
     <ClInclude Include="inc\Graphics\Color.h" />
     <ClInclude Include="inc\Graphics\Screen.h" />
     <ClInclude Include="inc\Graphics\ScreenBuffer.h" />
