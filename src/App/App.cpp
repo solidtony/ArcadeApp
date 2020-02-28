@@ -1,18 +1,12 @@
 #include "App/App.h"
 
-#include <iostream>
 #include "SDL.h"
 
-#include "Graphics/Color.h"
+#include <cassert>
+#include <iostream>
 
-#include "Shapes/AARectangle.h"
-#include "Shapes/Circle.h"
-#include "Shapes/Lines2D.h"
-#include "Shapes/Star.h"
-#include "Shapes/Triangle.h"
-
-
-#include "Utils/Vec2D.h"
+#include "Scenes/ArcadeScene.h"
+#include "Scenes/Scene.h"
 
 App& App::Singleton()
 {
@@ -23,6 +17,11 @@ App& App::Singleton()
 bool App::Init(uint32_t width, uint32_t height, uint32_t magnification)
 {
 	mnoptrWindow = mScreen.Init(width, height, magnification);
+
+	std::unique_ptr<ArcadeScene> arcadeScene = std::make_unique<ArcadeScene>();
+
+	PushScene(std::move(arcadeScene));
+
 	return (mnoptrWindow != nullptr);
 }
 
@@ -30,102 +29,29 @@ void App::Run()
 {
 	if (mnoptrWindow != nullptr)
 	{
-		Vec2D centerOfScreen = { static_cast<float>(mScreen.Width()) / 2, static_cast<float>(mScreen.Height()) / 2 };
-
-		//Triangle triangle = { Vec2D(60, 10), Vec2D(10, 110), Vec2D(110, 110) };
-		//AARectangle rect = { Vec2D(mScreen.Width() / 2 - 50, mScreen.Height() / 2 - 50), 50, 50 };
-		//Circle circle = { Vec2D(mScreen.Width() / 2 + 50, mScreen.Height() / 2 + 50), 50};
-		//mScreen.Draw(triangle, Color::Red(), true, Color::Red());
-		//mScreen.Draw(rect, Color(0, 255, 0, 150), true, Color(0, 255, 0, 150));
-		//mScreen.Draw(circle, Color(0, 255, 0, 150), true, Color(0, 255, 0, 150));
-
-		//mScreen.SwapScreens();
-
-		//triangle.MoveTo(centerOfScreen);
-
-		//mScreen.Draw(triangle, Color::Red(), true, Color::Red());
-		//mScreen.Draw(rect, Color(0, 255, 0, 150), true, Color(0, 255, 0, 150));
-		//mScreen.Draw(circle, Color(0, 255, 0, 150), true, Color(0, 255, 0, 150));
-
-		//mScreen.SwapScreens();
-
-		//rect.MoveTo(centerOfScreen);
-
-		//mScreen.Draw(triangle, Color::Red(), true, Color::Red());
-		//mScreen.Draw(rect, Color(0, 255, 0, 150), true, Color(0, 255, 0, 150));
-		//mScreen.Draw(circle, Color(0, 255, 0, 150), true, Color(0, 255, 0, 150));
-
-		//mScreen.SwapScreens();
-
-		//=============================================================================\\
-
-		Star star(Vec2D(mScreen.Width() * 0.25, mScreen.Height() * 0.25), 50.f, 45.f, 20);
-
-		Color starColor = Color(255, 255, 0, 150);
-		AARectangle rect = { Vec2D(mScreen.Width() / 2 - 50, mScreen.Height() / 2 - 50), 50, 50 };
-
-		mScreen.Draw(star, starColor, true, starColor);
-		mScreen.SwapScreens();
-
-		star.MoveTo(centerOfScreen);
-		mScreen.Draw(star, starColor, true, starColor);
-		mScreen.SwapScreens();
-
-		Vec2D rotationPoint = star.GetCenterPoint() + Vec2D(0.0f, 0.0f);
-		float deltaAngle = 0.0255f;
-		do
-		{
-			mScreen.Draw(star, starColor, true, starColor);
-			mScreen.Draw(rect, Color(0, 255, 0, 150), true, Color(0, 255, 0, 150));
-			mScreen.SwapScreens();
-
-			star.Rotate(rotationPoint, deltaAngle);
-		} while (true);
-
-		//Line2D line = { Vec2D(mScreen.Width() / 2, mScreen.Height() / 2), Vec2D(mScreen.Width() * 3 / 4, mScreen.Height() * 1 / 2) };
-		//Vec2D rotationPoint = line.MidPoint() + Vec2D(0.0, 50.0);
-		//do
-		//{
-		//	mScreen.Draw(line, Color::Yellow());
-		//	mScreen.SwapScreens();
-
-		//	float deltaAngle = 0.0025;
-		//	line.Rotate(rotationPoint, deltaAngle);
-		//} while (true);
-
-		//Vec2D vecA(2.0, 4.0);
-		//Vec2D vecB(1.0, 2.0);
-		//std::cout << "vecA: " << vecA << "; vecB: " << vecB << std::endl;
-		//std::cout << "0.0 * vecA: " << 0.0f*vecA << std::endl;
-		//std::cout << "vecA + vecB: " << vecA + vecB << std::endl;
-		//std::cout << "vecA - vecB: " << vecA - vecB << std::endl;
-		//vecB -= vecA;
-		//std::cout << "vecA: " << vecA << "; vecB: " << vecB << std::endl;
-		//Vec2D normVec(5.f, 5.f);
-		//std::cout << "normVec: " << normVec << std::endl;
-		//std::cout << "Get unit vector: " << normVec.GetUnitVector() << std::endl;
-		//normVec.Normalize();
-		//std::cout << "normVec: " << normVec << std::endl;
-		//Vec2D zeroVec(0.f, 0.f);
-		//std::cout << "zeroVec: " << zeroVec << std::endl;
-		//std::cout << "Get unit vector: " << zeroVec.GetUnitVector() << std::endl;
-		//zeroVec.Normalize();
-		//std::cout << "zeroVec: " << zeroVec << std::endl;
-		//std::cout << "Zero magnitude: " << zeroVec.Mag() << std::endl;
-		//Vec2D vec1(3, 4);
-		//Vec2D vec2(1, 0);
-		//std::cout << "vec1: " << vec1 << "; vec2: " << vec2 << std::endl;
-		//std::cout << "vec1 projected onto vec2: " << vec1.ProjectOnto(vec2) << std::endl;
-		//vec2.SetX(0.f);
-		//vec2.SetY(1.f);
-		//std::cout << "vec1: " << vec1 << "; vec2: " << vec2 << std::endl;
-		//std::cout << "vec1 projected onto vec2: " << vec1.ProjectOnto(vec2) << std::endl;
-
 		SDL_Event sdlEvent;
 		bool running = true;
 
+		uint32_t lastTick = SDL_GetTicks();
+		uint32_t currentTick = lastTick;
+
+		uint32_t dt = 10; // Update scene every 10ms
+		uint32_t accumulator = 0;
+
 		while (running)
 		{
+			currentTick = SDL_GetTicks();
+			uint32_t frameTime = currentTick - lastTick;
+
+			if (frameTime > 300)
+			{
+				frameTime = 300;
+			}
+
+			lastTick = currentTick;
+
+			accumulator += frameTime; // Number of total ticks
+
 			while (SDL_PollEvent(&sdlEvent))
 			{
 				switch (sdlEvent.type)
@@ -135,6 +61,59 @@ void App::Run()
 					break;
 				}
 			}
+
+			Scene* topScene = App::TopScene();
+			assert(topScene && "Must have a scene");
+
+			if (topScene)
+			{
+				// Update
+				while (accumulator >= dt)
+				{
+					// Update current scene by dt
+					topScene->Update(dt);
+					std::cout << "Delta time step: " << dt << std::endl;
+					accumulator -= dt;
+				}
+
+				// Render
+				topScene->Draw(mScreen);
+			}
+
+			mScreen.SwapScreens();
 		}
 	}
+}
+
+void App::PushScene(std::unique_ptr<Scene> scene)
+{
+	assert(scene && "Don't push nullptr");
+	{
+		scene->Init();
+		mSceneStack.emplace_back(std::move(scene));
+		SDL_SetWindowTitle(mnoptrWindow, TopScene()->GetSceneName().c_str());
+	}
+}
+
+void App::PopScene()
+{
+	if (mSceneStack.size() > 1)
+	{
+		mSceneStack.pop_back();
+	}
+
+	if (TopScene())
+	{
+		SDL_SetWindowTitle(mnoptrWindow, TopScene()->GetSceneName().c_str());
+	}
+}
+
+Scene* App::TopScene()
+{
+	if (mSceneStack.empty())
+	{
+		return nullptr;
+	}
+
+	return mSceneStack.back().get();
 }
