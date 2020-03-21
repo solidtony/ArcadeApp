@@ -96,6 +96,9 @@
     <ClCompile Include="src\Input\GameController.cpp">
       <Filter>Source Files\Input</Filter>
     </ClCompile>
+    <ClCompile Include="src\Input\InputController.cpp">
+      <Filter>Source Files\Input</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="inc\Graphics\Color.h">
@@ -144,6 +147,9 @@
       <Filter>Header Files\Input</Filter>
     </ClInclude>
     <ClInclude Include="inc\Input\GameController.h">
+      <Filter>Header Files\Input</Filter>
+    </ClInclude>
+    <ClInclude Include="inc\Input\InputController.h">
       <Filter>Header Files\Input</Filter>
     </ClInclude>
   </ItemGroup>
