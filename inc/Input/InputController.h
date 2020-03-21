@@ -2,7 +2,7 @@
 
 #include "InputAction.h"
 
-struct GameController;
+class GameController;
 
 class InputController
 {
@@ -15,5 +15,4 @@ public:
 private:
 	InputAction mQuit;
 	GameController* mnoptrCurrentController;
-
 };
