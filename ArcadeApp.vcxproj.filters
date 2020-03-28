@@ -49,6 +49,12 @@
     <Filter Include="Header Files\Input">
       <UniqueIdentifier>{ef6032a0-fa58-47db-a181-033d8426b888}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\Games">
+      <UniqueIdentifier>{a8cb5cdf-4dff-4223-ae33-fb2bc9482157}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Games">
+      <UniqueIdentifier>{73fd8538-8db3-4265-8dbf-0fe54a46262a}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Graphics\Color.cpp">
@@ -95,6 +101,9 @@
     </ClCompile>
     <ClCompile Include="src\Input\InputController.cpp">
       <Filter>Source Files\Input</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Scenes\GameScene.cpp">
+      <Filter>Source Files\Scenes</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -148,6 +157,12 @@
     </ClInclude>
     <ClInclude Include="inc\Input\InputController.h">
       <Filter>Header Files\Input</Filter>
+    </ClInclude>
+    <ClInclude Include="inc\Games\Game.h">
+      <Filter>Header Files\Games</Filter>
+    </ClInclude>
+    <ClInclude Include="inc\Scenes\GameScene.h">
+      <Filter>Header Files\Scenes</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

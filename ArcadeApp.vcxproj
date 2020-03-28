@@ -180,6 +180,7 @@
     <ClCompile Include="src\Input\GameController.cpp" />
     <ClCompile Include="src\Input\InputController.cpp" />
     <ClCompile Include="src\Scenes\ArcadeScene.cpp" />
+    <ClCompile Include="src\Scenes\GameScene.cpp" />
     <ClCompile Include="src\Shapes\AARectangle.cpp" />
     <ClCompile Include="src\Shapes\Circle.cpp" />
     <ClCompile Include="src\Shapes\Lines2D.cpp" />
@@ -191,6 +192,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="inc\App\App.h" />
+    <ClInclude Include="inc\Games\Game.h" />
     <ClInclude Include="inc\Graphics\Color.h" />
     <ClInclude Include="inc\Graphics\Screen.h" />
     <ClInclude Include="inc\Graphics\ScreenBuffer.h" />
@@ -198,6 +200,7 @@
     <ClInclude Include="inc\Input\InputAction.h" />
     <ClInclude Include="inc\Input\InputController.h" />
     <ClInclude Include="inc\Scenes\ArcadeScene.h" />
+    <ClInclude Include="inc\Scenes\GameScene.h" />
     <ClInclude Include="inc\Scenes\Scene.h" />
     <ClInclude Include="inc\Shapes\AARectangle.h" />
     <ClInclude Include="inc\Shapes\Circle.h" />
