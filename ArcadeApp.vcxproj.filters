@@ -90,9 +90,6 @@
     <ClCompile Include="src\Scenes\ArcadeScene.cpp">
       <Filter>Source Files\Scenes</Filter>
     </ClCompile>
-    <ClCompile Include="src\Input\InputAction.cpp">
-      <Filter>Source Files\Input</Filter>
-    </ClCompile>
     <ClCompile Include="src\Input\GameController.cpp">
       <Filter>Source Files\Input</Filter>
     </ClCompile>
