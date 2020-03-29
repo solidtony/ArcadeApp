@@ -105,6 +105,9 @@
     <ClCompile Include="src\Scenes\GameScene.cpp">
       <Filter>Source Files\Scenes</Filter>
     </ClCompile>
+    <ClCompile Include="src\Utils\FileCommandLoader.cpp">
+      <Filter>Source Files\Utils</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="inc\Graphics\Color.h">
@@ -163,6 +166,9 @@
     </ClInclude>
     <ClInclude Include="inc\Scenes\GameScene.h">
       <Filter>Header Files\Scenes</Filter>
+    </ClInclude>
+    <ClInclude Include="inc\Utils\FileCommandLoader.h">
+      <Filter>Header Files\Utils</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

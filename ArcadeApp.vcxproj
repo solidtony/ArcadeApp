@@ -187,6 +187,7 @@
     <ClCompile Include="src\Shapes\Shape.cpp" />
     <ClCompile Include="src\Shapes\Star.cpp" />
     <ClCompile Include="src\Shapes\Triangle.cpp" />
+    <ClCompile Include="src\Utils\FileCommandLoader.cpp" />
     <ClCompile Include="src\Utils\Utils.cpp" />
     <ClCompile Include="src\Utils\Vec2D.cpp" />
   </ItemGroup>
@@ -208,6 +209,7 @@
     <ClInclude Include="inc\Shapes\Shape.h" />
     <ClInclude Include="inc\Shapes\Star.h" />
     <ClInclude Include="inc\Shapes\Triangle.h" />
+    <ClInclude Include="inc\Utils\FileCommandLoader.h" />
     <ClInclude Include="inc\Utils\Utils.h" />
     <ClInclude Include="inc\Utils\Vec2D.h" />
   </ItemGroup>
