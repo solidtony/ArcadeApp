@@ -6,7 +6,10 @@
 #include <iostream>
 
 #include "Scenes/ArcadeScene.h"
+#include "Scenes/GameScene.h"
 #include "Scenes/Scene.h"
+
+#include "Games/BreakOut.h" // TODO remove after testing
 
 App& App::Singleton()
 {
@@ -21,6 +24,14 @@ bool App::Init(uint32_t width, uint32_t height, uint32_t magnification)
 	std::unique_ptr<ArcadeScene> arcadeScene = std::make_unique<ArcadeScene>();
 
 	PushScene(std::move(arcadeScene));
+
+	// TODO remove after testing
+	{
+		std::unique_ptr<BreakOut> breakoutGame = std::make_unique<BreakOut>();
+		std::unique_ptr<GameScene> breakoutScene = std::make_unique<GameScene>(std::move(breakoutGame));
+
+		PushScene(std::move(breakoutScene));
+	}
 
 	return (mnoptrWindow != nullptr);
 }

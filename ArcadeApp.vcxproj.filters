@@ -55,6 +55,12 @@
     <Filter Include="Header Files\Games">
       <UniqueIdentifier>{73fd8538-8db3-4265-8dbf-0fe54a46262a}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\Games\BreakOut">
+      <UniqueIdentifier>{7ca38203-cdb0-404a-84a9-46f4ad840cb4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Games\BreakOut">
+      <UniqueIdentifier>{d3d7e7a7-f226-4e83-90d4-14006a7ae9cf}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Graphics\Color.cpp">
@@ -107,6 +113,12 @@
     </ClCompile>
     <ClCompile Include="src\Utils\FileCommandLoader.cpp">
       <Filter>Source Files\Utils</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Games\Excluder.cpp">
+      <Filter>Source Files\Games\BreakOut</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Games\BreakOut.cpp">
+      <Filter>Source Files\Games\BreakOut</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -169,6 +181,15 @@
     </ClInclude>
     <ClInclude Include="inc\Utils\FileCommandLoader.h">
       <Filter>Header Files\Utils</Filter>
+    </ClInclude>
+    <ClInclude Include="inc\Games\BreakOut.h">
+      <Filter>Header Files\Games\BreakOut</Filter>
+    </ClInclude>
+    <ClInclude Include="inc\Games\BoundaryEdge.h">
+      <Filter>Header Files\Games\BreakOut</Filter>
+    </ClInclude>
+    <ClInclude Include="inc\Games\Excluder.h">
+      <Filter>Header Files\Games\BreakOut</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
