@@ -120,6 +120,9 @@
     <ClCompile Include="src\Games\BreakOut.cpp">
       <Filter>Source Files\Games\BreakOut</Filter>
     </ClCompile>
+    <ClCompile Include="src\Games\Paddle.cpp">
+      <Filter>Source Files\Games\BreakOut</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="inc\Graphics\Color.h">
@@ -189,6 +192,9 @@
       <Filter>Header Files\Games\BreakOut</Filter>
     </ClInclude>
     <ClInclude Include="inc\Games\Excluder.h">
+      <Filter>Header Files\Games\BreakOut</Filter>
+    </ClInclude>
+    <ClInclude Include="inc\Games\Paddle.h">
       <Filter>Header Files\Games\BreakOut</Filter>
     </ClInclude>
   </ItemGroup>

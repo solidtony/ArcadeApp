@@ -29,3 +29,8 @@ bool IsGreaterThanOrEqual(float x, float y)
 {
 	return IsGreaterThanOrEqual(x, y, EPSILON);
 }
+
+float MillisecondsToSeconds(unsigned int miliseconds)
+{
+	return static_cast<float>(miliseconds) / 1000.f;
+}

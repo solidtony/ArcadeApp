@@ -176,6 +176,7 @@
     <ClCompile Include="src\App\App.cpp" />
     <ClCompile Include="src\Games\BreakOut.cpp" />
     <ClCompile Include="src\Games\Excluder.cpp" />
+    <ClCompile Include="src\Games\Paddle.cpp" />
     <ClCompile Include="src\Graphics\Color.cpp" />
     <ClCompile Include="src\Graphics\Screen.cpp" />
     <ClCompile Include="src\Graphics\ScreenBuffer.cpp" />
@@ -199,6 +200,7 @@
     <ClInclude Include="inc\Games\BreakOut.h" />
     <ClInclude Include="inc\Games\Excluder.h" />
     <ClInclude Include="inc\Games\Game.h" />
+    <ClInclude Include="inc\Games\Paddle.h" />
     <ClInclude Include="inc\Graphics\Color.h" />
     <ClInclude Include="inc\Graphics\Screen.h" />
     <ClInclude Include="inc\Graphics\ScreenBuffer.h" />
