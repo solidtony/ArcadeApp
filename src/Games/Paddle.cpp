@@ -39,7 +39,7 @@ void Paddle::Update(uint32_t dt)
 		}
 		else if (IsGreaterThanOrEqual(aaRect.GetBottomRightPoint().GetX(), mBoundary.GetBottomRightPoint().GetX()))
 		{
-			MoveTo(Vec2D(mBoundary.GetBottomRightPoint().GetX() - aaRect.GetWidth()/2.f, aaRect.GetTopLeftPoint().GetY() + aaRect.GetHeight()/2));
+			MoveTo(Vec2D(mBoundary.GetBottomRightPoint().GetX() - aaRect.GetWidth(), aaRect.GetTopLeftPoint().GetY()));
 		}
 	}
 }

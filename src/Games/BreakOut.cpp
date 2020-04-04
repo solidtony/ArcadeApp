@@ -94,7 +94,7 @@ std::string BreakOut::GetName() const
 
 void BreakOut::ResetGame()
 {
-	AARectangle paddleRect = { Vec2D(App::Singleton().Width() / 2 - Paddle::PADDLE_WIDTH / 2, App::Singleton().Height() - Paddle::PADDLE_HEIGHT), Paddle::PADDLE_WIDTH, Paddle::PADDLE_HEIGHT };
+	AARectangle paddleRect = { Vec2D(App::Singleton().Width() / 2 - Paddle::PADDLE_WIDTH / 2, App::Singleton().Height() - 3 * Paddle::PADDLE_HEIGHT), Paddle::PADDLE_WIDTH, Paddle::PADDLE_HEIGHT };
 	AARectangle levelBoundary = { Vec2D::Zero(), Vec2D(App::Singleton().Width(), App::Singleton().Height()) };
 
 	mPaddle.Init(paddleRect, levelBoundary);

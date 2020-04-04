@@ -11,6 +11,8 @@ public:
 	float GetWidth() const;
 	float GetHeight() const;
 
+	virtual void MoveTo(const Vec2D& position) override;
+
 	inline void SetTopLeftPoint(const Vec2D& topLeft) { mPoints[0] = topLeft; }
 	inline void SetBottomRightPoint(const Vec2D& bottomRight) { mPoints[1] = bottomRight; }
 
