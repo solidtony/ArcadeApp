@@ -2,7 +2,7 @@
 
 GameScene::GameScene(std::unique_ptr<Game> optrGame) : mGame(std::move(optrGame))
 {
-	mGame = std::move(optrGame);
+
 }
 
 void GameScene::Init()

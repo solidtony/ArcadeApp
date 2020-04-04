@@ -6,9 +6,10 @@
 
 #include "Utils/Utils.h"
 
-void Paddle::Init(const AARectangle& rect)
+void Paddle::Init(const AARectangle& rect, const AARectangle& boundary)
 {
 	Excluder::Init(rect);
+	mBoundary = boundary;
 	mDirection = PaddleDirection::NONE;
 }
 
@@ -29,15 +30,21 @@ void Paddle::Update(uint32_t dt)
 		Vec2D dx = dir * VELOCITY * MillisecondsToSeconds(dt);
 
 		MoveBy(dx);
+
+		const AARectangle& aaRect = GetAARectangle();
+
+		if (IsGreaterThanOrEqual(mBoundary.GetTopLeftPoint().GetX(), aaRect.GetTopLeftPoint().GetX()))
+		{
+			MoveTo(Vec2D(mBoundary.GetTopLeftPoint().GetX(), aaRect.GetTopLeftPoint().GetY()));
+		}
+		else if (IsGreaterThanOrEqual(aaRect.GetBottomRightPoint().GetX(), mBoundary.GetBottomRightPoint().GetX()))
+		{
+			MoveTo(Vec2D(mBoundary.GetBottomRightPoint().GetX() - aaRect.GetWidth()/2.f, aaRect.GetTopLeftPoint().GetY() + aaRect.GetHeight()/2));
+		}
 	}
 }
 
 void Paddle::Draw(Screen& screen)
 {
-	screen.Draw(GetAARectangle(), PADDLE_COLOR, true, PADDLE_COLOR);
-}
-
-void Paddle::SetMovementDirection(PaddleDirection dir)
-{
-
+	screen.Draw(GetAARectangle(), Color::Blue(), true, Color::Blue());
 }

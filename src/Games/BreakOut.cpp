@@ -2,6 +2,10 @@
 
 #include <iostream>
 
+#include "App/App.h"
+
+#include "Input/GameController.h"
+
 /*
 	Paddle
 		- Can move side to side (by the user)
@@ -39,20 +43,59 @@
 
 void BreakOut::Init(GameController& controller)
 {
-	std::cout << GetName() << " Game Init()" << std::endl;
+	controller.ClearAll();
+	ResetGame();
+
+	ButtonAction leftKeyAction;
+	leftKeyAction.key = GameController::LeftKey();
+	leftKeyAction.action = [this](uint32_t dt, InputState state)
+	{
+		if (GameController::IsPressed(state))
+		{
+			mPaddle.SetMovementDirection(PaddleDirection::LEFT);
+		}
+		else
+		{
+			mPaddle.SetMovementDirection(PaddleDirection::NONE);
+		}
+	};
+	controller.AddInputActionForKey(leftKeyAction);
+
+	ButtonAction RightKeyAction;
+	RightKeyAction.key = GameController::RightKey();
+	RightKeyAction.action = [this](uint32_t dt, InputState state)
+	{
+		if (GameController::IsPressed(state))
+		{
+			mPaddle.SetMovementDirection(PaddleDirection::RIGHT);
+		}
+		else
+		{
+			mPaddle.SetMovementDirection(PaddleDirection::NONE);
+		}
+	};
+	controller.AddInputActionForKey(RightKeyAction);
 }
 
 void BreakOut::Update(uint32_t dt)
 {
-	std::cout << GetName() << " Game Update()" << std::endl;
+	mPaddle.Update(dt);
 }
 
 void BreakOut::Draw(Screen& screen)
 {
-	std::cout << GetName() << " Game Draw()" << std::endl;
+	mPaddle.Draw(screen);
 }
 
 std::string BreakOut::GetName() const
 {
 	return GAME_NAME;
+}
+
+void BreakOut::ResetGame()
+{
+	AARectangle paddleRect = { Vec2D(App::Singleton().Width() / 2 - Paddle::PADDLE_WIDTH / 2, App::Singleton().Height() - Paddle::PADDLE_HEIGHT), Paddle::PADDLE_WIDTH, Paddle::PADDLE_HEIGHT };
+	AARectangle levelBoundary = { Vec2D::Zero(), Vec2D(App::Singleton().Width(), App::Singleton().Height()) };
+
+	mPaddle.Init(paddleRect, levelBoundary);
 }

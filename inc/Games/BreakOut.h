@@ -1,6 +1,7 @@
 #pragma once
 
 #include "Game.h"
+#include "Games/Paddle.h"
 
 class BreakOut : public Game
 {
@@ -12,4 +13,8 @@ public:
 
 private:
 	static constexpr char GAME_NAME[] = "Break Out";
+
+	void ResetGame();
+
+	Paddle mPaddle;
 };
