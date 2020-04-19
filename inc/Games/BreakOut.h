@@ -1,6 +1,7 @@
 #pragma once
 
 #include "Game.h"
+#include "Games/Ball.h"
 #include "Games/Paddle.h"
 
 class BreakOut : public Game
@@ -15,4 +16,5 @@ private:
 	void ResetGame();
 
 	Paddle mPaddle;
+	Ball mBall;
 };
