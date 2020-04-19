@@ -10,15 +10,19 @@ void Paddle::Init(const AARectangle& rect, const AARectangle& boundary)
 {
 	Excluder::Init(rect);
 	mBoundary = boundary;
-	mDirection = PaddleDirection::NONE;
+	mDirection = 0;
 }
 
 void Paddle::Update(uint32_t dt)
 {
-	if (mDirection != PaddleDirection::NONE)
+	if (mDirection != 0)
 	{
 		Vec2D dir;
-		if (mDirection == PaddleDirection::LEFT)
+		if ( ((mDirection & PaddleDirection::LEFT) == PaddleDirection::LEFT) && ((mDirection & PaddleDirection::RIGHT) == PaddleDirection::RIGHT) )
+		{
+			dir = Vec2D::Zero();
+		}
+		else if (mDirection == PaddleDirection::LEFT)
 		{
 			dir = LEFT_DIR;
 		}

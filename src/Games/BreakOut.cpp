@@ -56,7 +56,7 @@ void BreakOut::Init(GameController& controller)
 		}
 		else
 		{
-			mPaddle.SetMovementDirection(PaddleDirection::NONE);
+			mPaddle.UnsetMovementDirection(PaddleDirection::LEFT);
 		}
 	};
 	controller.AddInputActionForKey(leftKeyAction);
@@ -71,7 +71,7 @@ void BreakOut::Init(GameController& controller)
 		}
 		else
 		{
-			mPaddle.SetMovementDirection(PaddleDirection::NONE);
+			mPaddle.UnsetMovementDirection(PaddleDirection::RIGHT);
 		}
 	};
 	controller.AddInputActionForKey(RightKeyAction);
@@ -87,9 +87,11 @@ void BreakOut::Draw(Screen& screen)
 	mPaddle.Draw(screen);
 }
 
-std::string BreakOut::GetName() const
+const std::string& BreakOut::GetName() const
 {
-	return GAME_NAME;
+	static std::string name = "Break Out!";
+
+	return name;
 }
 
 void BreakOut::ResetGame()

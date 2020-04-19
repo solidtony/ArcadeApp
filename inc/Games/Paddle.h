@@ -11,9 +11,8 @@ class Color;
 
 enum PaddleDirection
 {
-	NONE = 0,
-	LEFT,
-	RIGHT
+	LEFT = 1 << 0,
+	RIGHT = 1 << 1
 };
 
 class Paddle : public Excluder
@@ -29,11 +28,13 @@ public:
 	inline bool IsMovingLeft() const { return mDirection == PaddleDirection::LEFT; }
 	inline bool IsMovingRight() const { return mDirection == PaddleDirection::RIGHT; }
 
-	inline void SetMovementDirection(PaddleDirection dir) { mDirection = dir; }
-	inline void StopMovement() { mDirection = PaddleDirection::NONE; }
+	inline void SetMovementDirection(PaddleDirection dir) { mDirection |= dir; }
+	inline void UnsetMovementDirection(PaddleDirection dir) { mDirection &= ~dir; }
+	inline void StopMovement() { mDirection = 0; }
 
 private:
 	static constexpr float VELOCITY = 100.f; // pixels/second
+	
+	uint32_t mDirection; // direction we're moving
 	AARectangle mBoundary; // Boundary that the paddle is confined to
-	PaddleDirection mDirection; // direction we're moving
 };
