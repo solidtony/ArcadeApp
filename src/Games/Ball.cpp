@@ -29,7 +29,7 @@ void Ball::Draw(Screen& screen)
 	screen.Draw(circ, Color::Red(), true, Color::Red());
 }
 
-void Ball::MakeFlushWithEdge(const BoundaryEdge& edge, Vec2D& pointOnEdge, bool limitToEdge)
+void Ball::MakeFlushWithEdge(const BoundaryEdge& edge, Vec2D& pointOnEdgeOUT, bool limitToEdge)
 {
 	if (edge.normal == DOWN_DIR)
 	{
@@ -48,7 +48,7 @@ void Ball::MakeFlushWithEdge(const BoundaryEdge& edge, Vec2D& pointOnEdge, bool 
 		mBBox.MoveTo(Vec2D(edge.edge.GetPoint0().GetX() - mBBox.GetWidth(), mBBox.GetTopLeftPoint().GetY()));
 	}
 
-	pointOnEdge = edge.edge.ClosestPoint(mBBox.GetCenterPoint(), limitToEdge);
+	pointOnEdgeOUT = edge.edge.ClosestPoint(mBBox.GetCenterPoint(), limitToEdge);
 }
 
 void Ball::Bounce(const BoundaryEdge& edge)

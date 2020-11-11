@@ -32,10 +32,10 @@ float Line2D::MinDistanceFrom(const Vec2D & point, bool limitToSegment) const
 Vec2D Line2D::ClosestPoint(const Vec2D & point, bool limitToSegment) const
 {
 	Vec2D Point0ToPoint = point - mPoint0;
-	Vec2D unitVecP0ToP1 = (mPoint0 - mPoint1).GetUnitVector();
+	Vec2D unitVecP1ToP0 = (mPoint1 - mPoint0).GetUnitVector();
 
 
-	float dot = Point0ToPoint.Dot(unitVecP0ToP1);
+	float dot = Point0ToPoint.Dot(unitVecP1ToP0);
 
 	if (limitToSegment)
 	{
@@ -43,7 +43,7 @@ Vec2D Line2D::ClosestPoint(const Vec2D & point, bool limitToSegment) const
 	}
 	
 
-	return mPoint0 + dot * unitVecP0ToP1;
+	return mPoint0 + dot * unitVecP1ToP0;
 }
 
 Vec2D Line2D::MidPoint() const

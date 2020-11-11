@@ -14,7 +14,7 @@ public:
 
 	void Update(uint32_t dt);
 	void Draw(Screen& screen);
-	void MakeFlushWithEdge(const BoundaryEdge& edge, Vec2D& pointOnEdge, bool limitToEdge);
+	void MakeFlushWithEdge(const BoundaryEdge& edge, Vec2D& pointOnEdgeOUT, bool limitToEdge);
 	inline void Stop() { mVelocity = Vec2D::Zero(); }
 	void MoveTo(const Vec2D& point);
 

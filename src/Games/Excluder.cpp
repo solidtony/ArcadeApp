@@ -12,7 +12,7 @@ void Excluder::Init(const AARectangle& rect, bool reverseNormals)
 	SetupEdges();
 }
 
-bool Excluder::HasCollided(const AARectangle& rect, BoundaryEdge& edge) const
+bool Excluder::HasCollided(const AARectangle& rect, BoundaryEdge& edgeOUT) const
 {
 	if (mAARect.Intersects(rect))
 	{
@@ -30,22 +30,22 @@ bool Excluder::HasCollided(const AARectangle& rect, BoundaryEdge& edge) const
 		{
 			if (rect.GetCenterPoint().GetY() > mAARect.GetCenterPoint().GetY())
 			{
-				edge = mEdges[BOTTOM_EDGE];
+				edgeOUT = mEdges[BOTTOM_EDGE];
 			}
 			else
 			{
-				edge = mEdges[TOP_EDGE];
+				edgeOUT = mEdges[TOP_EDGE];
 			}
 		}
 		else
 		{
 			if (rect.GetCenterPoint().GetX() < mAARect.GetCenterPoint().GetX())
 			{
-				edge = mEdges[LEFT_EDGE];
+				edgeOUT = mEdges[LEFT_EDGE];
 			}
 			else
 			{
-				edge = mEdges[RIGHT_EDGE];
+				edgeOUT = mEdges[RIGHT_EDGE];
 			}
 		}
 
