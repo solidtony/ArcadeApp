@@ -18,11 +18,13 @@ public:
 	inline void Stop() { mVelocity = Vec2D::Zero(); }
 	void MoveTo(const Vec2D& point);
 
+	void Bounce(const BoundaryEdge& edge);
+
 	inline const AARectangle& GetBoundingRect() const { return mBBox; }
 	inline void SetVelocity(const Vec2D& vel) { mVelocity = vel; }
-	inline const Vec2D& GetVelocity() const { return mVelocity; }
+	inline const Vec2D GetVelocity() const { return mVelocity; }
 	inline float GetRadius() const { return mBBox.GetWidth() / 2.f; }
-	inline const Vec2D& GetPosition() const { return mBBox.GetCenterPoint(); }
+	inline const Vec2D GetPosition() const { return mBBox.GetCenterPoint(); }
 
 private:
 	static const float RADIUS;

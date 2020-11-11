@@ -1,7 +1,8 @@
 #pragma once
 
-#include "Game.h"
 #include "Games/Ball.h"
+#include "Games/Game.h"
+#include "Games/LevelBoundary.h"
 #include "Games/Paddle.h"
 
 class BreakOut : public Game
@@ -15,6 +16,9 @@ public:
 private:
 	void ResetGame();
 
+	const Vec2D INITIAL_BALL_VEL = Vec2D(100.f, -100.f);
+
 	Paddle mPaddle;
 	Ball mBall;
+	LevelBoundary mLevelBoundary;
 };

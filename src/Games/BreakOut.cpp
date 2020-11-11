@@ -81,12 +81,19 @@ void BreakOut::Update(uint32_t dt)
 {
 	mBall.Update(dt);
 	mPaddle.Update(dt);
+
+	BoundaryEdge edge;
+	if (mLevelBoundary.HasCollided(mBall, edge))
+	{
+		mBall.Bounce(edge);
+	}
 }
 
 void BreakOut::Draw(Screen& screen)
 {
 	mBall.Draw(screen);
 	mPaddle.Draw(screen);
+	screen.Draw(mLevelBoundary.GetAARectangle(), Color::White());
 }
 
 const std::string& BreakOut::GetName() const
@@ -99,8 +106,10 @@ const std::string& BreakOut::GetName() const
 void BreakOut::ResetGame()
 {
 	AARectangle paddleRect = { Vec2D(App::Singleton().Width() / 2 - Paddle::PADDLE_WIDTH / 2, App::Singleton().Height() - 3 * Paddle::PADDLE_HEIGHT), Paddle::PADDLE_WIDTH, Paddle::PADDLE_HEIGHT };
-	AARectangle levelBoundary = { Vec2D::Zero(), Vec2D(App::Singleton().Width(), App::Singleton().Height()) };
+	AARectangle levelBoundary = { Vec2D::Zero(), Vec2D(App::Singleton().Width()-1, App::Singleton().Height()-1) };
 
+	mLevelBoundary = {levelBoundary};
 	mPaddle.Init(paddleRect, levelBoundary);
-	mBall.MoveTo(Vec2D(App::Singleton().Width()/2, App::Singleton().Height()/2));
+	mBall.MoveTo(Vec2D(App::Singleton().Width() / 2, App::Singleton().Height() * 0.75f));
+	mBall.SetVelocity(INITIAL_BALL_VEL);
 }
