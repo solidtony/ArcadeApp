@@ -1,9 +1,13 @@
 #include "Games/BreakoutGameLevel.h"
 
+#include "App/App.h"
+
 #include "Games/Block.h"
 #include "Games/Ball.h"
 
 #include "Shapes/AARectangle.h"
+
+#include "Utils/FileCommandLoader.h"
 
 BreakoutGameLevel::BreakoutGameLevel()
 {
@@ -81,9 +85,6 @@ void BreakoutGameLevel::CreateDefaultLevel(const AARectangle& boundary)
 {
 	mBlocks.clear();
 
-	const int BLOCK_WIDTH = 28;
-	const int BLOCK_HEIGHT = 10;
-
 	const int NUM_BLOCKS_ACROSS = ((int)boundary.GetWidth() / (BLOCK_WIDTH + 1));
 	const int NUM_BLOCK_ROWS = 5;
 
@@ -108,4 +109,162 @@ void BreakoutGameLevel::CreateDefaultLevel(const AARectangle& boundary)
 			blockRect.MoveBy(Vec2D(BLOCK_WIDTH, 0));
 		}
 	}
+}
+
+struct LayoutBlock
+{
+	char symbol = '-';
+	int hp = 0;
+	Color color = Color::Black();
+};
+
+LayoutBlock FindLayoutBlockForSymbol(const std::vector<LayoutBlock>& blocks, char symbol)
+{
+	for (size_t i = 0; i < blocks.size(); ++i)
+	{
+		if (blocks[i].symbol == symbol)
+		{
+			return blocks[i];
+		}
+	}
+
+	return LayoutBlock();
+}
+
+std::vector<BreakoutGameLevel> BreakoutGameLevel::LoadLevelsFromFile(const std::string& filePath)
+{
+	std::vector<BreakoutGameLevel> levels;
+
+	std::vector<LayoutBlock> layoutBlocks;
+
+	std::vector<Block> levelBlocks;
+
+	int width = 0;
+	int height = 0;
+
+	FileCommandLoader fileLoader;
+
+	// Level command
+	Command levelCommand;
+	levelCommand.command = "level";
+	levelCommand.parseFunc = [&](ParseFuncParams params)
+	{
+		if (levels.size() > 0)
+		{
+			levels.back().Load(levelBlocks);
+		}
+
+		layoutBlocks.clear();
+		levelBlocks.clear();
+		width = 0;
+		height = 0;
+
+		BreakoutGameLevel level;
+		level.Init(AARectangle(Vec2D::Zero(), App::Singleton().Width(), App::Singleton().Height()));
+
+		levels.push_back(level);
+	};
+
+	fileLoader.AddCommand(levelCommand);
+
+	// Block command
+	Command blockCommand;
+	blockCommand.command = "block";
+	blockCommand.parseFunc = [&](ParseFuncParams params)
+	{
+		LayoutBlock lb;
+
+		layoutBlocks.push_back(lb);
+	};
+
+	fileLoader.AddCommand(blockCommand);
+
+	// Symbol command
+	Command symbolCommand;
+	symbolCommand.command = "symbol";
+	symbolCommand.parseFunc = [&](ParseFuncParams params)
+	{
+		layoutBlocks.back().symbol = FileCommandLoader::ReadChar(params);
+	};
+
+	fileLoader.AddCommand(symbolCommand);
+
+	// Fill color command
+	Command fillColorCommand;
+	fillColorCommand.command = "fillcolor";
+	fillColorCommand.parseFunc = [&](ParseFuncParams params)
+	{
+		layoutBlocks.back().color = FileCommandLoader::ReadColor(params);
+	};
+
+	fileLoader.AddCommand(fillColorCommand);
+
+	// HP command
+	Command hpCommand;
+	hpCommand.command = "hp";
+	hpCommand.parseFunc = [&](ParseFuncParams params)
+	{
+		layoutBlocks.back().hp = FileCommandLoader::ReadInt(params);
+	};
+
+	fileLoader.AddCommand(hpCommand);
+
+	// Width command
+	Command widthCommand;
+	widthCommand.command = "width";
+	widthCommand.parseFunc = [&](ParseFuncParams params)
+	{
+		width = FileCommandLoader::ReadInt(params);
+	};
+
+	fileLoader.AddCommand(widthCommand);
+
+	// Height command
+	Command heightCommand;
+	heightCommand.command = "height";
+	heightCommand.parseFunc = [&](ParseFuncParams params)
+	{
+		height = FileCommandLoader::ReadInt(params);
+	};
+
+	fileLoader.AddCommand(heightCommand);
+
+	// Layout command
+	Command layoutCommand;
+	layoutCommand.commandType = COMMAND_MULTI_LINE;
+	layoutCommand.command = "layout";
+	layoutCommand.parseFunc = [&](ParseFuncParams params)
+	{
+		int blockWidth = BLOCK_WIDTH;
+		int screenWidth = App::Singleton().Width();
+
+		float startingX = 0;
+		AARectangle blockRect(Vec2D(startingX, (params.lineNum + 1)*BLOCK_HEIGHT), BLOCK_WIDTH, BLOCK_HEIGHT);
+
+		for (int col = 0; col < params.line.length(); ++col)
+		{
+			if (params.line[col] != '-')
+			{
+				LayoutBlock layoutBlock = FindLayoutBlockForSymbol(layoutBlocks, params.line[col]);
+
+				Block block;
+				block.Init(blockRect, layoutBlock.hp, Color::Black(), layoutBlock.color);
+				levelBlocks.push_back(block);
+			}
+
+			blockRect.MoveBy(Vec2D(BLOCK_WIDTH, 0));
+		}
+	};
+
+	fileLoader.AddCommand(layoutCommand);
+
+	// Load file
+	fileLoader.LoadFile(filePath);
+
+	if (levels.size() > 0)
+	{
+		levels.back().Load(levelBlocks);
+	}
+
+	return levels;
 }

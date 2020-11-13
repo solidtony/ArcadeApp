@@ -1,5 +1,6 @@
 #pragma once
 
+#include <vector>
 #include "Games/Ball.h"
 #include "Games/Game.h"
 #include "Games/LevelBoundary.h"
@@ -22,5 +23,8 @@ private:
 	Paddle mPaddle;
 	Ball mBall;
 	LevelBoundary mLevelBoundary;
-	BreakoutGameLevel mLevel;
+	std::vector<BreakoutGameLevel> mLevels;
+	size_t mCurrentLevel;
+
+	BreakoutGameLevel& GetCurrentLevel() { return mLevels[mCurrentLevel]; }
 };

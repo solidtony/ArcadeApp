@@ -127,7 +127,8 @@
       <AdditionalLibraryDirectories>$(TargetDir);</AdditionalLibraryDirectories>
     </Link>
     <PostBuildEvent>
-      <Command>XCOPY "$(SolutionDir)"..\vs_dev_lib\SDL2\lib\$(PlatformTarget)\*.dll "$(TargetDir)" /D /K /Y</Command>
+      <Command>XCOPY "$(SolutionDir)..\vs_dev_lib\SDL2\lib\$(PlatformTarget)\*.dll" "$(TargetDir)" /D /K /Y
+XCOPY "$(SolutionDir)Assets\*.*" "$(TargetDir)Assets\" /E /H /Y</Command>
     </PostBuildEvent>
     <PreBuildEvent>
       <Command>
@@ -155,7 +156,8 @@
       <AdditionalLibraryDirectories>$(TargetDir);</AdditionalLibraryDirectories>
     </Link>
     <PostBuildEvent>
-      <Command>XCOPY "$(SolutionDir)"..\vs_dev_lib\SDL2\lib\$(PlatformTarget)\*.dll "$(TargetDir)" /D /K /Y</Command>
+      <Command>XCOPY "$(SolutionDir)..\vs_dev_lib\SDL2\lib\$(PlatformTarget)\*.dll" "$(TargetDir)" /D /K /Y
+XCOPY "$(SolutionDir)Assets\*.*" "$(TargetDir)Assets\" /E /H /Y</Command>
     </PostBuildEvent>
     <PreBuildEvent>
       <Command>
@@ -183,7 +185,8 @@
       <AdditionalLibraryDirectories>$(TargetDir);</AdditionalLibraryDirectories>
     </Link>
     <PostBuildEvent>
-      <Command>XCOPY "$(SolutionDir)"..\vs_dev_lib\SDL2\lib\$(PlatformTarget)\*.dll "$(TargetDir)" /D /K /Y</Command>
+      <Command>XCOPY "$(SolutionDir)..\vs_dev_lib\SDL2\lib\$(PlatformTarget)\*.dll" "$(TargetDir)" /D /K /Y
+XCOPY "$(SolutionDir)Assets\*.*" "$(TargetDir)Assets\" /E /H /Y</Command>
     </PostBuildEvent>
     <PreBuildEvent>
       <Command>
@@ -215,7 +218,8 @@
       <AdditionalLibraryDirectories>$(TargetDir);</AdditionalLibraryDirectories>
     </Link>
     <PostBuildEvent>
-      <Command>XCOPY "$(SolutionDir)"..\vs_dev_lib\SDL2\lib\$(PlatformTarget)\*.dll "$(TargetDir)" /D /K /Y</Command>
+      <Command>XCOPY "$(SolutionDir)..\vs_dev_lib\SDL2\lib\$(PlatformTarget)\*.dll" "$(TargetDir)" /D /K /Y
+XCOPY "$(SolutionDir)Assets\*.*" "$(TargetDir)Assets\" /E /H /Y</Command>
     </PostBuildEvent>
     <PreBuildEvent>
       <Command>
