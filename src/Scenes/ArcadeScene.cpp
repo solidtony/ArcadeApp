@@ -74,10 +74,10 @@ void ArcadeScene::Draw(Screen& theScreen)
 {
 	Vec2D centerOfScreen = { static_cast<float>(theScreen.Width()) / 2, static_cast<float>(theScreen.Height()) / 2 };
 
-	Star star(Vec2D(theScreen.Width() * 0.25, theScreen.Height() * 0.25), 50.f, 45.f, 20);
+	Star star(Vec2D(theScreen.Width() * 0.25f, theScreen.Height() * 0.25f), 50.f, 45.f, 20);
 
 	Color starColor = Color(255, 255, 0, 150);
-	AARectangle rect = { Vec2D(theScreen.Width() / 2 - 50, theScreen.Height() / 2 - 50), 50, 50 };
+	AARectangle rect = { Vec2D(theScreen.Width() / 2.f - 50.f, theScreen.Height() / 2.f - 50.f), 50, 50 };
 
 	Vec2D rotationPoint = star.GetCenterPoint() + Vec2D(0.0f, 0.0f);
 	float deltaAngle = 0.0255f;

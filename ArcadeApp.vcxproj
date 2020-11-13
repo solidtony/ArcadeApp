@@ -174,9 +174,10 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="src\App\App.cpp" />
-    <ClCompile Include="src\Blockcpp.cpp" />
+    <ClCompile Include="src\Block.cpp" />
     <ClCompile Include="src\Games\Ball.cpp" />
     <ClCompile Include="src\Games\BreakOut.cpp" />
+    <ClCompile Include="src\Games\BreakoutGameLevel.cpp" />
     <ClCompile Include="src\Games\Excluder.cpp" />
     <ClCompile Include="src\Games\LevelBoundary.cpp" />
     <ClCompile Include="src\Games\Paddle.cpp" />
@@ -203,6 +204,7 @@
     <ClInclude Include="inc\Games\Block.h" />
     <ClInclude Include="inc\Games\BoundaryEdge.h" />
     <ClInclude Include="inc\Games\BreakOut.h" />
+    <ClInclude Include="inc\Games\BreakoutGameLevel.h" />
     <ClInclude Include="inc\Games\Excluder.h" />
     <ClInclude Include="inc\Games\Game.h" />
     <ClInclude Include="inc\Games\LevelBoundary.h" />

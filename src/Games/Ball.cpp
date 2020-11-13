@@ -14,7 +14,7 @@ Ball::Ball() : Ball(Vec2D::Zero(), RADIUS)
 
 Ball::Ball(const Vec2D& pos, float radius)
 {
-	mBBox = AARectangle(pos - Vec2D(radius, radius), radius * 2.f, radius * 2.f);
+	mBBox = AARectangle(pos - Vec2D(radius, radius), static_cast<unsigned int>(radius * 2.f), static_cast<unsigned int>(radius * 2.f));
 	mVelocity = Vec2D::Zero();
 }
 

@@ -19,6 +19,8 @@ bool LevelBoundary::HasCollided(const Ball& ball, BoundaryEdge& edge)
 			return true;
 		}
 	}
+
+	return false;
 }
 
 bool LevelBoundary::HasCollidedWithEdge(const Ball& ball, const BoundaryEdge& edge) const
