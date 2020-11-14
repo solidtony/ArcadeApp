@@ -14,7 +14,7 @@ public:
 	BreakoutGameLevel();
 	void Init(const AARectangle& boundary);
 	void Load(const std::vector<Block>& blocks);
-	void Update(uint32_t dt, Ball& ball);
+	void Update(uint32_t dt, Ball& ball, bool& wasBlockHitOUT);
 	void Draw(Screen& screen);
 
 	bool IsLevelComplete() const;

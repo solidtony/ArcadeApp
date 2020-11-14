@@ -72,6 +72,7 @@ void BreakOut::Init(GameController& controller)
 		{
 			if (GameController::IsPressed(state))
 			{
+				mScore = 0;
 				ResetGame();
 			}
 		}
@@ -141,7 +142,12 @@ void BreakOut::Update(uint32_t dt)
 			return;
 		}
 
-		GetCurrentLevel().Update(dt, mBall);
+		bool wasBlockHit = false;
+		GetCurrentLevel().Update(dt, mBall, wasBlockHit);
+		if (wasBlockHit)
+		{
+			mScore += POINT_VALUE;
+		}
 
 		if (IsBallPassedCutoffY())
 		{

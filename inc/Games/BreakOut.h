@@ -25,6 +25,7 @@ public:
 private:
 	const int NUM_LIVES = 3;
 	const float INITIAL_BALL_SPEED = 100;
+	const int POINT_VALUE = 10;
 
 	Paddle mPaddle;
 	Ball mBall;
@@ -34,6 +35,7 @@ private:
 	BreakOutGameState mGameState;
 	int mLives;
 	float mYCutoff;
+	int mScore;
 
 	void ResetGame(size_t toLevel = 0);
 	BreakoutGameLevel& GetCurrentLevel() { return mLevels[mCurrentLevel]; }

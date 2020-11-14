@@ -25,8 +25,10 @@ void BreakoutGameLevel::Load(const std::vector<Block>& blocks)
 	mBlocks = blocks;
 }
 
-void BreakoutGameLevel::Update(uint32_t dt, Ball& ball)
+void BreakoutGameLevel::Update(uint32_t dt, Ball& ball, bool& wasBlockHitOUT)
 {
+	wasBlockHitOUT = false;
+
 	std::vector<Block> collidedBlocks;
 
 	BoundaryEdge edgeToBounceOffOf;
@@ -57,6 +59,7 @@ void BreakoutGameLevel::Update(uint32_t dt, Ball& ball)
 	{
 		noptrBlockToBounceOffOf->Bounce(ball, edgeToBounceOffOf);
 		noptrBlockToBounceOffOf->ReduceHP();
+		wasBlockHitOUT = true;
 	}
 
 	for (const auto& block : collidedBlocks)
