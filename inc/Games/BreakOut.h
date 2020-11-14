@@ -7,6 +7,13 @@
 #include "Games/Paddle.h"
 #include "Games/BreakoutGameLevel.h"
 
+enum BreakOutGameState
+{
+	IN_PLAY = 0,
+	IN_SERVE,
+	IN_GAME_OVER
+};
+
 class BreakOut : public Game
 {
 public:
@@ -16,15 +23,22 @@ public:
 	virtual const std::string& GetName() const override;
 
 private:
-	void ResetGame();
-
-	const Vec2D INITIAL_BALL_VEL = Vec2D(100.f, -100.f);
+	const int NUM_LIVES = 3;
+	const float INITIAL_BALL_SPEED = 100;
 
 	Paddle mPaddle;
 	Ball mBall;
 	LevelBoundary mLevelBoundary;
 	std::vector<BreakoutGameLevel> mLevels;
 	size_t mCurrentLevel;
+	BreakOutGameState mGameState;
+	int mLives;
+	float mYCutoff;
 
+	void ResetGame(size_t toLevel = 0);
 	BreakoutGameLevel& GetCurrentLevel() { return mLevels[mCurrentLevel]; }
+	void SetToServeState();
+	bool IsBallPassedCutoffY() const;
+	void ReduceLifeByOne();
+	inline bool IsGameOver() const { return mLives < 0; }
 };

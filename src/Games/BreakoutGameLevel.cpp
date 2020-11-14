@@ -111,6 +111,19 @@ void BreakoutGameLevel::CreateDefaultLevel(const AARectangle& boundary)
 	}
 }
 
+bool BreakoutGameLevel::IsLevelComplete() const
+{
+	for (auto block : mBlocks)
+	{
+		if (!block.IsDestroyed() && block.GetHP() != Block::UNBREAKABLE)
+		{
+			return false;
+		}
+	}
+
+	return true;
+}
+
 struct LayoutBlock
 {
 	char symbol = '-';
