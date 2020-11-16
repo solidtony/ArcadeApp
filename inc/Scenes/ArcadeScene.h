@@ -2,6 +2,7 @@
 
 #include "Scene.h"
 #include <memory>
+#include "Graphics/SpriteSheet.h" // TODO REMOVE after testing
 
 enum eGame
 {
@@ -25,4 +26,7 @@ public:
 
 private:
 	std::unique_ptr<Scene> GetScene(eGame game);
+
+	// TODO REMOVE after testing
+	SpriteSheet mTempSS;
 };

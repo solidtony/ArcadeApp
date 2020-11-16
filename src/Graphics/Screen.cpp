@@ -5,6 +5,8 @@
 #include <cmath>
 #include "SDL.h"
 
+#include "Graphics/BMPImage.h"
+#include "Graphics/SpriteSheet.h"
 #include "Shapes/Lines2D.h"
 #include "Shapes/Triangle.h"
 #include "Shapes/AARectangle.h"
@@ -222,6 +224,7 @@ void Screen::Draw(const Circle& circle, const Color& color, bool fill, const Col
 	}
 }
 
+
 void Screen::Draw(const Star& star, const Color& color, bool fill, const Color& fillColor)
 {
 	if (fill)
@@ -239,6 +242,25 @@ void Screen::Draw(const Star& star, const Color& color, bool fill, const Color& 
 	// Draw the last side
 	Draw(Line2D(star.GetPoints().back(), star.GetPoints()[0]), color);
 
+}
+
+void Screen::Draw(const BMPImage& image, const Sprite& sprite, const Vec2D& pos)
+{
+	uint32_t width = sprite.width;
+	uint32_t height = sprite.height;
+
+	for (uint32_t row = 0; row < height; ++row)
+	{
+		for (uint32_t col = 0; col < width; ++col)
+		{
+			Draw(col + pos.GetX(), row + pos.GetY(), image.GetPixels()[GetIndex(image.GetWidth(), row + sprite.yPos, col + sprite.xPos)]);
+		}
+	}
+}
+
+void Screen::Draw(const SpriteSheet& spriteSheet, const std::string& spriteName, const Vec2D& pos)
+{
+	Draw(spriteSheet.GetBMPImage(), spriteSheet.GetSprite(spriteName), pos);
 }
 
 void Screen::ClearScreen()

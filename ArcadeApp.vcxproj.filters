@@ -135,6 +135,12 @@
     <ClCompile Include="src\Games\BreakoutGameLevel.cpp">
       <Filter>Source Files\Games\BreakOut</Filter>
     </ClCompile>
+    <ClCompile Include="src\Graphics\BMPImage.cpp">
+      <Filter>Source Files\Graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Graphics\SpriteSheet.cpp">
+      <Filter>Source Files\Graphics</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="inc\Graphics\Color.h">
@@ -220,6 +226,12 @@
     </ClInclude>
     <ClInclude Include="inc\Games\BreakoutGameLevel.h">
       <Filter>Header Files\Games\BreakOut</Filter>
+    </ClInclude>
+    <ClInclude Include="inc\Graphics\BMPImage.h">
+      <Filter>Header Files\Graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="inc\Graphics\SpriteSheet.h">
+      <Filter>Header Files\Graphics</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

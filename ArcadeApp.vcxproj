@@ -181,9 +181,11 @@
     <ClCompile Include="src\Games\Excluder.cpp" />
     <ClCompile Include="src\Games\LevelBoundary.cpp" />
     <ClCompile Include="src\Games\Paddle.cpp" />
+    <ClCompile Include="src\Graphics\BMPImage.cpp" />
     <ClCompile Include="src\Graphics\Color.cpp" />
     <ClCompile Include="src\Graphics\Screen.cpp" />
     <ClCompile Include="src\Graphics\ScreenBuffer.cpp" />
+    <ClCompile Include="src\Graphics\SpriteSheet.cpp" />
     <ClCompile Include="src\Input\GameController.cpp" />
     <ClCompile Include="src\Input\InputController.cpp" />
     <ClCompile Include="src\Scenes\ArcadeScene.cpp" />
@@ -209,9 +211,11 @@
     <ClInclude Include="inc\Games\Game.h" />
     <ClInclude Include="inc\Games\LevelBoundary.h" />
     <ClInclude Include="inc\Games\Paddle.h" />
+    <ClInclude Include="inc\Graphics\BMPImage.h" />
     <ClInclude Include="inc\Graphics\Color.h" />
     <ClInclude Include="inc\Graphics\Screen.h" />
     <ClInclude Include="inc\Graphics\ScreenBuffer.h" />
+    <ClInclude Include="inc\Graphics\SpriteSheet.h" />
     <ClInclude Include="inc\Input\GameController.h" />
     <ClInclude Include="inc\Input\InputAction.h" />
     <ClInclude Include="inc\Input\InputController.h" />

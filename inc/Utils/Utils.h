@@ -1,5 +1,7 @@
 #pragma once
 
+#include <string>
+
 namespace math
 {
 	namespace constants
@@ -19,3 +21,7 @@ bool IsGreaterThanOrEqual(float x, float y, float epsilon);
 bool IsGreaterThanOrEqual(float x, float y);
 
 float MillisecondsToSeconds(unsigned int miliseconds);
+
+unsigned int GetIndex(unsigned int width, unsigned int row, unsigned int col);
+
+bool StringCompare(const std::string& a, const std::string& b);

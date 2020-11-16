@@ -1,5 +1,6 @@
 #include "Utils/Utils.h"
 #include <cmath>
+#include <cctype>
 
 static constexpr float EPSILON = 0.0001f;
 
@@ -33,4 +34,22 @@ bool IsGreaterThanOrEqual(float x, float y)
 float MillisecondsToSeconds(unsigned int miliseconds)
 {
 	return static_cast<float>(miliseconds) / 1000.f;
+}
+
+unsigned int GetIndex(unsigned int width, unsigned int row, unsigned int col)
+{
+	return row * width + col;
+}
+
+bool StringCompare(const std::string& a, const std::string& b)
+{
+	if (a.length() == b.length())
+	{
+		return std::equal(b.begin(), b.end(), a.begin(), [](unsigned char a, unsigned char b)
+		{
+			return std::tolower(a) == std::tolower(b);
+		});
+	}
+	
+	return false;
 }
