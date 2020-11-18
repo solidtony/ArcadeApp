@@ -141,6 +141,9 @@
     <ClCompile Include="src\Graphics\SpriteSheet.cpp">
       <Filter>Source Files\Graphics</Filter>
     </ClCompile>
+    <ClCompile Include="src\BitmapFont.cpp">
+      <Filter>Source Files\Graphics</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="inc\Graphics\Color.h">
@@ -231,6 +234,9 @@
       <Filter>Header Files\Graphics</Filter>
     </ClInclude>
     <ClInclude Include="inc\Graphics\SpriteSheet.h">
+      <Filter>Header Files\Graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="inc\Graphics\BitmapFont.h">
       <Filter>Header Files\Graphics</Filter>
     </ClInclude>
   </ItemGroup>

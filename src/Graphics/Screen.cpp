@@ -5,6 +5,7 @@
 #include <cmath>
 #include "SDL.h"
 
+#include "Graphics/BitmapFont.h"
 #include "Graphics/BMPImage.h"
 #include "Graphics/SpriteSheet.h"
 #include "Shapes/Lines2D.h"
@@ -261,6 +262,29 @@ void Screen::Draw(const BMPImage& image, const Sprite& sprite, const Vec2D& pos)
 void Screen::Draw(const SpriteSheet& spriteSheet, const std::string& spriteName, const Vec2D& pos)
 {
 	Draw(spriteSheet.GetBMPImage(), spriteSheet.GetSprite(spriteName), pos);
+}
+
+void Screen::Draw(const BitmapFont& font, const std::string& textLine, const Vec2D& atPosition)
+{
+	uint32_t xPos = atPosition.GetX();
+	const SpriteSheet& ss = font.GetSpriteSheet();
+
+	for (char c : textLine)
+	{
+		if (c == ' ')
+		{
+			xPos += font.GetFontSpacingBetweenWords();
+			continue;
+		}
+
+		Sprite sprite = ss.GetSprite(std::string("") + c);
+
+		Draw(ss.GetBMPImage(), sprite, Vec2D(xPos, atPosition.GetY()));
+
+		xPos += sprite.width;
+
+		xPos += font.GetFontSpacingBetweenLetters();
+	}
 }
 
 void Screen::ClearScreen()
