@@ -245,8 +245,14 @@ void Screen::Draw(const Star& star, const Color& color, bool fill, const Color& 
 
 }
 
-void Screen::Draw(const BMPImage& image, const Sprite& sprite, const Vec2D& pos)
+void Screen::Draw(const BMPImage& image, const Sprite& sprite, const Vec2D& pos, const Color& overlayColor)
 {
+	float rVal = static_cast<float>(overlayColor.GetRed()) / 255.f;
+	float gVal = static_cast<float>(overlayColor.GetGreen()) / 255.f;
+	float bVal = static_cast<float>(overlayColor.GetBlue()) / 255.f;
+	float aVal = static_cast<float>(overlayColor.GetAlpha()) / 255.f;
+
+
 	uint32_t width = sprite.width;
 	uint32_t height = sprite.height;
 
@@ -254,17 +260,20 @@ void Screen::Draw(const BMPImage& image, const Sprite& sprite, const Vec2D& pos)
 	{
 		for (uint32_t col = 0; col < width; ++col)
 		{
-			Draw(col + pos.GetX(), row + pos.GetY(), image.GetPixels()[GetIndex(image.GetWidth(), row + sprite.yPos, col + sprite.xPos)]);
+			Color imageColor = image.GetPixels()[GetIndex(image.GetWidth(), row + sprite.yPos, col + sprite.xPos)];
+			Color newColor = { static_cast<uint8_t>(imageColor.GetRed()*rVal), static_cast<uint8_t>(imageColor.GetGreen()*gVal), static_cast<uint8_t>(imageColor.GetBlue()*bVal), static_cast<uint8_t>(imageColor.GetAlpha()*aVal) };
+
+			Draw(col + pos.GetX(), row + pos.GetY(), newColor);
 		}
 	}
 }
 
-void Screen::Draw(const SpriteSheet& spriteSheet, const std::string& spriteName, const Vec2D& pos)
+void Screen::Draw(const SpriteSheet& spriteSheet, const std::string& spriteName, const Vec2D& pos, const Color& overlayColor)
 {
-	Draw(spriteSheet.GetBMPImage(), spriteSheet.GetSprite(spriteName), pos);
+	Draw(spriteSheet.GetBMPImage(), spriteSheet.GetSprite(spriteName), pos, overlayColor);
 }
 
-void Screen::Draw(const BitmapFont& font, const std::string& textLine, const Vec2D& atPosition)
+void Screen::Draw(const BitmapFont& font, const std::string& textLine, const Vec2D& atPosition, const Color& overlayColor)
 {
 	uint32_t xPos = atPosition.GetX();
 	const SpriteSheet& ss = font.GetSpriteSheet();
@@ -279,7 +288,7 @@ void Screen::Draw(const BitmapFont& font, const std::string& textLine, const Vec
 
 		Sprite sprite = ss.GetSprite(std::string("") + c);
 
-		Draw(ss.GetBMPImage(), sprite, Vec2D(xPos, atPosition.GetY()));
+		Draw(ss.GetBMPImage(), sprite, Vec2D(xPos, atPosition.GetY()), overlayColor);
 
 		xPos += sprite.width;
 
