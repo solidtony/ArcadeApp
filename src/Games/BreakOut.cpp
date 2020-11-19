@@ -189,6 +189,29 @@ void BreakOut::Draw(Screen& screen)
 		screen.Draw(lifeCircle, Color::Red(), true, Color::Red());
 		lifeCircle.MoveBy(Vec2D(17, 0));
 	}
+
+	// Draw score
+	// TODO check
+	const BitmapFont& font = App::Singleton().GetFont();
+	static const AARectangle scoreBox = { Vec2D::Zero(), App::Singleton().Width() - 3, App::Singleton().Height() - 6 };
+	Vec2D scoreDrawPosition;
+	std::string scoreString = std::to_string(mScore);
+	scoreDrawPosition = font.GetDrawPosition(std::to_string(mScore), scoreBox, BFXA_RIGHT, BFYA_BOTTOM);
+	screen.Draw(font, scoreString, scoreDrawPosition);
+
+	// Draw Game Over
+	if (IsGameOver())
+	{
+		// TODO refactor
+		const BitmapFont& font = App::Singleton().GetFont();
+
+		AARectangle rect = { Vec2D::Zero(), App::Singleton().Width(), App::Singleton().Height() };
+
+		Vec2D textDrawPosition;
+		textDrawPosition = font.GetDrawPosition("Game Over", rect, BFXA_CENTER, BFYA_CENTER);
+
+		screen.Draw(font, "Game Over", textDrawPosition);
+	}
 }
 
 const std::string& BreakOut::GetName() const
