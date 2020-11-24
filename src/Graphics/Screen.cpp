@@ -23,7 +23,7 @@ Screen::Screen() : mWidth(0), mHeight(0), moptrWindow(nullptr), mnoptrWindowSurf
 
 Screen::~Screen()
 {
-	if(mPixelFormat)
+	if (mPixelFormat)
 	{
 		SDL_FreeFormat(mPixelFormat);
 		mPixelFormat = nullptr;
@@ -41,7 +41,7 @@ Screen::~Screen()
 		mRenderer = nullptr;
 	}
 
-	if(moptrWindow != nullptr)
+	if (moptrWindow != nullptr)
 	{
 		SDL_DestroyWindow(moptrWindow);
 		moptrWindow = nullptr;
@@ -92,9 +92,13 @@ SDL_Window* Screen::Init(uint32_t width, uint32_t height, uint32_t mag, bool fas
 
 	mPixelFormat = SDL_AllocFormat(SDL_GetWindowPixelFormat(moptrWindow));
 
+	if (mFast)
+	{
+		mTexture = SDL_CreateTexture(mRenderer, mPixelFormat->format, SDL_TEXTUREACCESS_STREAMING, width, height);
+	}
+
 	// Pixel format
 	Color::InitColorFormat(mPixelFormat);
-
 
 	mClearColor = Color(rClear, gClear, bClear, aClear);
 	mBackBuffer.Init(mPixelFormat->format, mWidth, mHeight);
@@ -107,11 +111,33 @@ void Screen::SwapScreens()
 {
 	assert(moptrWindow);
 	if (moptrWindow == nullptr) { return; }
+
 	ClearScreen();
 
-	SDL_BlitScaled(mBackBuffer.GetSurface(), nullptr, mnoptrWindowSurface, nullptr);
+	if (mFast)
+	{
+		uint8_t* textureData = nullptr;
+		int texturePitch = 0;
 
-	SDL_UpdateWindowSurface(moptrWindow);
+		if (SDL_LockTexture(mTexture, nullptr, (void**)&textureData, &texturePitch) >= 0)
+		{
+			SDL_Surface* surface = mBackBuffer.GetSurface();
+			std::memcpy(textureData, surface->pixels, surface->w * surface->h * mPixelFormat->BytesPerPixel);
+
+			SDL_UnlockTexture(mTexture);
+			SDL_RenderCopy(mRenderer, mTexture, nullptr, nullptr);
+			SDL_RenderPresent(mRenderer);
+		}
+	}
+	else
+	{
+		SDL_BlitScaled(mBackBuffer.GetSurface(), nullptr, mnoptrWindowSurface, nullptr);
+
+		SDL_UpdateWindowSurface(moptrWindow);
+	}
+
+
+
 
 	mBackBuffer.Clear(mClearColor);
 }
@@ -134,7 +160,7 @@ void Screen::Draw(const Line2D & line, const Color & color)
 {
 	assert(moptrWindow);
 	if (moptrWindow == nullptr) { return; }
-	
+
 	int dx, dy;
 
 	int x0 = static_cast<int>(roundf(line.GetPoint0().GetX()));
@@ -217,7 +243,7 @@ void Screen::Draw(const AARectangle& rect, const Color& color, bool fill, const 
 	std::vector<Vec2D> points = rect.GetPoints();
 
 	const unsigned int NUMBER_OF_POINTS = 4;
-	Line2D rectPoints [NUMBER_OF_POINTS];
+	Line2D rectPoints[NUMBER_OF_POINTS];
 
 	rectPoints[0] = Line2D(points[0], points[1]);
 	rectPoints[1] = Line2D(points[1], points[2]);
@@ -366,7 +392,14 @@ void Screen::ClearScreen()
 	assert(moptrWindow);
 	if (moptrWindow == nullptr) { return; }
 
-	SDL_FillRect(mnoptrWindowSurface, nullptr, mClearColor.GetPixelColor());
+	if (mFast)
+	{
+		SDL_RenderClear(mRenderer);
+	}
+	else
+	{
+		SDL_FillRect(mnoptrWindowSurface, nullptr, mClearColor.GetPixelColor());
+	}
 }
 
 void Screen::FillPoly(const std::vector<Vec2D>& points, FillPolyFunc func)
@@ -411,7 +444,7 @@ void Screen::FillPoly(const std::vector<Vec2D>& points, FillPolyFunc func)
 				float pointiY = points[i].GetY();
 				float pointjY = points[j].GetY();
 
-				if ( ( pointiY <= static_cast<float>(pixelY) && pointjY > static_cast<float>(pixelY) ) || ( pointjY <= static_cast<float>(pixelY) && pointiY > static_cast<float>(pixelY) ) )
+				if ((pointiY <= static_cast<float>(pixelY) && pointjY > static_cast<float>(pixelY)) || (pointjY <= static_cast<float>(pixelY) && pointiY > static_cast<float>(pixelY)))
 				{
 					float denom = pointjY - pointiY;
 					if (IsEqual(denom, 0.0f))
@@ -448,7 +481,7 @@ void Screen::FillPoly(const std::vector<Vec2D>& points, FillPolyFunc func)
 					// TODO will come back later to describe this
 					//Line2D line = { Vec2D(nodeXVec[k], pixelY), Vec2D(nodeXVec[k + 1], pixelY) };
 					//Draw(line, color);
-					for(int pixelX = static_cast<int>(nodeXVec[k]); pixelX < static_cast<int>(nodeXVec[k+1]); ++pixelX)
+					for (int pixelX = static_cast<int>(nodeXVec[k]); pixelX < static_cast<int>(nodeXVec[k + 1]); ++pixelX)
 					{
 						Draw(pixelX, pixelY, func(pixelX, pixelY));
 					}
