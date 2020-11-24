@@ -1,16 +1,24 @@
 Section: Fast path 2D Rendering:
-    + Implement an SDL2 renderer to pass workload to GPU which will increase performance. Before the rendering was handled by the CPU using a window framebuffer handled by SDL2.
+    + Implement an SDL2 renderer to pass workload to GPU which will increase performance. Before the rendering was handled by the CPU using a window frame-buffer handled by SDL2.
     
     + SDL_LockTexture:
-        Lock portionof texture for write-only pixel access.
+        Lock portion of texture for write-only pixel access.
             Texture: locked texture for access
             Rect: area to lock for access
             Pixels: pointer to locked pixels
-            Pitch: pitch of locekd pixels
+            Pitch: pitch of locked pixels
             
         Used when swapping screens.
-        Gives us a pointer to the textured data. The pixels in the backbuffer are memcpy-ed to the texture data.
+        Gives us a pointer to the textured data. The pixels in the back-buffer are memcpy-ed to the texture data.
         Texture is unlocked.
         
         The texture is then copied to the renderer
         The screen is then updated with the rendering performed.
+        
+
+Section: A button class
+    + Create a button class to introduce a UI into the app.
+    + Getting more practice with functions.
+        Using it for the button's action.
+        
+    + Depends on the bitmap font to get text for title.
