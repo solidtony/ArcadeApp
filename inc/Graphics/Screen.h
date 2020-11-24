@@ -19,6 +19,9 @@ class BMPImage;
 class SpriteSheet;
 struct Sprite;
 class BitmapFont;
+struct SDL_Renderer;
+struct SDL_PixelFormat;
+struct SDL_Texture;
 
 class Screen
 {
@@ -26,7 +29,7 @@ public:
 	Screen();
 	~Screen();
 
-	SDL_Window* Init(uint32_t width, uint32_t height, uint32_t mag);
+	SDL_Window* Init(uint32_t width, uint32_t height, uint32_t mag, bool fast = true);
 	void SwapScreens();
 
 	inline void SetClearColor(const Color& clearColor) { mClearColor = clearColor; }
@@ -64,4 +67,9 @@ private:
 
 	SDL_Window* moptrWindow;
 	SDL_Surface* mnoptrWindowSurface;
+
+	SDL_Renderer* mRenderer;
+	SDL_PixelFormat* mPixelFormat;
+	SDL_Texture* mTexture;
+	bool mFast;
 };

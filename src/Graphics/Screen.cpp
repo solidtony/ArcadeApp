@@ -16,13 +16,31 @@
 #include "Utils/Vec2D.h"
 #include "Utils/Utils.h"
 
-Screen::Screen() : mWidth(0), mHeight(0), moptrWindow(nullptr), mnoptrWindowSurface(nullptr)
+Screen::Screen() : mWidth(0), mHeight(0), moptrWindow(nullptr), mnoptrWindowSurface(nullptr), mRenderer(nullptr), mPixelFormat(nullptr), mTexture(nullptr)
 {
 
 }
 
 Screen::~Screen()
 {
+	if(mPixelFormat)
+	{
+		SDL_FreeFormat(mPixelFormat);
+		mPixelFormat = nullptr;
+	}
+
+	if (mTexture)
+	{
+		SDL_DestroyTexture(mTexture);
+		mPixelFormat = nullptr;
+	}
+
+	if (mRenderer)
+	{
+		SDL_DestroyRenderer(mRenderer);
+		mRenderer = nullptr;
+	}
+
 	if(moptrWindow != nullptr)
 	{
 		SDL_DestroyWindow(moptrWindow);
@@ -31,8 +49,9 @@ Screen::~Screen()
 	SDL_Quit();
 }
 
-SDL_Window* Screen::Init(uint32_t width, uint32_t height, uint32_t mag)
+SDL_Window* Screen::Init(uint32_t width, uint32_t height, uint32_t mag, bool fast)
 {
+	mFast = fast;
 	if (SDL_Init(SDL_INIT_VIDEO))
 	{
 		std::cout << "SDL_Init Failed with SDL Error: " << SDL_GetError() << std::endl;
@@ -50,14 +69,35 @@ SDL_Window* Screen::Init(uint32_t width, uint32_t height, uint32_t mag)
 		return nullptr;
 	}
 
-	mnoptrWindowSurface = SDL_GetWindowSurface(moptrWindow); // 2D array of pixles
+	uint8_t rClear = 0;
+	uint8_t gClear = 0;
+	uint8_t bClear = 0;
+	uint8_t aClear = 255;
+
+	if (mFast)
+	{
+		mRenderer = SDL_CreateRenderer(moptrWindow, -1, SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC);
+		if (mRenderer == nullptr)
+		{
+			std::cout << "SDL_CreateRenderer failed" << std::endl;
+			return nullptr;
+		}
+
+		SDL_SetRenderDrawColor(mRenderer, rClear, gClear, bClear, aClear);
+	}
+	else
+	{
+		mnoptrWindowSurface = SDL_GetWindowSurface(moptrWindow); // 2D array of pixles
+	}
+
+	mPixelFormat = SDL_AllocFormat(SDL_GetWindowPixelFormat(moptrWindow));
 
 	// Pixel format
-	SDL_PixelFormat* pixelFormat = SDL_AllocFormat(SDL_PIXELFORMAT_RGBA8888);
+	Color::InitColorFormat(mPixelFormat);
 
-	Color::InitColorFormat(pixelFormat);
-	mClearColor = Color::Black();
-	mBackBuffer.Init(pixelFormat->format, mWidth, mHeight);
+
+	mClearColor = Color(rClear, gClear, bClear, aClear);
+	mBackBuffer.Init(mPixelFormat->format, mWidth, mHeight);
 	mBackBuffer.Clear(mClearColor);
 
 	return moptrWindow;
