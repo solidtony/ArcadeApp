@@ -2,6 +2,7 @@
 
 #include <stdint.h>
 #include <vector>
+#include <functional>
 
 #include "Graphics/Color.h"
 #include "Graphics/ScreenBuffer.h"
@@ -52,7 +53,8 @@ private:
 
 	void ClearScreen();
 
-	void FillPoly(const std::vector<Vec2D>& points, const Color& color);
+	using FillPolyFunc = std::function<Color(uint32_t x, uint32_t y)>;
+	void FillPoly(const std::vector<Vec2D>& points, FillPolyFunc func);
 
 	uint32_t mWidth;
 	uint32_t mHeight;

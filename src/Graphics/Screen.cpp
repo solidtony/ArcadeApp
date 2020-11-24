@@ -155,7 +155,7 @@ void Screen::Draw(const Triangle & triangle, const Color & color, bool fill, con
 {
 	if (fill)
 	{
-		FillPoly(triangle.GetPoints(), fillColor);
+		FillPoly(triangle.GetPoints(), [fillColor](uint32_t x, uint32_t y) { return fillColor; });
 	}
 
 	Line2D p0p1 = Line2D(triangle.GetP0(), triangle.GetP1());
@@ -171,7 +171,7 @@ void Screen::Draw(const AARectangle& rect, const Color& color, bool fill, const 
 {
 	if (fill)
 	{
-		FillPoly(rect.GetPoints(), fillColor);
+		FillPoly(rect.GetPoints(), [fillColor](uint32_t x, uint32_t y) { return fillColor; });
 	}
 
 	std::vector<Vec2D> points = rect.GetPoints();
@@ -216,7 +216,7 @@ void Screen::Draw(const Circle& circle, const Color& color, bool fill, const Col
 
 	if (fill)
 	{
-		FillPoly(circlePoints, fillColor);
+		FillPoly(circlePoints, [fillColor](uint32_t x, uint32_t y) { return fillColor; });
 	}
 
 	for (const Line2D& line : lines)
@@ -230,7 +230,7 @@ void Screen::Draw(const Star& star, const Color& color, bool fill, const Color& 
 {
 	if (fill)
 	{
-		FillPoly(star.GetPoints(), fillColor);
+		FillPoly(star.GetPoints(), [fillColor](uint32_t x, uint32_t y) { return fillColor; });
 	}
 
 	assert(moptrWindow);
@@ -256,16 +256,41 @@ void Screen::Draw(const BMPImage& image, const Sprite& sprite, const Vec2D& pos,
 	uint32_t width = sprite.width;
 	uint32_t height = sprite.height;
 
-	for (uint32_t row = 0; row < height; ++row)
-	{
-		for (uint32_t col = 0; col < width; ++col)
-		{
-			Color imageColor = image.GetPixels()[GetIndex(image.GetWidth(), row + sprite.yPos, col + sprite.xPos)];
-			Color newColor = { static_cast<uint8_t>(imageColor.GetRed()*rVal), static_cast<uint8_t>(imageColor.GetGreen()*gVal), static_cast<uint8_t>(imageColor.GetBlue()*bVal), static_cast<uint8_t>(imageColor.GetAlpha()*aVal) };
+	const std::vector<Color>& pixels = image.GetPixels();
 
-			Draw(col + pos.GetX(), row + pos.GetY(), newColor);
-		}
-	}
+	Vec2D topLeft = pos;
+	Vec2D topRight = pos + Vec2D(width, 0);
+	Vec2D bottomLeft = pos + Vec2D(0, height);
+	Vec2D bottomRight = pos + Vec2D(width, height);
+
+	std::vector<Vec2D> points = { topLeft, bottomLeft, bottomRight, topRight };
+
+	Vec2D xAxis = topRight - topLeft;
+	Vec2D yAxis = bottomLeft - topLeft;
+
+	const float invXAxisLengthSq = 1.0f / xAxis.Mag2();
+	const float invYAxisLengthSq = 1.0f / yAxis.Mag2();
+
+	FillPoly(points, [&](uint32_t px, uint32_t py)
+	{
+		Vec2D p = { static_cast<float>(px), static_cast<float>(py) };
+		Vec2D d = p - topLeft;
+
+		float u = invXAxisLengthSq * d.Dot(xAxis);
+		float v = invYAxisLengthSq * d.Dot(yAxis);
+
+		u = Clamp(u, 0.0f, 1.0f);
+		v = Clamp(v, 0.0f, 1.0f);
+
+		float tx = roundf(u * static_cast<float>(sprite.width));
+		float ty = roundf(v * static_cast<float>(sprite.height));
+
+		Color imageColor = pixels[GetIndex(image.GetWidth(), ty + sprite.yPos, tx + sprite.xPos)];
+
+		Color newColor = { static_cast<uint8_t>(imageColor.GetRed()*rVal), static_cast<uint8_t>(imageColor.GetGreen()*gVal), static_cast<uint8_t>(imageColor.GetBlue()*bVal), static_cast<uint8_t>(imageColor.GetAlpha()*aVal) };
+
+		return newColor;
+	});
 }
 
 void Screen::Draw(const SpriteSheet& spriteSheet, const std::string& spriteName, const Vec2D& pos, const Color& overlayColor)
@@ -304,7 +329,7 @@ void Screen::ClearScreen()
 	SDL_FillRect(mnoptrWindowSurface, nullptr, mClearColor.GetPixelColor());
 }
 
-void Screen::FillPoly(const std::vector<Vec2D>& points, const Color& color)
+void Screen::FillPoly(const std::vector<Vec2D>& points, FillPolyFunc func)
 {
 	if (points.size() > 0)
 	{
@@ -336,7 +361,7 @@ void Screen::FillPoly(const std::vector<Vec2D>& points, const Color& color)
 			}
 		}
 
-		for (int pixelY = static_cast<int>(top)+1; pixelY < static_cast<int>(bottom)+1; ++pixelY)
+		for (int pixelY = static_cast<int>(top); pixelY < static_cast<int>(bottom); ++pixelY)
 		{
 			std::vector<float> nodeXVec;
 
@@ -383,9 +408,9 @@ void Screen::FillPoly(const std::vector<Vec2D>& points, const Color& color)
 					// TODO will come back later to describe this
 					//Line2D line = { Vec2D(nodeXVec[k], pixelY), Vec2D(nodeXVec[k + 1], pixelY) };
 					//Draw(line, color);
-					for(int pixelX = static_cast<int>(nodeXVec[k])+1; pixelX < static_cast<int>(nodeXVec[k+1])+1; ++pixelX)
+					for(int pixelX = static_cast<int>(nodeXVec[k]); pixelX < static_cast<int>(nodeXVec[k+1]); ++pixelX)
 					{
-						Draw(pixelX, pixelY, color);
+						Draw(pixelX, pixelY, func(pixelX, pixelY));
 					}
 				}
 			}

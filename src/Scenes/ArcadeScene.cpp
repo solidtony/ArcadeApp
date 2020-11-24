@@ -81,7 +81,7 @@ void ArcadeScene::Draw(Screen& theScreen)
 	Vec2D textDrawPosition;
 	textDrawPosition = font.GetDrawPosition(GetSceneName(), rect, BFXA_CENTER, BFYA_CENTER);
 
-	theScreen.Draw(font, GetSceneName(), textDrawPosition, Color::Blue());
+	theScreen.Draw(font, GetSceneName(), textDrawPosition, Color(255,0,0,125));
 
 	//Vec2D centerOfScreen = { static_cast<float>(theScreen.Width()) / 2, static_cast<float>(theScreen.Height()) / 2 };
 
