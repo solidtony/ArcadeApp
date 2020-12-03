@@ -147,8 +147,11 @@
     <ClCompile Include="src\App\Button.cpp">
       <Filter>Source Files\App</Filter>
     </ClCompile>
-    <ClCompile Include="src\App\ButtonOptionsScene.cpp">
-      <Filter>Source Files\App</Filter>
+    <ClCompile Include="src\Scenes\ButtonOptionsScene.cpp">
+      <Filter>Source Files\Scenes</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Scenes\NotImplementedScene.cpp">
+      <Filter>Source Files\Scenes</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -248,8 +251,11 @@
     <ClInclude Include="inc\App\Button.h">
       <Filter>Header Files\App</Filter>
     </ClInclude>
-    <ClInclude Include="inc\App\ButtonOptionsScene.h">
-      <Filter>Header Files\App</Filter>
+    <ClInclude Include="inc\Scenes\ButtonOptionsScene.h">
+      <Filter>Header Files\Scenes</Filter>
+    </ClInclude>
+    <ClInclude Include="inc\Scenes\NotImplementedScene.h">
+      <Filter>Header Files\Scenes</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

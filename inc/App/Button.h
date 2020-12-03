@@ -29,7 +29,7 @@ private:
 	std::string mTitle;
 	AARectangle mBBox;
 
-	bool mIsHighlighted;
+	bool mIsHighlighted = false;
 	ButtonAction mAction;
 	Color mHighlightColor;
 	Color mTextColor;

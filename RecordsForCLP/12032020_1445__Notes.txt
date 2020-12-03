@@ -1,0 +1,7 @@
+Section: Restructuring the App:
+    + ArcadeScene Init was changed setup the button actions.
+    + Had a type which took a while to find. Was missing the "()" at the end of a method call in the constructor for AppScene.
+    + Took a while to fix the issue where all scenes where selected at start-up.
+        The issue was that the mHighlightedOptions was defaulted to true rather then false. Changed it to false.
+    
+    

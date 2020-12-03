@@ -6,8 +6,6 @@
 #include "App/Button.h"
 #include "Scenes/Scene.h"
 
-class Screen;
-
 class ButtonOptionsScene : public Scene
 {
 public:

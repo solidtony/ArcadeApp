@@ -24,6 +24,6 @@ Section: A button class
     + Depends on the bitmap font to get text for title.
     
 Section: Button options scene
-    + Creating a buttons options scene so that the game can be selected from the main menue.
+    + Creating a buttons options scene so that the game can be selected from the main menu.
     
     + Game controller input is set up in the Init method so that actions can be performed. The game controller member variable is part of the base class scene. 

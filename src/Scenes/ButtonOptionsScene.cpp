@@ -1,6 +1,7 @@
-#include "App/ButtonOptionsScene.h"
+#include "Scenes/ButtonOptionsScene.h"
 
 #include <algorithm>
+#include <iostream>
 
 #include "App/App.h"
 #include "Graphics/BitmapFont.h"
