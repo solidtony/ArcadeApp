@@ -4,4 +4,12 @@ Section: Restructuring the App:
     + Took a while to fix the issue where all scenes where selected at start-up.
         The issue was that the mHighlightedOptions was defaulted to true rather then false. Changed it to false.
     
-    
+Section: Animation Data:
+    + Introduces animations text that is to being used in conjunction with the sprite sheet and sprite text.
+    + Animation sheet:
+        - animation name
+        - sprite sheet reference
+        - frames per second - important for playback
+        - number of frame keys - contains the number of frames
+        - frame keys - lists the name in the sprite sheet of each frame of the animation.
+        
