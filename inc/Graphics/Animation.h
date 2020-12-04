@@ -50,6 +50,8 @@ public:
 	size_t NumOverlayColors() const { return mOverlayColors.size(); }
 	size_t NumFrameOffsets() const { return mFrameOffsets.size(); }
 
+	static std::vector<Animation> LoadAnimations(const std::string& animationFilePath);
+
 private:
 	std::string mAnimationName;
 	std::string mSpriteSheetName;

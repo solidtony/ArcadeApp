@@ -25,3 +25,5 @@ Section: The Animation Class
             + Input is the frame number
             + if frame num is greater than the frames size than we return a default frame. I think the default frame should be a unique sprite so that issues are visually distinct.
             
+Section: Loading Animations
+    + Wrote a method that loads all the animations at once.
