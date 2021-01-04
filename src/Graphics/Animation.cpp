@@ -1,6 +1,8 @@
 #include "Graphics/Animation.h"
 #include "Utils/FileCommandLoader.h"
 
+#include <cassert>
+
 Animation::Animation() : mSize(Vec2D::Zero()), mSpriteSheetName(""), mAnimationName(""), mFPS(0)
 {
 
@@ -74,4 +76,60 @@ std::vector<Animation> Animation::LoadAnimations(const std::string& animationFil
 		animations.back().SetSize(FileCommandLoader::ReadSize(params));
 	};
 	fileLoader.AddCommand(sizeCommand);
+
+	Command fpsCommand;
+	fpsCommand.command = "fps";
+	fpsCommand.parseFunc = [&](ParseFuncParams params)
+	{
+		animations.back().SetFPS(FileCommandLoader::ReadInt(params));
+	};
+	fileLoader.AddCommand(fpsCommand);
+
+	Command framesCommand;
+	framesCommand.command = "frame_keys";
+	framesCommand.commandType = CommandType::COMMAND_MULTI_LINE;
+	framesCommand.parseFunc = [&](ParseFuncParams params)
+	{
+		animations.back().AddFrame(params.line);
+	};
+	fileLoader.AddCommand(framesCommand);
+
+	Command overlayCommand;
+	overlayCommand.command = "overlay";
+	overlayCommand.parseFunc = [&](ParseFuncParams params)
+	{
+		animations.back().SetOverlay(FileCommandLoader::ReadString(params));
+	};
+	fileLoader.AddCommand(overlayCommand);
+
+	Command frameColorsCommand;
+	frameColorsCommand.command = "frame_colors";
+	frameColorsCommand.commandType = CommandType::COMMAND_MULTI_LINE;
+	frameColorsCommand.parseFunc = [&](ParseFuncParams params)
+	{
+		animations.back().AddFrameColor(FileCommandLoader::ReadColor(params));
+	};
+	fileLoader.AddCommand(frameColorsCommand);
+
+	Command overlayFrameColorCommand;
+	overlayFrameColorCommand.command = "overlay_color";
+	overlayFrameColorCommand.commandType = CommandType::COMMAND_MULTI_LINE;
+	overlayFrameColorCommand.parseFunc = [&](ParseFuncParams params)
+	{
+		animations.back().AddOverlayFrameColor(FileCommandLoader::ReadColor(params));
+	};
+	fileLoader.AddCommand(overlayFrameColorCommand);
+
+	Command FrameOffsetsCommand;
+	FrameOffsetsCommand.command = "frame_offsets";
+	FrameOffsetsCommand.commandType = CommandType::COMMAND_MULTI_LINE;
+	FrameOffsetsCommand.parseFunc = [&](ParseFuncParams params)
+	{
+		animations.back().AddFrameOffset(FileCommandLoader::ReadSize(params));
+	};
+	fileLoader.AddCommand(FrameOffsetsCommand);
+
+	assert(fileLoader.LoadFile(animationFilePath));
+
+	return animations;
 }

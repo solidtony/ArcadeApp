@@ -1,0 +1,4 @@
+Section: Loading animations
+    + With the animation class we will add the capability to load animations.
+    
+    + Add all the commands to parse and load animation files.
