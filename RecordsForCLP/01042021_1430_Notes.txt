@@ -12,7 +12,7 @@ Section: The Animation Player class
     
     + Had an error where the time was not being reset causing the next frame to be loaded each update call.
     
-    + Had alot of fun with the animation. Was playing around with it.
+    + Had a lot of fun with the animation. Was playing around with it.
     
 Section: The animation sprite class
     + Simplified the drawing of sprite.
