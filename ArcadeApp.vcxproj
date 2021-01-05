@@ -183,6 +183,7 @@
     <ClCompile Include="src\Games\Excluder.cpp" />
     <ClCompile Include="src\Games\LevelBoundary.cpp" />
     <ClCompile Include="src\Games\Paddle.cpp" />
+    <ClCompile Include="src\Graphics\AnimatedSprite.cpp" />
     <ClCompile Include="src\Graphics\Animation.cpp" />
     <ClCompile Include="src\Graphics\AnimationPlayer.cpp" />
     <ClCompile Include="src\Graphics\BMPImage.cpp" />
@@ -218,6 +219,7 @@
     <ClInclude Include="inc\Games\Game.h" />
     <ClInclude Include="inc\Games\LevelBoundary.h" />
     <ClInclude Include="inc\Games\Paddle.h" />
+    <ClInclude Include="inc\Graphics\AnimatedSprite.h" />
     <ClInclude Include="inc\Graphics\Animation.h" />
     <ClInclude Include="inc\Graphics\AnimationPlayer.h" />
     <ClInclude Include="inc\Graphics\BitmapFont.h" />

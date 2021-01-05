@@ -159,6 +159,9 @@
     <ClCompile Include="src\Graphics\AnimationPlayer.cpp">
       <Filter>Source Files\Graphics</Filter>
     </ClCompile>
+    <ClCompile Include="src\Graphics\AnimatedSprite.cpp">
+      <Filter>Source Files\Graphics</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="inc\Graphics\Color.h">
@@ -267,6 +270,9 @@
       <Filter>Header Files\Graphics</Filter>
     </ClInclude>
     <ClInclude Include="inc\Graphics\AnimationPlayer.h">
+      <Filter>Header Files\Graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="inc\Graphics\AnimatedSprite.h">
       <Filter>Header Files\Graphics</Filter>
     </ClInclude>
   </ItemGroup>
