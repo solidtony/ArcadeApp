@@ -13,3 +13,6 @@ Pacman Start Game Scene
  + Discusses the various aspects of Pacman and what will be needed built.
  
  Loading and Drawing the Level
+ + Pacman_level.txt contains all the level information such as pellet locations and walls.
+ + Tiles comprise a level
+ + For debug purposes the walls which are the collision excludes are displayed. They will not be displayed later on.

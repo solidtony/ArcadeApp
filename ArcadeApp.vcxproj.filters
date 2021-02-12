@@ -180,6 +180,9 @@
     <ClCompile Include="src\Scenes\PacmanStartScene.cpp">
       <Filter>Source Files\Scenes\Pacman</Filter>
     </ClCompile>
+    <ClCompile Include="inc\Games\PacmanLevel.cpp">
+      <Filter>Source Files\Games\Pacman</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="inc\Graphics\Color.h">
@@ -298,6 +301,9 @@
     </ClInclude>
     <ClInclude Include="inc\Scenes\PacmanStartScene.h">
       <Filter>Header Files\Scenes\Pacman</Filter>
+    </ClInclude>
+    <ClInclude Include="inc\Games\PacmanLevel.h">
+      <Filter>Header Files\Games\Pacman</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

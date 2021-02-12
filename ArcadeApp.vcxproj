@@ -173,6 +173,7 @@
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="inc\Games\PacmanLevel.cpp" />
     <ClCompile Include="src\App\App.cpp" />
     <ClCompile Include="src\App\Button.cpp" />
     <ClCompile Include="src\BitmapFont.cpp" />
@@ -221,6 +222,7 @@
     <ClInclude Include="inc\Games\Game.h" />
     <ClInclude Include="inc\Games\LevelBoundary.h" />
     <ClInclude Include="inc\Games\PacmanGame.h" />
+    <ClInclude Include="inc\Games\PacmanLevel.h" />
     <ClInclude Include="inc\Games\Paddle.h" />
     <ClInclude Include="inc\Graphics\AnimatedSprite.h" />
     <ClInclude Include="inc\Graphics\Animation.h" />
