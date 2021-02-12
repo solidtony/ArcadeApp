@@ -61,6 +61,18 @@
     <Filter Include="Source Files\Games\BreakOut">
       <UniqueIdentifier>{d3d7e7a7-f226-4e83-90d4-14006a7ae9cf}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\Games\Pacman">
+      <UniqueIdentifier>{0203b88e-a5db-4ade-bbef-3dd0114ce24b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Games\Pacman">
+      <UniqueIdentifier>{4872167e-37c8-454d-8e90-ba0c7f13fdd2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Scenes\Pacman">
+      <UniqueIdentifier>{9f8feacb-56ad-4d2e-8dfe-87e29b7a4e0f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Scenes\Pacman">
+      <UniqueIdentifier>{9888ce9c-de15-420b-b264-1ecf5039b337}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Graphics\Color.cpp">
@@ -161,6 +173,12 @@
     </ClCompile>
     <ClCompile Include="src\Graphics\AnimatedSprite.cpp">
       <Filter>Source Files\Graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Games\PacmanGame.cpp">
+      <Filter>Source Files\Games\Pacman</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Scenes\PacmanStartScene.cpp">
+      <Filter>Source Files\Scenes\Pacman</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -274,6 +292,12 @@
     </ClInclude>
     <ClInclude Include="inc\Graphics\AnimatedSprite.h">
       <Filter>Header Files\Graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="inc\Games\PacmanGame.h">
+      <Filter>Header Files\Games\Pacman</Filter>
+    </ClInclude>
+    <ClInclude Include="inc\Scenes\PacmanStartScene.h">
+      <Filter>Header Files\Scenes\Pacman</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

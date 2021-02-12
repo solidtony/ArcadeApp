@@ -182,6 +182,7 @@
     <ClCompile Include="src\Games\BreakoutGameLevel.cpp" />
     <ClCompile Include="src\Games\Excluder.cpp" />
     <ClCompile Include="src\Games\LevelBoundary.cpp" />
+    <ClCompile Include="src\Games\PacmanGame.cpp" />
     <ClCompile Include="src\Games\Paddle.cpp" />
     <ClCompile Include="src\Graphics\AnimatedSprite.cpp" />
     <ClCompile Include="src\Graphics\Animation.cpp" />
@@ -197,6 +198,7 @@
     <ClCompile Include="src\Scenes\ButtonOptionsScene.cpp" />
     <ClCompile Include="src\Scenes\GameScene.cpp" />
     <ClCompile Include="src\Scenes\NotImplementedScene.cpp" />
+    <ClCompile Include="src\Scenes\PacmanStartScene.cpp" />
     <ClCompile Include="src\Shapes\AARectangle.cpp" />
     <ClCompile Include="src\Shapes\Circle.cpp" />
     <ClCompile Include="src\Shapes\Lines2D.cpp" />
@@ -218,6 +220,7 @@
     <ClInclude Include="inc\Games\Excluder.h" />
     <ClInclude Include="inc\Games\Game.h" />
     <ClInclude Include="inc\Games\LevelBoundary.h" />
+    <ClInclude Include="inc\Games\PacmanGame.h" />
     <ClInclude Include="inc\Games\Paddle.h" />
     <ClInclude Include="inc\Graphics\AnimatedSprite.h" />
     <ClInclude Include="inc\Graphics\Animation.h" />
@@ -235,6 +238,7 @@
     <ClInclude Include="inc\Scenes\ButtonOptionsScene.h" />
     <ClInclude Include="inc\Scenes\GameScene.h" />
     <ClInclude Include="inc\Scenes\NotImplementedScene.h" />
+    <ClInclude Include="inc\Scenes\PacmanStartScene.h" />
     <ClInclude Include="inc\Scenes\Scene.h" />
     <ClInclude Include="inc\Shapes\AARectangle.h" />
     <ClInclude Include="inc\Shapes\Circle.h" />

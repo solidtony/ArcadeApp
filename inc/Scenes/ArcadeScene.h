@@ -1,8 +1,6 @@
 #pragma once
 #include "Scenes/ButtonOptionsScene.h"
 
-#include "Graphics/AnimatedSprite.h"
-
 #include "Scene.h"
 #include <memory>
 
@@ -28,9 +26,4 @@ public:
 
 private:
 	std::unique_ptr<Scene> GetScene(eGame game);
-
-	// TESTING
-	AnimatedSprite mSprite;
-	SpriteSheet mSpriteSheet;
-	float travleDir = 1;
 };
