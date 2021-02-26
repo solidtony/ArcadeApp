@@ -1,0 +1,18 @@
+Pacman Start Game Scene
++ Most files added were derived classes so most of it was specializing code.
++ In the Init method;
+    Back action was add to the game controller to exit the game scene
+    A vector was used to store button actions. A lambda function was used within the push_back function call to populate the actions vector => Creates unique pointer to PacmanGame class. Took me quite some time to understand the lambda function push back. The vector stores pointers to the lambda function which when the action is triggered then the lambda function pushes the scene to the App::Singleton.
+    
+    The first lambda call pushes the pacman game to the screen
+    The second pushes the high-score table which is not done yet so instead it pushes NotImplementedScene until it is completed.
+    
+ + The ArcadeScene was updated to return the PacmanStartScene when the Pacman scene was selected from the main menu.
+ 
+ The Overall Design:
+ + Discusses the various aspects of Pacman and what will be needed built.
+ 
+ Loading and Drawing the Level
+ + Pacman_level.txt contains all the level information such as pellet locations and walls.
+ + Tiles comprise a level
+ + For debug purposes the walls which are the collision excludes are displayed. They will not be displayed later on.
