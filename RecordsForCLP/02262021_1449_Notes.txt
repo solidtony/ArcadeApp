@@ -8,4 +8,12 @@
  + Layout offset determines where on the screen each tile is drawn.
  + If it is collidable then we make it an Excluder wall.
  + Ran into a runtime error.
+    + error was that a pointer to a string was returning a nullptr.
  
+ Pacman Game Utils:
+ + Making an actor class that will serve as the base for pacman and the ghost.
+ + Enum for movement direction
+    + Helper functions to deal with the enum
+ 
+ The Actor Class:
+ + 
