@@ -13,7 +13,7 @@ class PacmanLevel
 public:
 	bool Init(const std::string& levelPath);
 	void Update(uint32_t dt);
-	void Draw(Screen screen);
+	void Draw(Screen& screen);
 
 private:
 	struct Tile
