@@ -16,4 +16,4 @@
     + Helper functions to deal with the enum
  
  The Actor Class:
- + 
+ + Only got to laying out the Actor class.
