@@ -2,6 +2,9 @@
 
 #include "Games/Game.h"
 #include "Games/PacmanLevel.h"
+#include "Games/Pacman.h"
+#include "Graphics/SpriteSheet.h"
+#include "Input/InputAction.h"
 
 class PacmanGame: public Game
 {
@@ -11,5 +14,13 @@ public:
 	virtual void Draw(Screen& screen) override;
 	virtual const std::string& GetName() const override;
 private:
+
+	void ResetGame();
+	void UpdatePacmanMovement();
+	void HandleGameControllerState(uint32_t dt, InputState state, PacmanMovement direction);
+
+	PacmanMovement mPressedDirection;
+	SpriteSheet mPacmanSpriteSheet;
+	Pacman mPacman;
 	PacmanLevel mLevel;
 };

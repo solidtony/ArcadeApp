@@ -3,13 +3,14 @@
 #include <cmath>
 
 
-void Actor::Init(const SpriteSheet& spriteSheet, const std::string& animationsPath, const Vec2D& initialPos, uint32_t movementSpeed, bool updateSpriteOnMovement, const Color& spriteColor = Color::White())
+void Actor::Init(const SpriteSheet& spriteSheet, const std::string& animationsPath, const Vec2D& initialPos, uint32_t movementSpeed, bool updateSpriteOnMovement, const Color& spriteColor)
 {
 	mMovementDirection = PacmanMovement::NONE;
 	mSprite.Init(animationsPath, spriteSheet, spriteColor);
 	mUpdateSpriteOnUpdate = updateSpriteOnMovement;
 	mMovementSpeed = movementSpeed;
 	mDelta = Vec2D::Zero();
+	mSprite.SetPosition(initialPos);
 }
 
 void Actor::Update(uint32_t dt)
@@ -31,7 +32,7 @@ void Actor::Update(uint32_t dt)
 			}
 			else
 			{
-				mSprite.MoveBy(Vec2D(dx, 0));
+				mSprite.MoveBy(Vec2D(dx, 0.));
 				mDelta.SetX(mDelta.GetX() - dx);
 			}
 		}
@@ -40,12 +41,12 @@ void Actor::Update(uint32_t dt)
 			int dy = int(fabsf(mDelta.GetY()));
 			if (mDelta.GetY() < 0.)
 			{
-				mSprite.MoveBy(Vec2D(-dy, 0.));
+				mSprite.MoveBy(Vec2D(0., -dy));
 				mDelta.SetY(mDelta.GetY() + dy);
 			}
 			else
 			{
-				mSprite.MoveBy(Vec2D(dy, 0));
+				mSprite.MoveBy(Vec2D(0., dy));
 				mDelta.SetY(mDelta.GetY() - dy);
 			}
 		}

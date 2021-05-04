@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup Label="ProjectConfigurations">
     <ProjectConfiguration Include="Debug|Win32">
@@ -184,6 +184,7 @@
     <ClCompile Include="src\Games\BreakoutGameLevel.cpp" />
     <ClCompile Include="src\Games\Excluder.cpp" />
     <ClCompile Include="src\Games\LevelBoundary.cpp" />
+    <ClCompile Include="src\Games\Pacman.cpp" />
     <ClCompile Include="src\Games\PacmanGame.cpp" />
     <ClCompile Include="src\Games\PacmanGameUtils.cpp" />
     <ClCompile Include="src\Games\Paddle.cpp" />
@@ -224,6 +225,7 @@
     <ClInclude Include="inc\Games\Excluder.h" />
     <ClInclude Include="inc\Games\Game.h" />
     <ClInclude Include="inc\Games\LevelBoundary.h" />
+    <ClInclude Include="inc\Games\Pacman.h" />
     <ClInclude Include="inc\Games\PacmanGame.h" />
     <ClInclude Include="inc\Games\PacmanGameUtils.h" />
     <ClInclude Include="inc\Games\PacmanLevel.h" />

@@ -14,6 +14,7 @@ class SpriteSheet;
 class Actor
 {
 public:
+	virtual ~Actor() {}
 	virtual void Init(const SpriteSheet& spriteSheet, const std::string& animationsPath, const Vec2D& initialPos, uint32_t movementSpeed, bool updateSpriteOnMovement, const Color& spriteColor = Color::White());
 	virtual void Update(uint32_t dt);
 	virtual void Draw(Screen& screen);
