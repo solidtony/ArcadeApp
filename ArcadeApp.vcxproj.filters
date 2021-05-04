@@ -183,6 +183,12 @@
     <ClCompile Include="inc\Games\PacmanLevel.cpp">
       <Filter>Source Files\Games\Pacman</Filter>
     </ClCompile>
+    <ClCompile Include="src\Games\PacmanGameUtils.cpp">
+      <Filter>Source Files\Games\Pacman</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Games\Actor.cpp">
+      <Filter>Source Files\Games\Pacman</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="inc\Graphics\Color.h">
@@ -303,6 +309,12 @@
       <Filter>Header Files\Scenes\Pacman</Filter>
     </ClInclude>
     <ClInclude Include="inc\Games\PacmanLevel.h">
+      <Filter>Header Files\Games\Pacman</Filter>
+    </ClInclude>
+    <ClInclude Include="inc\Games\PacmanGameUtils.h">
+      <Filter>Header Files\Games\Pacman</Filter>
+    </ClInclude>
+    <ClInclude Include="inc\Games\Actor.h">
       <Filter>Header Files\Games\Pacman</Filter>
     </ClInclude>
   </ItemGroup>

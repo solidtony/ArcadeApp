@@ -178,12 +178,14 @@
     <ClCompile Include="src\App\Button.cpp" />
     <ClCompile Include="src\BitmapFont.cpp" />
     <ClCompile Include="src\Block.cpp" />
+    <ClCompile Include="src\Games\Actor.cpp" />
     <ClCompile Include="src\Games\Ball.cpp" />
     <ClCompile Include="src\Games\BreakOut.cpp" />
     <ClCompile Include="src\Games\BreakoutGameLevel.cpp" />
     <ClCompile Include="src\Games\Excluder.cpp" />
     <ClCompile Include="src\Games\LevelBoundary.cpp" />
     <ClCompile Include="src\Games\PacmanGame.cpp" />
+    <ClCompile Include="src\Games\PacmanGameUtils.cpp" />
     <ClCompile Include="src\Games\Paddle.cpp" />
     <ClCompile Include="src\Graphics\AnimatedSprite.cpp" />
     <ClCompile Include="src\Graphics\Animation.cpp" />
@@ -213,6 +215,7 @@
   <ItemGroup>
     <ClInclude Include="inc\App\App.h" />
     <ClInclude Include="inc\App\Button.h" />
+    <ClInclude Include="inc\Games\Actor.h" />
     <ClInclude Include="inc\Games\Ball.h" />
     <ClInclude Include="inc\Games\Block.h" />
     <ClInclude Include="inc\Games\BoundaryEdge.h" />
@@ -222,6 +225,7 @@
     <ClInclude Include="inc\Games\Game.h" />
     <ClInclude Include="inc\Games\LevelBoundary.h" />
     <ClInclude Include="inc\Games\PacmanGame.h" />
+    <ClInclude Include="inc\Games\PacmanGameUtils.h" />
     <ClInclude Include="inc\Games\PacmanLevel.h" />
     <ClInclude Include="inc\Games\Paddle.h" />
     <ClInclude Include="inc\Graphics\AnimatedSprite.h" />
