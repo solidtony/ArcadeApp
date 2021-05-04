@@ -1,0 +1,3 @@
+The Actor Class:
+ + Only got to laying out the Actor class.
+ 
