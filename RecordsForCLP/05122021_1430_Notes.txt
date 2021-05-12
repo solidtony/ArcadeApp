@@ -15,4 +15,4 @@ Levels:
     + There are 256 levels which controlls speed of ghosts and pacman, power pellet time, and items that spawn.
     
 Bonus items:
-    + 
+    + Items spawn after a random number of pellets are eaten. This is different from the original game which spawns bonus fruit when 70 pellets and 170 pellets have been eaten.
