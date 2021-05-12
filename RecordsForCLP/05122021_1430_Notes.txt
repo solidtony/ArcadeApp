@@ -1,3 +1,8 @@
-Wrap around:
- + When pacman enters the exit zone pacman should wrap to the other side of the screen.
- + There are are two teleport tiles in the Pacman_level.txt which will be used to teleport from one teleport tile to the next teleport tile.
+The Pellets:
+    + Each tile Pacman_level.txt has a tile_exclude_pellet to determine when a pellet will be added.
+    + Vector will store all the tiles that are exclusion tiles
+    + Unfortunately the power pellets are hard coded in so you can't have the power pellets driven by the level data.
+    + Check that pellet does not intersect with a wall or exclussion tile before the pellet is added to the level.
+    
+Eating pellets and Drawing the Score:
+    + 
