@@ -8,8 +8,13 @@
 #include "Shapes/AARectangle.h"
 #include <cassert>
 
+namespace {
+	const uint32_t NUM_LEVLES = 256;
+}
+
 bool PacmanLevel::Init(const std::string& levelPath, Pacman* noptrPacman)
 {
+	mCurrentLevel = 0;
 	mnoptrPacman = noptrPacman;
 
 	bool wasLevelLoaded = LoadLevel(levelPath);
@@ -127,6 +132,49 @@ void PacmanLevel::ResetLevel()
 		mnoptrPacman->MoveTo(mPacmanSpawnLocation);
 		mnoptrPacman->ResetToFirstAnimation();
 	}
+}
+
+bool PacmanLevel::IsLevelOver() const
+{
+	return HasEatenAllPellets();
+}
+
+void PacmanLevel::IncreaseLevel()
+{
+	mCurrentLevel++;
+
+	if (mCurrentLevel > NUM_LEVLES)
+	{
+		mCurrentLevel = 1;
+	}
+
+	ResetLevel();
+}
+
+void PacmanLevel::ResetToFirstLevel()
+{
+	mCurrentLevel = 1;
+	ResetLevel();
+}
+
+bool PacmanLevel::HasEatenAllPellets() const
+{
+	return NumPelletsEaten() >= mPellets.size() - 4; // 4 Super pellets
+}
+
+size_t PacmanLevel::NumPelletsEaten() const
+{
+	size_t numEaten = 0;
+
+	for (const auto& pellet : mPellets)
+	{
+		if (!pellet.isPowerPellet && pellet.isEaten)
+		{
+			++numEaten;
+		}
+	}
+
+	return numEaten;
 }
 
 void PacmanLevel::ResetPellets()

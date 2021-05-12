@@ -18,10 +18,14 @@ public:
 	void Draw(Screen& screen);
 
 	bool WillCollide(const AARectangle& bbox, PacmanMovement direction) const;
+	void ResetLevel();
 
 	inline Vec2D GetLayoutOffset() const { return mLayoutOffset; }
 	inline Vec2D GetPacmanSpawnLocation() const { return mPacmanSpawnLocation; }
-	void ResetLevel();
+
+	bool IsLevelOver() const;
+	void IncreaseLevel();
+	void ResetToFirstLevel();
 
 private:
 	struct Tile
@@ -48,6 +52,8 @@ private:
 	bool LoadLevel(const std::string& levelPath);
 	Tile* GetTileForSymbol(char symbol);
 	void ResetPellets();
+	bool HasEatenAllPellets() const;
+	size_t NumPelletsEaten() const;
 
 	std::vector<Excluder> mWalls;
 	std::vector<Tile> mTiles;
@@ -57,6 +63,6 @@ private:
 	Vec2D mPacmanSpawnLocation;
 	Vec2D mLayoutOffset;
 	size_t mTileHeight;
-
+	int mCurrentLevel;
 	Pacman* mnoptrPacman;
 };

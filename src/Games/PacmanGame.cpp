@@ -57,6 +57,11 @@ void PacmanGame::Update(uint32_t dt)
 	mPacman.Update(dt);
 
 	mLevel.Update(dt);
+
+	if (mLevel.IsLevelOver())
+	{
+		mLevel.IncreaseLevel();
+	}
 }
 
 void PacmanGame::Draw(Screen& screen)
@@ -91,7 +96,7 @@ void PacmanGame::ResetGame()
 {
 	mPressedDirection = PacmanMovement::NONE;
 	mPacman.ResetScore();
-	mLevel.ResetLevel();
+	mLevel.ResetToFirstLevel();
 }
 
 void PacmanGame::UpdatePacmanMovement()

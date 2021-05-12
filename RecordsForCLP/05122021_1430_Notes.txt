@@ -12,4 +12,7 @@ Pacman Spawn Location:
     + Pacman's start location will be data driven instead of hard coded.
     
 Levels:
+    + There are 256 levels which controlls speed of ghosts and pacman, power pellet time, and items that spawn.
+    
+Bonus items:
     + 
