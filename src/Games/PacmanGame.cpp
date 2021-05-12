@@ -12,7 +12,7 @@ namespace
 void PacmanGame::Init(GameController& controller)
 {
 	mPacmanSpriteSheet.Load("PacmanSprites");
-	mPacman.Init(mPacmanSpriteSheet, App::Singleton().GetBasePath() + "Assets/Pacman_animations.txt", Vec2D(108, 204), PACMAN_MOVEMENT_SPEED, false);
+	mPacman.Init(mPacmanSpriteSheet, App::Singleton().GetBasePath() + "Assets/Pacman_animations.txt", Vec2D::Zero(), PACMAN_MOVEMENT_SPEED, false);
 
 	mLevel.Init(App::Singleton().GetBasePath() + "Assets/Pacman_level.txt", &mPacman);
 
@@ -91,6 +91,7 @@ void PacmanGame::ResetGame()
 {
 	mPressedDirection = PacmanMovement::NONE;
 	mPacman.ResetScore();
+	mLevel.ResetLevel();
 }
 
 void PacmanGame::UpdatePacmanMovement()

@@ -1,10 +1,15 @@
 The Pellets:
     + Each tile Pacman_level.txt has a tile_exclude_pellet to determine when a pellet will be added.
-    + Vector will store all the tiles that are exclusion tiles
+    + Vector will store all the tiles that are exclusion tiles.
     + Unfortunately the power pellets are hard coded in so you can't have the power pellets driven by the level data.
     + Check that pellet does not intersect with a wall or exclussion tile before the pellet is added to the level.
     
 Eating pellets and Drawing the Score:
-    + Loops through all pellets
-    + Used namespace in .cpp to create local constant
+    + Loops through all pellets.
+    + Used namespace in .cpp to create local constant.
+
+Pacman Spawn Location:
+    + Pacman's start location will be data driven instead of hard coded.
+    
+Levels:
     + 
