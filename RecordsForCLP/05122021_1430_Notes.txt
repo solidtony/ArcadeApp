@@ -1,0 +1,3 @@
+Wrap around:
+ + When pacman enters the exit zone pacman should wrap to the other side of the screen.
+ + There are are two teleport tiles in the Pacman_level.txt which will be used to teleport from one teleport tile to the next teleport tile.
