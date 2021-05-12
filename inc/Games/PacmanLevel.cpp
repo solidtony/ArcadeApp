@@ -53,6 +53,25 @@ void PacmanLevel::Update(uint32_t dt)
 			}
 		}
 	}
+
+	for (auto& pellet : mPellets)
+	{
+		if (!pellet.isEaten)
+		{
+			if (mnoptrPacman->GetEatingBoundingBox().Intersects(pellet.mBBox))
+			{
+				pellet.isEaten = true;
+
+				mnoptrPacman->AteItem(pellet.score);
+
+				if (pellet.isPowerPellet)
+				{
+					mnoptrPacman->ResetGhostEatenMultiplier();
+					// TODO: Make ghosts vulnerable
+				}
+			}
+		}
+	}
 }
 
 void PacmanLevel::Draw(Screen& screen)

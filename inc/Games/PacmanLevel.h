@@ -19,6 +19,8 @@ public:
 
 	bool WillCollide(const AARectangle& bbox, PacmanMovement direction) const;
 
+	inline Vec2D GetLayoutOffset() const { return mLayoutOffset; }
+
 private:
 	struct Tile
 	{

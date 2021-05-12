@@ -4,6 +4,11 @@
 #include "App/App.h"
 #include "Input/GameController.h"
 
+namespace
+{
+	const std::string SCORE_STR = "Score  ";
+}
+
 void PacmanGame::Init(GameController& controller)
 {
 	mPacmanSpriteSheet.Load("PacmanSprites");
@@ -58,6 +63,22 @@ void PacmanGame::Draw(Screen& screen)
 {
 	mLevel.Draw(screen);
 	mPacman.Draw(screen);
+
+	// Draw Score
+	{
+		Vec2D levelOffset = mLevel.GetLayoutOffset();
+
+		AARectangle highScoreRect = AARectangle(Vec2D(0, 4), App::Singleton().Width(), levelOffset.GetY());
+
+		const auto& font = App::Singleton().GetFont();
+		Vec2D textDrawPosition;
+
+		std::string scoreStr = std::to_string(mPacman.Score());
+
+		textDrawPosition = font.GetDrawPosition(SCORE_STR + scoreStr, highScoreRect, BFXA_CENTER, BFYA_CENTER);
+
+		screen.Draw(font, SCORE_STR + scoreStr, textDrawPosition);
+	}
 }
 
 const std::string& PacmanGame::GetName() const
