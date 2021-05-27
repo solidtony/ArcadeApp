@@ -2,3 +2,12 @@ Lives:
     + The lives are drawn using the idle sprite from the sprite sheet.
     + The sprite is grabbed from the sprite sheet using the life sprite name
     + We then draw each life using the sprite width and singleton height. Each life is drawn at a distance from the previously drawn life spaced by some developer defined padding and the sprites width.
+    
+Ghost Class:
+    + using enum for ghost names
+        + Neat enum trick is to start the enumeration at 0 and have num at the end to have the number of elements available.
+        
+    + Currently the time ghosts are vunerable looks to be fixed wheres in the real game it is dependent on the level.
+    
+GettingGhosts in the Game:
+    + 
