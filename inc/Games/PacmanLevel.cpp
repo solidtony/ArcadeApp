@@ -85,7 +85,7 @@ void PacmanLevel::Update(uint32_t dt)
 		}
 	}
 
-	if (true)
+	if (ShouldSpawnBonusItem())
 	{
 		SpawnBonusItem();
 	}

@@ -19,9 +19,11 @@ private:
 	void UpdatePacmanMovement();
 	void HandleGameControllerState(uint32_t dt, InputState state, PacmanMovement direction);
 	void ResetLevel();
+	void DrawLives(Screen& screen);
 
 	PacmanMovement mPressedDirection;
 	SpriteSheet mPacmanSpriteSheet;
 	Pacman mPacman;
 	PacmanLevel mLevel;
+	size_t mNumLives;
 };

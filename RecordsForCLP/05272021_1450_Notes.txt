@@ -1,0 +1,4 @@
+Lives:
+    + The lives are drawn using the idle sprite from the sprite sheet.
+    + The sprite is grabbed from the sprite sheet using the life sprite name
+    + We then draw each life using the sprite width and singleton height. Each life is drawn at a distance from the previously drawn life spaced by some developer defined padding and the sprites width.
