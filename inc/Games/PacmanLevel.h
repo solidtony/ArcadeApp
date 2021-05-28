@@ -29,6 +29,8 @@ public:
 	void IncreaseLevel();
 	void ResetToFirstLevel();
 
+	inline const std::vector<Vec2D>& GetGhostSpawnPoints() { return mGhostsSpawnPoints; }
+
 private:
 	struct Tile
 	{
@@ -40,6 +42,10 @@ private:
 		int excludePelletTile = 0;
 		int isPacmanSpawnPoint = 0;
 		int isItemSpawnPoint = 0;
+		int blinkySpawnPoint = 0;
+		int inkySpawnPoint = 0;
+		int pinkySpawnPoint = 0;
+		int clydeSpawnPoint = 0;
 		char teleportToSymbol = 0;
 		char symbol = '-';
 	};
@@ -93,4 +99,6 @@ private:
 	size_t mTileHeight;
 	int mCurrentLevel;
 	Pacman* mnoptrPacman;
+
+	std::vector<Vec2D> mGhostsSpawnPoints;
 };

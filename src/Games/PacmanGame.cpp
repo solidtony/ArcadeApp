@@ -18,6 +18,7 @@ void PacmanGame::Init(GameController& controller)
 
 	mLevel.Init(App::Singleton().GetBasePath() + "Assets/Pacman_level.txt", &mPacmanSpriteSheet, &mPacman);
 
+	SetupGhosts();
 	ResetGame();
 
 	ButtonAction leftAction;
@@ -58,6 +59,11 @@ void PacmanGame::Update(uint32_t dt)
 	UpdatePacmanMovement();
 	mPacman.Update(dt);
 
+	for (auto& ghost : mGhosts)
+	{
+		ghost.Update(dt);
+	}
+
 	mLevel.Update(dt);
 
 	if (mLevel.IsLevelOver())
@@ -70,6 +76,11 @@ void PacmanGame::Draw(Screen& screen)
 {
 	mLevel.Draw(screen);
 	mPacman.Draw(screen);
+
+	for (auto& ghost : mGhosts)
+	{
+		ghost.Draw(screen);
+	}
 
 	// Draw Score
 	{
@@ -140,4 +151,26 @@ void PacmanGame::HandleGameControllerState(uint32_t dt, InputState state, Pacman
 	{
 		mPressedDirection = PacmanMovement::NONE;
 	}
+}
+
+void PacmanGame::SetupGhosts()
+{
+	mGhosts.resize(NUM_GHOSTS);
+
+	Ghost blinky;
+	blinky.Init(mPacmanSpriteSheet, App::Singleton().GetBasePath() + "Assets/Ghost_animations.txt", mLevel.GetGhostSpawnPoints()[GhostName::BLINKY], GHOST_MOVEMNET_SPEED, true, Color::Red());
+	blinky.SetMovementDirection(PacmanMovement::LEFT);
+	mGhosts[GhostName::BLINKY] = blinky;
+	Ghost pinky;
+	pinky.Init(mPacmanSpriteSheet, App::Singleton().GetBasePath() + "Assets/Ghost_animations.txt", mLevel.GetGhostSpawnPoints()[GhostName::PINKY], GHOST_MOVEMNET_SPEED, true, Color::Pink());
+	pinky.SetMovementDirection(PacmanMovement::UP);
+	mGhosts[GhostName::PINKY] = pinky;
+	Ghost inky;
+	inky.Init(mPacmanSpriteSheet, App::Singleton().GetBasePath() + "Assets/Ghost_animations.txt", mLevel.GetGhostSpawnPoints()[GhostName::INKY], GHOST_MOVEMNET_SPEED, true, Color::Cyan());
+	inky.SetMovementDirection(PacmanMovement::DOWN);
+	mGhosts[GhostName::INKY] = inky;
+	Ghost clyde;
+	clyde.Init(mPacmanSpriteSheet, App::Singleton().GetBasePath() + "Assets/Ghost_animations.txt", mLevel.GetGhostSpawnPoints()[GhostName::CLYDE], GHOST_MOVEMNET_SPEED, true, Color::Orange());
+	clyde.SetMovementDirection(PacmanMovement::RIGHT);
+	mGhosts[GhostName::CLYDE] = clyde;
 }

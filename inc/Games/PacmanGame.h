@@ -1,6 +1,7 @@
 #pragma once
 
 #include "Games/Game.h"
+#include "Games/Ghost.h"
 #include "Games/PacmanLevel.h"
 #include "Games/Pacman.h"
 #include "Graphics/SpriteSheet.h"
@@ -20,10 +21,12 @@ private:
 	void HandleGameControllerState(uint32_t dt, InputState state, PacmanMovement direction);
 	void ResetLevel();
 	void DrawLives(Screen& screen);
+	void SetupGhosts();
 
 	PacmanMovement mPressedDirection;
 	SpriteSheet mPacmanSpriteSheet;
 	Pacman mPacman;
 	PacmanLevel mLevel;
 	size_t mNumLives;
+	std::vector<Ghost> mGhosts;
 };

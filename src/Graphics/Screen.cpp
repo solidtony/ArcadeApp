@@ -434,20 +434,23 @@ void Screen::FillPoly(const std::vector<Vec2D>& points, FillPolyFunc func)
 			}
 		}
 
-		for (int pixelY = static_cast<int>(top); pixelY < static_cast<int>(bottom); ++pixelY)
+
+		for (int pixelY = top; pixelY < bottom; ++pixelY)
 		{
 			std::vector<float> nodeXVec;
 
 			size_t j = points.size() - 1;
+
 			for (size_t i = 0; i < points.size(); ++i)
 			{
 				float pointiY = points[i].GetY();
 				float pointjY = points[j].GetY();
 
-				if ((pointiY <= static_cast<float>(pixelY) && pointjY > static_cast<float>(pixelY)) || (pointjY <= static_cast<float>(pixelY) && pointiY > static_cast<float>(pixelY)))
+
+				if ((pointiY <= (float)pixelY && pointjY > (float)pixelY) || (pointjY <= (float)pixelY && pointiY > (float)pixelY))
 				{
 					float denom = pointjY - pointiY;
-					if (IsEqual(denom, 0.0f))
+					if (IsEqual(denom, 0))
 					{
 						continue;
 					}
@@ -458,6 +461,7 @@ void Screen::FillPoly(const std::vector<Vec2D>& points, FillPolyFunc func)
 
 				j = i;
 			}
+
 			std::sort(nodeXVec.begin(), nodeXVec.end(), std::less<>());
 
 			for (size_t k = 0; k < nodeXVec.size(); k += 2)
@@ -478,10 +482,9 @@ void Screen::FillPoly(const std::vector<Vec2D>& points, FillPolyFunc func)
 						nodeXVec[k + 1] = right;
 					}
 
-					// TODO will come back later to describe this
-					//Line2D line = { Vec2D(nodeXVec[k], pixelY), Vec2D(nodeXVec[k + 1], pixelY) };
+					//Line2D line = {Vec2D(nodeXVec[k], pixelY), Vec2D(nodeXVec[k+1], pixelY)};
 					//Draw(line, color);
-					for (int pixelX = static_cast<int>(nodeXVec[k]); pixelX < static_cast<int>(nodeXVec[k + 1]); ++pixelX)
+					for (int pixelX = nodeXVec[k]; pixelX < nodeXVec[k + 1]; ++pixelX)
 					{
 						Draw(pixelX, pixelY, func(pixelX, pixelY));
 					}

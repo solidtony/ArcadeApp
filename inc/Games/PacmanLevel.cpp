@@ -5,6 +5,7 @@
 #include "Graphics/Screen.h"
 #include "Graphics/SpriteSheet.h"
 #include "Games/Pacman.h"
+#include "Games/Ghost.h"
 #include "Shapes/Circle.h"
 #include "Shapes/AARectangle.h"
 #include <cassert>
@@ -23,7 +24,7 @@ bool PacmanLevel::Init(const std::string& levelPath, const SpriteSheet* noptrSpr
 	mBonusItemSpriteName = "";
 	std::random_device r;
 	mGenerator.seed(r());
-
+	mGhostsSpawnPoints.resize(GhostName::NUM_GHOSTS);
 	bool wasLevelLoaded = LoadLevel(levelPath);
 
 	if (wasLevelLoaded)
@@ -410,6 +411,38 @@ bool PacmanLevel::LoadLevel(const std::string& levelPath)
 	};
 	fileLoader.AddCommand(titleItemSpawnPoint);
 
+	Command tileBlinkySpawnPointCommand;
+	tileBlinkySpawnPointCommand.command = "tile_blinky_spawn_point";
+	tileBlinkySpawnPointCommand.parseFunc = [this](ParseFuncParams params)
+	{
+		mTiles.back().blinkySpawnPoint = FileCommandLoader::ReadInt(params);
+	};
+	fileLoader.AddCommand(tileBlinkySpawnPointCommand);
+
+	Command tilePinkySpawnPointCommand;
+	tilePinkySpawnPointCommand.command = "tile_pinky_spawn_point";
+	tilePinkySpawnPointCommand.parseFunc = [this](ParseFuncParams params)
+	{
+		mTiles.back().pinkySpawnPoint = FileCommandLoader::ReadInt(params);
+	};
+	fileLoader.AddCommand(tilePinkySpawnPointCommand);
+
+	Command tileInkySpawnPointCommand;
+	tileInkySpawnPointCommand.command = "tile_inky_spawn_point";
+	tileInkySpawnPointCommand.parseFunc = [this](ParseFuncParams params)
+	{
+		mTiles.back().inkySpawnPoint = FileCommandLoader::ReadInt(params);
+	};
+	fileLoader.AddCommand(tileInkySpawnPointCommand);
+
+	Command tileClydeSpawnPointCommand;
+	tileClydeSpawnPointCommand.command = "tile_clyde_spawn_point";
+	tileClydeSpawnPointCommand.parseFunc = [this](ParseFuncParams params)
+	{
+		mTiles.back().clydeSpawnPoint = FileCommandLoader::ReadInt(params);
+	};
+	fileLoader.AddCommand(tileClydeSpawnPointCommand);
+
 	Command layoutCommand;
 	layoutCommand.command = "layout";
 	layoutCommand.commandType = COMMAND_MULTI_LINE;
@@ -436,6 +469,22 @@ bool PacmanLevel::LoadLevel(const std::string& levelPath)
 				else if (tile->isItemSpawnPoint > 0)
 				{
 					mBonusItem.bbox = AARectangle(Vec2D(startingX + tile->offset.GetX(), layoutOffset.GetY() + tile->offset.GetY()), SPRITE_WIDTH, SPRITE_HEIGHT);
+				}
+				else if (tile->blinkySpawnPoint > 0)
+				{
+					mGhostsSpawnPoints[GhostName::BLINKY] = Vec2D(startingX + tile->offset.GetX(), layoutOffset.GetY() + tile->offset.GetY());
+				}
+				else if (tile->pinkySpawnPoint > 0)
+				{
+					mGhostsSpawnPoints[GhostName::PINKY] = Vec2D(startingX + tile->offset.GetX(), layoutOffset.GetY() + tile->offset.GetY());
+				}
+				else if (tile->inkySpawnPoint > 0)
+				{
+					mGhostsSpawnPoints[GhostName::INKY] = Vec2D(startingX + tile->offset.GetX(), layoutOffset.GetY() + tile->offset.GetY());
+				}
+				else if (tile->clydeSpawnPoint > 0)
+				{
+					mGhostsSpawnPoints[GhostName::CLYDE] = Vec2D(startingX + tile->offset.GetX(), layoutOffset.GetY() + tile->offset.GetY());
 				}
 				if (tile->excludePelletTile > 0)
 				{
