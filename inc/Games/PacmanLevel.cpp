@@ -16,10 +16,9 @@ namespace {
 	const uint32_t SPRITE_WIDTH = 16;
 }
 
-bool PacmanLevel::Init(const std::string& levelPath, const SpriteSheet* noptrSpriteSheet, Pacman* noptrPacman)
+bool PacmanLevel::Init(const std::string& levelPath, const SpriteSheet* noptrSpriteSheet)
 {
 	mCurrentLevel = 0;
-	mnoptrPacman = noptrPacman;
 	mnoptrSpriteSheet = noptrSpriteSheet;
 	mBonusItemSpriteName = "";
 	std::random_device r;
@@ -35,19 +34,27 @@ bool PacmanLevel::Init(const std::string& levelPath, const SpriteSheet* noptrSpr
 	return wasLevelLoaded;
 }
 
-void PacmanLevel::Update(uint32_t dt)
+void PacmanLevel::Update(uint32_t dt, Pacman& pacman, std::vector<Ghost>& ghosts)
 {
-	assert(mnoptrPacman);
-
 	for (const auto& wall : mWalls)
 	{
 		BoundaryEdge edge;
 
-		if (wall.HasCollided(mnoptrPacman->GetBoundingBox(), edge))
+		if (wall.HasCollided(pacman.GetBoundingBox(), edge))
 		{
-			Vec2D offset = wall.GetCollisionOffset(mnoptrPacman->GetBoundingBox());
-			mnoptrPacman->MoveBy(offset);
-			mnoptrPacman->Stop();
+			Vec2D offset = wall.GetCollisionOffset(pacman.GetBoundingBox());
+			pacman.MoveBy(offset);
+			pacman.Stop();
+		}
+
+		for (auto& ghost : ghosts)
+		{
+			if (wall.HasCollided(ghost.GetBoundingBox(), edge))
+			{
+				Vec2D offset = wall.GetCollisionOffset(ghost.GetBoundingBox());
+				ghost.MoveBy(offset);
+				ghost.Stop();
+			}
 		}
 	}
 
@@ -60,9 +67,20 @@ void PacmanLevel::Update(uint32_t dt)
 			Tile* teleportToTile = GetTileForSymbol(t.teleportToSymbol);
 			assert(teleportToTile);
 
-			if (teleportToTile->isTeleportTile && teleportTileAABB.Intersects(mnoptrPacman->GetBoundingBox()))
+			if (teleportToTile->isTeleportTile)
 			{
-				mnoptrPacman->MoveTo(teleportToTile->position + teleportToTile->offset);
+				if (teleportTileAABB.Intersects(pacman.GetBoundingBox()))
+				{
+					pacman.MoveTo(teleportToTile->position + teleportToTile->offset);
+				}
+
+				for (auto& ghost : ghosts)
+				{
+					if (teleportTileAABB.Intersects(ghost.GetBoundingBox()))
+					{
+						ghost.MoveTo(teleportToTile->position + teleportToTile->offset);
+					}
+				}
 			}
 		}
 	}
@@ -71,15 +89,15 @@ void PacmanLevel::Update(uint32_t dt)
 	{
 		if (!pellet.isEaten)
 		{
-			if (mnoptrPacman->GetEatingBoundingBox().Intersects(pellet.mBBox))
+			if (pacman.GetEatingBoundingBox().Intersects(pellet.mBBox))
 			{
 				pellet.isEaten = true;
 
-				mnoptrPacman->AteItem(pellet.score);
+				pacman.AteItem(pellet.score);
 
 				if (pellet.isPowerPellet)
 				{
-					mnoptrPacman->ResetGhostEatenMultiplier();
+					pacman.ResetGhostEatenMultiplier();
 					// TODO: Make ghosts vulnerable
 				}
 			}
@@ -93,10 +111,10 @@ void PacmanLevel::Update(uint32_t dt)
 
 	if (mBonusItem.spawned && !mBonusItem.eaten)
 	{
-		if (mnoptrPacman->GetEatingBoundingBox().Intersects(mBonusItem.bbox))
+		if (pacman.GetEatingBoundingBox().Intersects(mBonusItem.bbox))
 		{
 			mBonusItem.eaten = true;
-			mnoptrPacman->AteItem(mBonusItem.score);
+			pacman.AteItem(mBonusItem.score);
 		}
 	}
 }
@@ -183,12 +201,6 @@ void PacmanLevel::ResetLevel()
 	mBonusItem.spawnTime = static_cast<int>(distrubution(mGenerator));
 
 	GetBonusItemSpriteName(mBonusItemSpriteName, mBonusItem.score);
-
-	if (mnoptrPacman)
-	{
-		mnoptrPacman->MoveTo(mPacmanSpawnLocation);
-		mnoptrPacman->ResetToFirstAnimation();
-	}
 }
 
 bool PacmanLevel::IsLevelOver() const

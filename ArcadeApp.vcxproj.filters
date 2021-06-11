@@ -195,6 +195,9 @@
     <ClCompile Include="src\Games\Ghost.cpp">
       <Filter>Source Files\Games\Pacman</Filter>
     </ClCompile>
+    <ClCompile Include="src\Games\GhostAI.cpp">
+      <Filter>Source Files\Games\Pacman</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="inc\Graphics\Color.h">
@@ -327,6 +330,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="inc\Games\Ghost.h">
+      <Filter>Header Files\Games\Pacman</Filter>
+    </ClInclude>
+    <ClInclude Include="inc\Games\GhostAI.h">
       <Filter>Header Files\Games\Pacman</Filter>
     </ClInclude>
   </ItemGroup>

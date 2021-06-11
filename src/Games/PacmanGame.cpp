@@ -16,7 +16,7 @@ void PacmanGame::Init(GameController& controller)
 	mPacmanSpriteSheet.Load("PacmanSprites");
 	mPacman.Init(mPacmanSpriteSheet, App::Singleton().GetBasePath() + "Assets/Pacman_animations.txt", Vec2D::Zero(), PACMAN_MOVEMENT_SPEED, false);
 
-	mLevel.Init(App::Singleton().GetBasePath() + "Assets/Pacman_level.txt", &mPacmanSpriteSheet, &mPacman);
+	mLevel.Init(App::Singleton().GetBasePath() + "Assets/Pacman_level.txt", &mPacmanSpriteSheet);
 
 	SetupGhosts();
 	ResetGame();
@@ -59,16 +59,29 @@ void PacmanGame::Update(uint32_t dt)
 	UpdatePacmanMovement();
 	mPacman.Update(dt);
 
-	for (auto& ghost : mGhosts)
+	for (size_t i = 0; i < GhostName::NUM_GHOSTS; ++i)
 	{
-		ghost.Update(dt);
+		if (static_cast<GhostName>(i) == GhostName::BLINKY)
+		{
+			GhostAI& ghostAI = mGhostsAIs[i];
+
+			auto direction = ghostAI.Update(dt, mLevel);
+
+			if (direction != mGhosts[i].GetMovementDirection())
+			{
+				mGhosts[i].SetMovementDirection(direction);
+			}
+		}
+
+		mGhosts[i].Update(dt);
 	}
 
-	mLevel.Update(dt);
+	mLevel.Update(dt, mPacman, mGhosts);
 
 	if (mLevel.IsLevelOver())
 	{
 		mLevel.IncreaseLevel();
+		ResetLevel();
 	}
 }
 
@@ -80,6 +93,11 @@ void PacmanGame::Draw(Screen& screen)
 	for (auto& ghost : mGhosts)
 	{
 		ghost.Draw(screen);
+	}
+
+	for (auto& ghostAI : mGhostsAIs)
+	{
+		ghostAI.Draw(screen);
 	}
 
 	// Draw Score
@@ -128,6 +146,13 @@ void PacmanGame::ResetGame()
 	mPressedDirection = PacmanMovement::NONE;
 	mPacman.ResetScore();
 	mLevel.ResetToFirstLevel();
+	ResetLevel();
+}
+
+void PacmanGame::ResetLevel()
+{
+	mPacman.MoveTo(mLevel.GetPacmanSpawnLocation());
+	mPacman.ResetToFirstAnimation();
 }
 
 void PacmanGame::UpdatePacmanMovement()
@@ -156,11 +181,17 @@ void PacmanGame::HandleGameControllerState(uint32_t dt, InputState state, Pacman
 void PacmanGame::SetupGhosts()
 {
 	mGhosts.resize(NUM_GHOSTS);
+	mGhostsAIs.resize(1);
 
 	Ghost blinky;
 	blinky.Init(mPacmanSpriteSheet, App::Singleton().GetBasePath() + "Assets/Ghost_animations.txt", mLevel.GetGhostSpawnPoints()[GhostName::BLINKY], GHOST_MOVEMNET_SPEED, true, Color::Red());
-	blinky.SetMovementDirection(PacmanMovement::LEFT);
+	blinky.SetMovementDirection(PacmanMovement::RIGHT);
 	mGhosts[GhostName::BLINKY] = blinky;
+
+	auto blinkyAI = GhostAI();
+	blinkyAI.Init(mGhosts[GhostName::BLINKY], GhostName::BLINKY);
+	mGhostsAIs[GhostName::BLINKY] = blinkyAI;
+
 	Ghost pinky;
 	pinky.Init(mPacmanSpriteSheet, App::Singleton().GetBasePath() + "Assets/Ghost_animations.txt", mLevel.GetGhostSpawnPoints()[GhostName::PINKY], GHOST_MOVEMNET_SPEED, true, Color::Pink());
 	pinky.SetMovementDirection(PacmanMovement::UP);

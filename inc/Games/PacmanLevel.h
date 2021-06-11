@@ -11,12 +11,13 @@
 class Screen;
 class Pacman;
 class SpriteSheet;
+class Ghost;
 
 class PacmanLevel
 {
 public:
-	bool Init(const std::string& levelPath, const SpriteSheet* noptrSpriteSheet, Pacman* noptrPacman);
-	void Update(uint32_t dt);
+	bool Init(const std::string& levelPath, const SpriteSheet* noptrSpriteSheet);
+	void Update(uint32_t dt, Pacman& pacman, std::vector<Ghost>& ghosts);
 	void Draw(Screen& screen);
 
 	bool WillCollide(const AARectangle& bbox, PacmanMovement direction) const;
@@ -98,7 +99,6 @@ private:
 	Vec2D mLayoutOffset;
 	size_t mTileHeight;
 	int mCurrentLevel;
-	Pacman* mnoptrPacman;
 
 	std::vector<Vec2D> mGhostsSpawnPoints;
 };

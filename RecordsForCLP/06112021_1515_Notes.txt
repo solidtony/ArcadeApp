@@ -1,0 +1,12 @@
+Ghost Collisions:
+    + Performed the same check against collision tiles in level that we do for Pacman, but instead perform the check on each ghost.
+    + Removed Pacman pointer from level because it is only used in two methods.
+    + Re-factored pacman out of GameLevel
+    + Added ghosts to teleport in warp zone.
+    
+Ghost AI:
+    + Bounding box is drawn to help with debugging. 
+    + With two directions the ghost will favor a specific direction between the two possibilities. The sort is based on the order of the PacmanMovement enum. I am confused as to why we sort the possible directions and then choose a possible direction at random.
+    + The PacmanGame class manages the ghosts and ghosts AI separately.
+    + I see why he did the for loop the way he did it in Update now.
+    + Have a bug where the ghost guides in random directions.
