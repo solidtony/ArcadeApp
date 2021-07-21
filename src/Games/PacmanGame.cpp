@@ -76,7 +76,7 @@ void PacmanGame::Update(uint32_t dt)
 		mGhosts[i].Update(dt);
 	}
 
-	mLevel.Update(dt, mPacman, mGhosts);
+	mLevel.Update(dt, mPacman, mGhosts, mGhostsAIs);
 
 	if (mLevel.IsLevelOver())
 	{
@@ -194,7 +194,7 @@ void PacmanGame::SetupGhosts()
 	mGhosts[GhostName::BLINKY] = blinky;
 
 	auto blinkyAI = GhostAI();
-	blinkyAI.Init(mGhosts[GhostName::BLINKY], blinky.GetBoundingBox().GetWidth(), BLINKY_SCATTER_POS, GhostName::BLINKY);
+	blinkyAI.Init(mGhosts[GhostName::BLINKY], blinky.GetBoundingBox().GetWidth(), BLINKY_SCATTER_POS, Vec2D( 0.f, 0.f ), Vec2D(0.f, 0.f), GhostName::BLINKY);
 	mGhostsAIs[GhostName::BLINKY] = blinkyAI;
 
 	Ghost pinky;

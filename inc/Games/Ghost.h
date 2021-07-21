@@ -45,9 +45,9 @@ public:
 	inline uint32_t GetPoints() const { return mPoints; }
 	inline void LockCanChangeDirection() { mCanChangeDirection = false; }
 	inline bool CanChangeDirection() const { return mCanChangeDirection; }
+	void SetGhostState(GhostState state);
 
 private:
-	void SetGhostState(GhostState state);
 
 	uint32_t mVulnerabilityTimer;
 	uint32_t mPoints;

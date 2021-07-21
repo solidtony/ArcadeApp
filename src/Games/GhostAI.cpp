@@ -19,8 +19,10 @@ GhostAI::GhostAI() : mnoptrGhost(nullptr)
 	
 }
 
-void GhostAI::Init(Ghost& ghost, uint32_t lookAheadDistance, const Vec2D& scatterTarget, GhostName name)
+void GhostAI::Init(Ghost& ghost, uint32_t lookAheadDistance, const Vec2D& scatterTarget, const Vec2D& ghostPenTarget, const Vec2D& ghostExitPenPosition, GhostName name)
 {
+	mGhostPenTarget = ghostPenTarget;
+	mGhostExitPenPosition = ghostExitPenPosition;
 	mScatterTarget = scatterTarget;
 	mLookAheadDistance = lookAheadDistance;
 	mnoptrGhost = &ghost;
@@ -36,6 +38,37 @@ PacmanMovement GhostAI::Update(uint32_t dt, const Pacman& pacman, const PacmanLe
 {
 	if (mnoptrGhost != nullptr)
 	{
+		if (mState == GhostAIState::START)
+		{
+			return PacmanMovement::NONE;
+		}
+
+		if (mState == GhostAIState::IN_PEN)
+		{
+			mTimer += dt;
+
+			if (mTimer >= PEN_WAIT_DURATION)
+			{
+				SetState(GhostAIState::EXIT_PEN);
+			}
+
+			return PacmanMovement::NONE;
+		}
+
+		if (mState == GhostAIState::GO_TO_PEN && mnoptrGhost->Position() == mGhostPenTarget)
+		{
+			SetState(GhostAIState::IN_PEN);
+
+			mnoptrGhost->SetGhostState(GhostState::ALIVE);
+
+			return PacmanMovement::NONE;
+		}
+
+		if (mState == GhostAIState::EXIT_PEN && mnoptrGhost->Position() == mGhostExitPenPosition)
+		{
+			SetState(GhostAIState::SCATTER);
+		}
+
 		if (mState == GhostAIState::SCATTER)
 		{
 			mTimer += dt;
@@ -66,7 +99,7 @@ PacmanMovement GhostAI::Update(uint32_t dt, const Pacman& pacman, const PacmanLe
 
 		for (const auto& direction : tempDirections)
 		{
-			if (!level.WillCollide(mnoptrGhost->GetBoundingBox(), direction))
+			if (!level.WillCollide(*mnoptrGhost, *this, direction))
 			{
 				possibleDirections.push_back(direction);
 			}
@@ -188,10 +221,15 @@ void GhostAI::SetState(GhostAIState state)
 	switch (state)
 	{
 	case GhostAIState::IN_PEN:
+		mTimer = 0;
 		break;
 	case GhostAIState::GO_TO_PEN:
 		break;
 	case GhostAIState::EXIT_PEN:
+	{
+		Vec2D target = { mGhostPenTarget.GetX() + mnoptrGhost->GetBoundingBox().GetWidth() / 2.f, mGhostPenTarget.GetY() - mnoptrGhost->GetBoundingBox().GetHeight() / 2.f };
+		ChangeTarget(target);
+	}
 		break;
 	case GhostAIState::SCATTER:
 		mTimer = 0;
