@@ -1,2 +1,9 @@
 Ghosts AI States:
-    + 
+    + Add modes that determines how the ghosts behave. Initially it will be just with Blinky.
+    + Created a ghost enum to store the state.
+    + Target is the tile that the ghost trying to maneuver to while in chase. The ghosts will have different target behaviors.
+    + Scatter target is where the ghost goes for scatter mode. To achieve an orbit behavior the target will always be outside of boundaries.
+    + The ghosts start in scatter mode until the timer exceeds the SCATTER_MODE_DURATION. After that they enter chase mode.
+    + When vulnerable, the ghost will wonder around.
+    + The algorithim looks ahead in each of the four directions and calculates the distance from the ghost to the look ahead location. The used direction is the one that produces the shortest distance.
+    + Blinky's target works but the colors are not working.
