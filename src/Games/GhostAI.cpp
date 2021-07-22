@@ -239,3 +239,30 @@ void GhostAI::SetState(GhostAIState state)
 		break;
 	}
 }
+
+void GhostAI::GhostDelegateGhostStateChangedTo(GhostState lastState, GhostState state)
+{
+	if (mnoptrGhost && mnoptrGhost->IsReleased() && (lastState == GhostState::VULNERABLE || lastState == GhostState::VULNERABLE_ENDING)
+		&& !(IsInPen() || WantsToLeavePen()))
+	{
+		mnoptrGhost->SetMovementDirection(GetOppositeDirection(mnoptrGhost->GetMovementDirection()));
+	}
+
+	if (state == GhostState::DEAD)
+	{
+		SetState(GhostAIState::GO_TO_PEN);
+	}
+}
+
+void GhostAI::GhostWasReleasedFromPen()
+{
+	if (mState == GhostAIState::START)
+	{
+		SetState(GhostAIState::EXIT_PEN);
+	}
+}
+
+void GhostAI::GhostWasResetToFirstPosition()
+{
+	SetState(GhostAIState::START);
+}

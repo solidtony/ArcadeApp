@@ -19,7 +19,7 @@ enum GhostAIState
 	GO_TO_PEN
 };
 
-class GhostAI
+class GhostAI : public GhostDelegate
 {
 public:
 	GhostAI();
@@ -31,6 +31,10 @@ public:
 	inline bool WantsToLeavePen() const { return mState == GhostAIState::EXIT_PEN; }
 	inline bool IsInPen() const { return mState == GhostAIState::IN_PEN || mState == GhostAIState::START; }
 	inline bool IsEnteringPen() const { return mState == GhostAIState::GO_TO_PEN; }
+
+	virtual void GhostDelegateGhostStateChangedTo(GhostState lastState, GhostState state) override;
+	virtual void GhostWasReleasedFromPen() override;
+	virtual void GhostWasResetToFirstPosition() override;
 
 private:
 

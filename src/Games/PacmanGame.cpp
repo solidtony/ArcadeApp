@@ -186,27 +186,45 @@ void PacmanGame::SetupGhosts()
 	const Vec2D CLYDE_SCATTER_POS = Vec2D(0, App::Singleton().Height());
 
 	mGhosts.resize(NUM_GHOSTS);
-	mGhostsAIs.resize(1);
+	mGhostsAIs.resize(NUM_GHOSTS);
 
+	// Blinky
 	Ghost blinky;
 	blinky.Init(mPacmanSpriteSheet, App::Singleton().GetBasePath() + "Assets/Ghost_animations.txt", mLevel.GetGhostSpawnPoints()[GhostName::BLINKY], GHOST_MOVEMNET_SPEED, true, Color::Red());
 	blinky.SetMovementDirection(PacmanMovement::RIGHT);
 	mGhosts[GhostName::BLINKY] = blinky;
 
 	auto blinkyAI = GhostAI();
-	blinkyAI.Init(mGhosts[GhostName::BLINKY], blinky.GetBoundingBox().GetWidth(), BLINKY_SCATTER_POS, Vec2D( 0.f, 0.f ), Vec2D(0.f, 0.f), GhostName::BLINKY);
+	blinkyAI.Init(mGhosts[GhostName::BLINKY], blinky.GetBoundingBox().GetWidth(), BLINKY_SCATTER_POS, mLevel.GetGhostSpawnPoints()[GhostName::PINKY], mLevel.GetGhostSpawnPoints()[GhostName::BLINKY], GhostName::BLINKY);
 	mGhostsAIs[GhostName::BLINKY] = blinkyAI;
 
+	// Pinky
 	Ghost pinky;
 	pinky.Init(mPacmanSpriteSheet, App::Singleton().GetBasePath() + "Assets/Ghost_animations.txt", mLevel.GetGhostSpawnPoints()[GhostName::PINKY], GHOST_MOVEMNET_SPEED, true, Color::Pink());
 	pinky.SetMovementDirection(PacmanMovement::UP);
 	mGhosts[GhostName::PINKY] = pinky;
+
+	auto pinkyAI = GhostAI();
+	pinkyAI.Init(mGhosts[GhostName::PINKY], pinky.GetBoundingBox().GetWidth(), PINKY_SCATTER_POS, mLevel.GetGhostSpawnPoints()[GhostName::PINKY], mLevel.GetGhostSpawnPoints()[GhostName::BLINKY], GhostName::PINKY);
+	mGhostsAIs[GhostName::PINKY] = pinkyAI;
+
+	// Inky
 	Ghost inky;
 	inky.Init(mPacmanSpriteSheet, App::Singleton().GetBasePath() + "Assets/Ghost_animations.txt", mLevel.GetGhostSpawnPoints()[GhostName::INKY], GHOST_MOVEMNET_SPEED, true, Color::Cyan());
 	inky.SetMovementDirection(PacmanMovement::DOWN);
 	mGhosts[GhostName::INKY] = inky;
+
+	auto inkyAI = GhostAI();
+	inkyAI.Init(mGhosts[GhostName::INKY], inky.GetBoundingBox().GetWidth(), INKY_SCATTER_POS, mLevel.GetGhostSpawnPoints()[GhostName::INKY], mLevel.GetGhostSpawnPoints()[GhostName::BLINKY], GhostName::INKY);
+	mGhostsAIs[GhostName::INKY] = inkyAI;
+
+	// Clyde
 	Ghost clyde;
 	clyde.Init(mPacmanSpriteSheet, App::Singleton().GetBasePath() + "Assets/Ghost_animations.txt", mLevel.GetGhostSpawnPoints()[GhostName::CLYDE], GHOST_MOVEMNET_SPEED, true, Color::Orange());
 	clyde.SetMovementDirection(PacmanMovement::RIGHT);
 	mGhosts[GhostName::CLYDE] = clyde;
+
+	auto clydeAI = GhostAI();
+	clydeAI.Init(mGhosts[GhostName::CLYDE], clyde.GetBoundingBox().GetWidth(), CLYDE_SCATTER_POS, mLevel.GetGhostSpawnPoints()[GhostName::CLYDE], mLevel.GetGhostSpawnPoints()[GhostName::BLINKY], GhostName::CLYDE);
+	mGhostsAIs[GhostName::CLYDE] = clydeAI;
 }
