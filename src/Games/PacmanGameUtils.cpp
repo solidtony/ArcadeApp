@@ -78,4 +78,6 @@ std::vector<PacmanMovement> GetOtherDirections(PacmanMovement direction)
 			directions.push_back(static_cast<PacmanMovement>(dir));
 		}
 	}
+
+	return directions;
 }

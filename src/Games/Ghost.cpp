@@ -132,7 +132,7 @@ void Ghost::SetGhostState(GhostState state)
 	{
 	case ALIVE:
 		SetMovementDirection(GetMovementDirection());
-		SetMovementSpeed(GHOST_MOVEMNET_SPEED);
+		SetMovementSpeed(GHOST_MOVEMENT_SPEED);
 		break;
 	case VULNERABLE:
 		mSprite.SetAnimation("ghost_vulnerable", true);

@@ -2,3 +2,6 @@ Ghost Delegate:
     + The plan is to decouple the ghost AI from the ghost.
     + Create a GhostDelegate. Ghost does note know it is delegated as an AI. Contains pure virtual functions. Its job is to couple together things that don't know they are coupled together. Essentially a callback to whoever cares about when changes have been made.
     + Splits up responsibility to two different classes. Uses a friend class which usually breaks encapsulation.
+    
+Release the Ghost:
+    + Kept throwing an exception because Inky's guidance was incoorect.

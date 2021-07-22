@@ -558,7 +558,7 @@ bool PacmanLevel::LoadLevel(const std::string& levelPath)
 				}
 				else if (tile->blinkySpawnPoint > 0)
 				{
-					mGhostsSpawnPoints[GhostName::BLINKY] = Vec2D(startingX + tile->offset.GetX(), layoutOffset.GetY() + tile->offset.GetY());
+					mGhostsSpawnPoints[GhostName::BLINKY] = Vec2D(startingX + tile->offset.GetX()+1, layoutOffset.GetY() + tile->offset.GetY());
 				}
 				else if (tile->pinkySpawnPoint > 0)
 				{
@@ -566,7 +566,7 @@ bool PacmanLevel::LoadLevel(const std::string& levelPath)
 				}
 				else if (tile->inkySpawnPoint > 0)
 				{
-					mGhostsSpawnPoints[GhostName::INKY] = Vec2D(startingX + tile->offset.GetX(), layoutOffset.GetY() + tile->offset.GetY());
+					mGhostsSpawnPoints[GhostName::INKY] = Vec2D(startingX + tile->offset.GetX()+1, layoutOffset.GetY() + tile->offset.GetY());
 				}
 				else if (tile->clydeSpawnPoint > 0)
 				{
