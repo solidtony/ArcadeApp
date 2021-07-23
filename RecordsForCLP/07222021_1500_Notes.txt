@@ -6,3 +6,6 @@ Ghost Delegate:
 Release the Ghost:
     + Kept throwing an exception because Inky's guidance was incorrect.
     + Ran into a number of issues that needed to be solved.
+    
+Game State:
+    + Timmer must not be getting updated. The game does not leave the Ready! state.
