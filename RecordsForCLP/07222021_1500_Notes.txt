@@ -4,4 +4,5 @@ Ghost Delegate:
     + Splits up responsibility to two different classes. Uses a friend class which usually breaks encapsulation.
     
 Release the Ghost:
-    + Kept throwing an exception because Inky's guidance was incoorect.
+    + Kept throwing an exception because Inky's guidance was incorrect.
+    + Ran into a number of issues that needed to be solved.

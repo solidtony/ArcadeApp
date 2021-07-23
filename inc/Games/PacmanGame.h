@@ -8,6 +8,14 @@
 #include "Input/InputAction.h"
 #include "Games/GhostAI.h"
 
+enum PacmanGameState
+{
+	LEVEL_STARTING = 0,
+	PLAY_GAME = 0,
+	LOST_LIFE,
+	GAME_OVER
+};
+
 class PacmanGame: public Game
 {
 public:
@@ -32,4 +40,7 @@ private:
 	std::vector<Ghost> mGhosts;
 	std::vector<GhostAI> mGhostsAIs;
 	uint32_t mReleaseGhostTimer;
+	PacmanGameState mGameState;
+	uint32_t mLevelStartingTimer;
+	AARectangle mStringRect;
 };

@@ -34,6 +34,8 @@ public:
 
 	inline const std::vector<Vec2D>& GetGhostSpawnPoints() { return mGhostsSpawnPoints; }
 
+	inline uint32_t GetInGameTextYPos() const { return mBonusItem.bbox.GetTopLeftPoint().GetY(); }
+
 private:
 	struct Tile
 	{
