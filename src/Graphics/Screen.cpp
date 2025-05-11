@@ -91,7 +91,7 @@ SDL_Window* Screen::Init(uint32_t width, uint32_t height, uint32_t mag, bool fas
 		mnoptrWindowSurface = SDL_GetWindowSurface(moptrWindow); // 2D array of pixles
 	}
 
-	mPixelFormat = SDL_AllocFormat(SDL_PIXELFORMAT_RGBA8888);
+	mPixelFormat = SDL_AllocFormat(SDL_PIXELFORMAT_ARGB8888);
 
 	if (mFast)
 	{
@@ -259,18 +259,18 @@ void Screen::Draw(const AARectangle& rect, const Color& color, bool fill, const 
 
 void Screen::Draw(const Circle& circle, const Color& color, bool fill, const Color& fillColor)
 {
-	static unsigned int NUM_CIRCLE_SECMENTS = 30;
+	static unsigned int NUM_CIRCLE_SEGMENTS = 30;
 
 	std::vector<Vec2D> circlePoints;
 	std::vector<Line2D> lines;
 
-	float angle = math::constants::TWO_PI_F / float(NUM_CIRCLE_SECMENTS);
+	float angle = math::constants::TWO_PI_F / float(NUM_CIRCLE_SEGMENTS);
 
 	Vec2D p0 = Vec2D(circle.GetCenterPoint().GetX() + circle.GetRadius(), circle.GetCenterPoint().GetY());
 	Vec2D p1 = p0;
 	Line2D nextLineToDraw;
 
-	for (unsigned int i = 0; i < NUM_CIRCLE_SECMENTS; ++i)
+	for (unsigned int i = 0; i < NUM_CIRCLE_SEGMENTS; ++i)
 	{
 		p1.Rotate(circle.GetCenterPoint(), angle);
 		nextLineToDraw.SetPoint1(p1);

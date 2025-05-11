@@ -167,13 +167,14 @@ void GhostAI::Draw(Screen& screen)
 	{
 		Circle targetCircle = Circle(mTarget, 4);
 
-		screen.Draw(targetCircle, mnoptrGhost->GetSpriteColor(), true, mnoptrGhost->GetSpriteColor());
+		Color c = Color(mnoptrGhost->GetSpriteColor().GetRed(), mnoptrGhost->GetSpriteColor().GetGreen(), mnoptrGhost->GetSpriteColor().GetBlue(), 200);
+
+		screen.Draw(targetCircle, mnoptrGhost->GetSpriteColor(), true, c);
 
 		AARectangle bbox = mnoptrGhost->GetBoundingBox();
 
 		bbox.MoveBy(GetMovementVector(mnoptrGhost->GetMovementDirection()) * mnoptrGhost->GetBoundingBox().GetWidth());
 
-		Color c = Color(mnoptrGhost->GetSpriteColor().GetRed(), mnoptrGhost->GetSpriteColor().GetGreen(), mnoptrGhost->GetSpriteColor().GetBlue(), 200);
 
 		screen.Draw(bbox, mnoptrGhost->GetSpriteColor(), true, c);
 	}
