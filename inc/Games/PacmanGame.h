@@ -13,7 +13,7 @@
 enum PacmanGameState
 {
 	LEVEL_STARTING = 0,
-	PLAY_GAME = 0,
+	PLAY_GAME,
 	LOST_LIFE,
 	GAME_OVER
 };

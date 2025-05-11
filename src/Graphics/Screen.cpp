@@ -91,7 +91,7 @@ SDL_Window* Screen::Init(uint32_t width, uint32_t height, uint32_t mag, bool fas
 		mnoptrWindowSurface = SDL_GetWindowSurface(moptrWindow); // 2D array of pixles
 	}
 
-	mPixelFormat = SDL_AllocFormat(SDL_GetWindowPixelFormat(moptrWindow));
+	mPixelFormat = SDL_AllocFormat(SDL_PIXELFORMAT_RGBA8888);
 
 	if (mFast)
 	{
