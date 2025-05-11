@@ -1,6 +1,8 @@
 #pragma once
 
-#include "Games/Actor.H"
+#include <string>
+
+#include "Games/Actor.h"
 #include "Graphics/Color.h"
 #include "Games/PacmanGameUtils.h"
 #include "Shapes/AARectangle.h"

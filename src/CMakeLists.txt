@@ -1,0 +1,7 @@
+add_subdirectory(App)
+add_subdirectory(Games)
+add_subdirectory(Graphics)
+add_subdirectory(Input)
+add_subdirectory(Scenes)
+add_subdirectory(Shapes)
+add_subdirectory(Utils)

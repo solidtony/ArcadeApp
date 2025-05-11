@@ -1,6 +1,6 @@
 #pragma once
 
-#include "Utils/Vec2d.h"
+#include "Utils/Vec2D.h"
 #include "Games/Excluder.h"
 
 #include <string>

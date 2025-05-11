@@ -1,6 +1,8 @@
 #pragma once
 
+#include <string>
 #include <vector>
+
 #include "Games/Ball.h"
 #include "Games/Game.h"
 #include "Games/LevelBoundary.h"

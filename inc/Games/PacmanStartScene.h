@@ -1,6 +1,8 @@
 #pragma once
 
-#include "../Scenes/ButtonOptionsScene.h"
+#include <string>
+
+#include "Scenes/ButtonOptionsScene.h"
 
 class PacmanStartScene : public ButtonOptionsScene
 {

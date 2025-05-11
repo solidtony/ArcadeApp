@@ -1,6 +1,6 @@
 #include "Input/InputController.h"
 
-#include "SDL.h"
+#include <SDL2/SDL.h>
 #include "Input/GameController.h"
 
 InputController::InputController() :mQuit(nullptr), mnoptrCurrentController(nullptr)

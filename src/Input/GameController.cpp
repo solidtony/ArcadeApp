@@ -1,6 +1,6 @@
 #include "Input/GameController.h"
 
-#include "SDL.h"
+#include <SDL2/SDL.h>
 
 GameController::GameController() : mMouseMovedAction(nullptr)
 {

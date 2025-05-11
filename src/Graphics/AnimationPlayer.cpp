@@ -1,5 +1,7 @@
 #include "Graphics/AnimationPlayer.h"
 
+#include <string>
+
 AnimationPlayer::AnimationPlayer(): mTime(0), mCurrentAnimation(0), mFrame(0), mLooped(false), mIsPlaying(false), mIsFinishedPlaying(false)
 {
 

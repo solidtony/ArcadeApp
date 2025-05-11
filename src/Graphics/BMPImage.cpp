@@ -1,6 +1,6 @@
 #include "Graphics/BMPImage.h"
 
-#include "SDL.h"
+#include <SDL2/SDL.h>
 
 BMPImage::BMPImage(): mWidth(0), mHeight(0)
 {

@@ -1,5 +1,7 @@
 #include "Games/Ghost.h"
 
+#include <string>
+
 namespace
 {
 	const uint32_t NUM_POINTS_FOR_GHOST = 200;

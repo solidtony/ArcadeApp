@@ -1,4 +1,7 @@
-#include "PacmanLevel.h"
+#include "Games/PacmanLevel.h"
+
+#include <cassert>
+#include <string>
 
 #include "App/App.h"
 #include "Utils/FileCommandLoader.h"
@@ -8,7 +11,6 @@
 #include "Games/Ghost.h"
 #include "Shapes/Circle.h"
 #include "Shapes/AARectangle.h"
-#include <cassert>
 
 namespace {
 	const uint32_t NUM_LEVLES = 256;

@@ -1,5 +1,7 @@
 #include "Shapes/Triangle.h"
 
+#include <cmath>
+
 #include "Utils/Utils.h"
 
 Triangle::Triangle() : Triangle(Vec2D::Zero(), Vec2D::Zero(), Vec2D::Zero())

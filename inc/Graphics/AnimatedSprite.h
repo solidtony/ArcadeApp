@@ -1,11 +1,11 @@
 #pragma once
 
+#include <stdint.h>
+#include <string>
+
 #include "Graphics/AnimationPlayer.h"
 #include "Graphics/Color.h"
 #include "Utils/Vec2D.h"
-
-#include <stdint.h>
-#include <string>
 
 class AARectangle;
 class Screen;

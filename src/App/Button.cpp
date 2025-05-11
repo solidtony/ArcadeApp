@@ -1,6 +1,8 @@
 #include "App/Button.h"
 
 #include "Graphics/Screen.h"
+#include "Graphics/BitmapFont.h"
+#include "Utils/Vec2D.h"
 
 Button::Button(const BitmapFont& bitmapFont, const Color& textColor, const Color& highlightColor) :
 mBitmapFont(bitmapFont),  mTextColor(textColor), mHighlightColor(highlightColor), mTitle("")

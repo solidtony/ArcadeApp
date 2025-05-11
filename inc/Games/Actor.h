@@ -1,12 +1,13 @@
 #pragma once
 
+#include <string>
+#include <stdint.h>
+
 #include "Graphics/AnimatedSprite.h"
 #include "Utils/Vec2D.h"
 #include "Games/PacmanGameUtils.h"
 #include "Shapes/AARectangle.h"
 #include "Graphics/Color.h"
-#include <string>
-#include <stdint.h>
 
 class Screen;
 class SpriteSheet;

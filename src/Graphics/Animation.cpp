@@ -2,6 +2,7 @@
 #include "Utils/FileCommandLoader.h"
 
 #include <cassert>
+#include <string>
 
 Animation::Animation() : mSize(Vec2D::Zero()), mSpriteSheetName(""), mAnimationName(""), mFPS(0)
 {

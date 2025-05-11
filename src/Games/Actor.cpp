@@ -1,6 +1,8 @@
+#include <cmath>
+#include <string>
+
 #include "Games/Actor.h"
 #include "Utils/Utils.h"
-#include <cmath>
 
 
 void Actor::Init(const SpriteSheet& spriteSheet, const std::string& animationsPath, const Vec2D& initialPos, uint32_t movementSpeed, bool updateSpriteOnMovement, const Color& spriteColor)

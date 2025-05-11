@@ -1,5 +1,7 @@
 #include "Graphics/AnimatedSprite.h"
 
+#include <string>
+
 #include "Graphics/Screen.h"
 #include "Shapes/AARectangle.h"
 

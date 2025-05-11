@@ -1,5 +1,7 @@
 #include "Graphics/SpriteSheet.h"
 
+#include <string>
+
 #include "App/App.h"
 #include "Utils/Utils.h"
 #include "Utils/FileCommandLoader.h"
@@ -11,8 +13,8 @@ SpriteSheet::SpriteSheet()
 
 bool SpriteSheet::Load(const std::string& name)
 {
-	bool loadedImage = mBMPImage.Load(App::Singleton().GetBasePath() + std::string("Assets\\") + name + ".bmp");
-	bool loadedSpriteSections = LoadSpriteSections(App::Singleton().GetBasePath() + std::string("Assets\\") + name + ".txt");
+	bool loadedImage = mBMPImage.Load(App::Singleton().GetBasePath() + std::string("res/") + name + ".bmp");
+	bool loadedSpriteSections = LoadSpriteSections(App::Singleton().GetBasePath() + std::string("res/") + name + ".txt");
 
 	return loadedImage && loadedSpriteSections;
 }

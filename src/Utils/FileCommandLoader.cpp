@@ -1,6 +1,8 @@
 #include "Utils/FileCommandLoader.h"
 
 #include <fstream>
+#include <string>
+
 #include "Graphics/Color.h"
 #include "Utils/Vec2D.h"
 

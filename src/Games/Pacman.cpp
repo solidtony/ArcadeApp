@@ -1,5 +1,7 @@
 #include "Games/Pacman.h"
 
+#include <string>
+
 #include "Utils/Utils.h"
 
 void Pacman::Init(const SpriteSheet& spriteSheet, const std::string& animationPath, const Vec2D& initialPos, uint32_t movementSpeed, bool updateSpriteOnMovement)

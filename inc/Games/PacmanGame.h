@@ -1,5 +1,7 @@
 #pragma once
 
+#include <string>
+
 #include "Games/Game.h"
 #include "Games/Ghost.h"
 #include "Games/PacmanLevel.h"

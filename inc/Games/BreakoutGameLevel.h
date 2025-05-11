@@ -1,8 +1,10 @@
 #pragma once
 
-#include "Block.h"
-#include <vector>
 #include <stdint.h>
+#include <string>
+#include <vector>
+
+#include "Block.h"
 
 class Screen;
 class Ball;

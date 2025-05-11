@@ -1,4 +1,4 @@
-#include "Graphics/Bitmapfont.h"
+#include "Graphics/BitmapFont.h"
 
 #include "Shapes/AARectangle.h"
 #include "Utils/Vec2D.h"

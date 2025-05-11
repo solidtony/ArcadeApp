@@ -1,6 +1,7 @@
 #include "Utils/Vec2D.h"
 
 #include <cassert>
+#include <cmath>
 
 #include "Utils/Utils.h"
 

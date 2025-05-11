@@ -1,6 +1,8 @@
 #include "Utils/Utils.h"
+
 #include <cmath>
 #include <cctype>
+#include <string>
 
 static constexpr float EPSILON = 0.0001f;
 

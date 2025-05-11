@@ -2,8 +2,11 @@
 
 #include <algorithm>
 #include <iostream>
+#include <string>
+#include <vector>
 
 #include "App/App.h"
+#include "App/Button.h"
 #include "Graphics/BitmapFont.h"
 #include "Utils/Utils.h"
 

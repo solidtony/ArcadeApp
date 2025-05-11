@@ -1,9 +1,10 @@
 #pragma once
 
-#include "Animation.h"
 #include <stdint.h>
 #include <vector>
 #include <string>
+
+#include "Animation.h"
 
 class AnimationPlayer
 {

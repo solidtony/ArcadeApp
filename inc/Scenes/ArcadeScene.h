@@ -1,4 +1,7 @@
 #pragma once
+
+#include <string>
+
 #include "Scenes/ButtonOptionsScene.h"
 
 #include "Scene.h"

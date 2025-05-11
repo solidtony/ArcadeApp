@@ -2,6 +2,7 @@
 
 #include <memory>
 #include <stdint.h>
+#include <string>
 #include <vector>
 
 #include "Graphics/Screen.h"

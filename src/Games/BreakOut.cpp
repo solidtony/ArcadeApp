@@ -1,11 +1,10 @@
 #include "Games/BreakOut.h"
 
 #include <iostream>
+#include <string>
 
 #include "App/App.h"
-
 #include "Input/GameController.h"
-
 #include "Shapes/Circle.h"
 
 /*
@@ -236,7 +235,7 @@ const std::string& BreakOut::GetName() const
 
 void BreakOut::ResetGame(size_t toLevel)
 {
-	mLevels = BreakoutGameLevel::LoadLevelsFromFile(App::GetBasePath() + "Assets\\BreakoutLevels.txt");
+	mLevels = BreakoutGameLevel::LoadLevelsFromFile(App::GetBasePath() + "res/BreakoutLevels.txt");
 
 	mCurrentLevel = toLevel;
 	mLives = NUM_LIVES;

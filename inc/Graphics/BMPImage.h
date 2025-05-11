@@ -1,9 +1,10 @@
 #pragma once
 
-#include "Color.h"
 #include <vector>
 #include <string>
 #include <stdint.h>
+
+#include "Color.h"
 
 class BMPImage
 {

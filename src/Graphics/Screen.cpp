@@ -3,7 +3,8 @@
 #include <algorithm>
 #include <cassert>
 #include <cmath>
-#include "SDL.h"
+#include <cstring>
+#include <SDL2/SDL.h>
 
 #include "Graphics/BitmapFont.h"
 #include "Graphics/BMPImage.h"

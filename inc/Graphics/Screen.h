@@ -1,8 +1,9 @@
 #pragma once
 
-#include <stdint.h>
-#include <vector>
 #include <functional>
+#include <stdint.h>
+#include <string>
+#include <vector>
 
 #include "Graphics/Color.h"
 #include "Graphics/ScreenBuffer.h"

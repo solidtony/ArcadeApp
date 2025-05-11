@@ -1,5 +1,5 @@
 #include "Graphics/Color.h"
-#include "SDL.h"
+#include <SDL2/SDL.h>
 
 const SDL_PixelFormat* Color::mFormat = nullptr;
 

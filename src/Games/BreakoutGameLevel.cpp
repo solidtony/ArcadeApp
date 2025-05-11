@@ -1,5 +1,7 @@
 #include "Games/BreakoutGameLevel.h"
 
+#include <string>
+
 #include "App/App.h"
 
 #include "Games/Block.h"
