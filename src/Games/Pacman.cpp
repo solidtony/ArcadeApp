@@ -61,7 +61,7 @@ void Pacman::ResetToFirstAnimation()
 
 void Pacman::EatenByGhost()
 {
-	SetAnimation("death", true);
+	SetAnimation("death", false);
 	mIsDying = true;
 	ResetGhostEatenMultiplier();
 }

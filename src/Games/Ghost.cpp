@@ -140,6 +140,7 @@ void Ghost::SetGhostState(GhostState state)
 		mSprite.SetAnimation("ghost_vulnerable", true);
 		mVulnerabilityTimer = 0;
 		SetMovementSpeed(GHOST_VULNERABLE_MOVEMENT_SPEED);
+		SetMovementDirection(GetOppositeDirection(GetMovementDirection()));
 		break;
 	case VULNERABLE_ENDING:
 		mSprite.SetAnimation("ghost_vulnerable_ending", true);

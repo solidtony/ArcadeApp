@@ -8,6 +8,7 @@
 #include <random>
 #include "PacmanGameUtils.h"
 #include "GhostAI.h"
+#include "Graphics/BMPImage.h"
 
 class Screen;
 class Pacman;
@@ -109,4 +110,5 @@ private:
 	int mCurrentLevel;
 
 	std::vector<Vec2D> mGhostsSpawnPoints;
+    BMPImage mBGImage;
 };

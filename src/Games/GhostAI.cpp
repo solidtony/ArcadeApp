@@ -278,7 +278,6 @@ void GhostAI::GhostDelegateGhostStateChangedTo(GhostState lastState, GhostState 
 			SetState(mLastState);
 		}
 	}
-
 }
 
 void GhostAI::GhostWasReleasedFromPen()

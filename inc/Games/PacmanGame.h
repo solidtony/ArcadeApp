@@ -38,7 +38,7 @@ private:
 	SpriteSheet mPacmanSpriteSheet;
 	Pacman mPacman;
 	PacmanLevel mLevel;
-	size_t mNumLives;
+	int mNumLives;
 	std::vector<Ghost> mGhosts;
 	std::vector<GhostAI> mGhostsAIs;
 	uint32_t mReleaseGhostTimer;
